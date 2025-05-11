@@ -1,0 +1,22 @@
+.logo {
+	width: 50%;
+}
+
+.options {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	width: 50%;
+	align-items: center;
+	justify-content: center;
+}
+
+.boton-opcion {
+	background: rgba(0, 0, 0, 0.6);
+	width: 100%;
+	height: 30px;
+	border-radius: 5px;
+	border: solid 1px darkgrey;
+	color: #ffffff;
+	font-family: 'War of 1930';	
+}
