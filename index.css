@@ -1,19 +1,96 @@
+
+@font-face {
+	font-family: 'War of 1930';
+	src: url('./fonts/War of 1930') format('ttf');
+}
+
 * {
 	padding: 0;
 	margin: 0;
 }
 
 .main-body {
-	background: yellowgreen;
+	background: url('./images/background1.jpg');
+	background-size: cover;
 	display: flex;
 	flex-direction: column;
-	flex: 1;
+	height: 100vh;
 }
 
 .style-header {
 	background: #000000;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
 h1 {
 	color: #ffffff;
+	margin-left: 15px;
+	font-family: 'War of 1930';
+	margin: 5px;
 }
+
+.main-navegator {
+	margin-right: 15px;
+}
+
+.main-navegator ul {
+	display: flex;
+	gap: 10px;
+	list-style: none;
+}
+
+.main-navegator li {
+	color: #ffffff;
+	cursor: pointer;
+
+}
+
+.main-container {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	justify-content: center;
+	align-items: center;
+}
+
+.container {
+	background: url('./images/start.jpg');
+	background-size: cover;
+	border: solid 1px darkgrey;
+	border-radius: 10px;
+	width: 70%;
+	height: 65%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 2em;
+}
+
+.logo {
+	width: 30%;
+}
+
+.button {
+	background: rgba(0, 0, 0, 0.6);
+	width: 50%;
+	height: 50px;
+	color: #ffffff;
+	font-family: 'War of 1930';
+	font-size: 2rem;
+	cursor: pointer;
+}
+
+footer {
+	background: #000000;
+	display: flex;
+	align-items: center;
+	color: #ffffff;
+	justify-content: center;
+	padding: 5px;
+}
+
+
+@media (min-width: 720px) and (max-width: )
