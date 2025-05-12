@@ -1,3 +1,3 @@
-async function generarJuegoUnSoloJugador() {
+const generarJuegoUnSoloJugador = () => {
 	
 }
