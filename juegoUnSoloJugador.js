@@ -11,15 +11,16 @@ export const generarJuegoUnSoloJugador = async(contenido) => {
 
 	presentacion.classList.add('contenido-introduccion');
 	presentacion.appendChild(titutuloIntroduccion);
-		
+	presentacion.appendChild(textoImagen);
+
 	titutuloIntroduccion.classList.add('titulo-introduccion');
 	titutuloIntroduccion.textContent = 'Introduccion';
 
-	
+	textoImagen.classList.add('texto-imagen');
+	textoImagen.appendChild(imagenIntroduccion);
 
-	//presentacion.appendChild(imagenIntroduccion);
-	//imagenIntroduccion.classList.add('imagen-introduccion');
-	//imagenIntroduccion.src = './images/introduccion.jpg'
+	imagenIntroduccion.classList.add('imagen-introduccion');
+	imagenIntroduccion.src = './images/introduccion.jpg'
 
 
 	await delay(1000);
