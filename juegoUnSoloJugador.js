@@ -49,6 +49,10 @@ export const generarJuegoUnSoloJugador = async(contenido) => {
 		await delay(500);
 
 		const eleccionDeBandos = document.createElement('div');
+		const tituloDeSeleccion = document.createElement('h1');
+		const contenedorBandosParaSeleccionar = document.createElement('div');
+		const banderaNazi = document.createElement('img');
+		const banderaBritanica = document.createElement('img');
 
 		contenido.innerHTML = ``;
 		contenido.appendChild(eleccionDeBandos);
@@ -59,8 +63,24 @@ export const generarJuegoUnSoloJugador = async(contenido) => {
 
 		eleccionDeBandos.classList.add('mostrar-opacidad-contenedor');
 
-		
+		eleccionDeBandos.appendChild(tituloDeSeleccion);
+		tituloDeSeleccion.classList.add('titulo-introduccion');	
+		tituloDeSeleccion.textContent = "Selecciona tu bando";
 
+		eleccionDeBandos.appendChild(contenedorBandosParaSeleccionar);
+		contenedorBandosParaSeleccionar.classList.add('contenedor-banderas');
+
+		contenedorBandosParaSeleccionar.appendChild(banderaBritanica);
+		contenedorBandosParaSeleccionar.appendChild(banderaNazi);
+
+
+		banderaNazi.src = './images/naziFlag.png'
+		banderaBritanica.src = './images/britishFlag.png';
+
+		banderaNazi.classList.add('flag');
+		banderaBritanica.classList.add('flag');
+		
+		
 	}
 
 	botonContinuar.addEventListener('click', generarPartida);
