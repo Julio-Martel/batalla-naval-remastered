@@ -1,7 +1,10 @@
+
+/*ESTILOS DE LA INTRODUCCION*/
+
 .contenido-introduccion {
 	background: rgba(0, 0, 0, 0.6);
 	width: 90%;
-	height: 500px;
+	height: 450px;
 	max-width: 1000px;
 	border: solid 1px darkgrey;
 	display: flex;
@@ -58,5 +61,57 @@
 	color: #ffffff;
 	font-family: 'War of 1930';
 	font-size: 2rem;
+	cursor: pointer;
+}
+
+.contenido-ocultar {
+	opacity: 1;
+	transition: opacity 1s ease;
+}
+
+.opacar-contenido-introduccion {
+	opacity: 0;
+}
+
+/*ESTILOS PARA LA ELECCION DE BANDOS*/
+
+.contenedor-bandos {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	width: 90%;
+	height: 450px;
+	background: rgba(0, 0, 0, 0.6);
+	border: solid 1px darkgrey;
+	border-radius: 5px;
+	align-items: center;
+	padding: 5px;
+}
+
+.opacidad-contenedor {
+	opacity: 0;
+	transition: opacity 1s ease;
+}
+
+.mostrar-opacidad-contenedor {
+	opacity: 1;
+}
+
+.contenedor-banderas {
+	display: flex;
+	width: 90%;
+	height: 200px;
+	align-items: center;
+	justify-content: center;
+	border: solid 1px darkgrey;
+	border-radius: 5px;
+	background: #000000;
+	gap: 2em;
+}
+
+.flag {
+	width: 25%;
+	border: solid 1px darkgrey;
+	border-radius: 5px;
 	cursor: pointer;
 }
