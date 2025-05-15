@@ -40,6 +40,23 @@ export const generarJuegoUnSoloJugador = async(contenido) => {
 	botonContinuar.classList.add('button');
 	botonContinuar.textContent = `Continuar`;
 
+	const generarPartida = () => {
+	
+		presentacion.classList.add('contenido-ocultar');
+
+		delay(1000);
+
+		presentacion.classList.add('opacar-contenido-introduccion');
+		botonContinuar.style.pointerEvents = 'none';
+
+		/*const eleccionDeBandos = document.createElement('asdasd')
+
+		contenido.innerHTML = ``;*/
+		
+	}
+
+	botonContinuar.addEventListener('click', generarPartida);
+
 	await delay(1000);
 
 	presentacion.classList.add('mostrar-contenido');
