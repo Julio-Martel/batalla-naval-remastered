@@ -1,7 +1,7 @@
 .contenido-introduccion {
 	background: rgba(0, 0, 0, 0.6);
 	width: 90%;
-	height: 400px;
+	height: 500px;
 	max-width: 1000px;
 	border: solid 1px darkgrey;
 	display: flex;
@@ -11,6 +11,7 @@
 	align-items: center;
 	overflow-y: hidden;
 	padding: 1rem;
+	gap: 10px;
 }
 
 .mostrar-contenido {
@@ -37,10 +38,25 @@
 .texto-imagen {
 	background: #000000;
 	width: 90%;
-	height: 300px;
+	height: 450px;
 	overflow-y: scroll;
 	overflow-x: hidden;
 	border: solid 1px darkgrey;
 	border-radius: 5px;
 	padding: 5px;
+}
+
+.texto-introduccion {
+	color: #ffffff;
+	text-align: justify;
+}
+
+.button {
+	background: rgba(0, 0, 0, 0.6);
+	width: 50%;
+	height: 50px;
+	color: #ffffff;
+	font-family: 'War of 1930';
+	font-size: 2rem;
+	cursor: pointer;
 }
