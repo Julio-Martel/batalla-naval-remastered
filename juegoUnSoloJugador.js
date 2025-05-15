@@ -40,24 +40,32 @@ export const generarJuegoUnSoloJugador = async(contenido) => {
 	botonContinuar.classList.add('button');
 	botonContinuar.textContent = `Continuar`;
 
-	const generarPartida = () => {
-	
+	const generarPartida = async() => {
+
 		presentacion.classList.add('contenido-ocultar');
-
-		delay(1000);
-
 		presentacion.classList.add('opacar-contenido-introduccion');
 		botonContinuar.style.pointerEvents = 'none';
 
-		/*const eleccionDeBandos = document.createElement('asdasd')
+		await delay(500);
 
-		contenido.innerHTML = ``;*/
+		const eleccionDeBandos = document.createElement('div');
+
+		contenido.innerHTML = ``;
+		contenido.appendChild(eleccionDeBandos);
+
+		eleccionDeBandos.classList.add('contenedor-bandos','opacidad-contenedor');
+
+		await delay(500);
+
+		eleccionDeBandos.classList.add('mostrar-opacidad-contenedor');
+
 		
+
 	}
 
 	botonContinuar.addEventListener('click', generarPartida);
 
-	await delay(1000);
+	await delay(500);
 
 	presentacion.classList.add('mostrar-contenido');
 
