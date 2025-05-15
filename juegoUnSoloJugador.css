@@ -76,16 +76,19 @@
 /*ESTILOS PARA LA ELECCION DE BANDOS*/
 
 .contenedor-bandos {
+	background: url('./images/introduccionFondo.jpg');
+	background-size: cover;
+	background-position-y: 50%;	
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
 	width: 90%;
 	height: 450px;
-	background: rgba(0, 0, 0, 0.6);
 	border: solid 1px darkgrey;
 	border-radius: 5px;
 	align-items: center;
 	padding: 5px;
+	justify-content: center;
 }
 
 .opacidad-contenedor {
@@ -114,4 +117,9 @@
 	border: solid 1px darkgrey;
 	border-radius: 5px;
 	cursor: pointer;
+	transition: filter 0.5s ease-out;
+}
+
+.flag:hover {
+	filter: brightness(1.9);
 }
