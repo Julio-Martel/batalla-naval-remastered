@@ -1,3 +1,5 @@
+import {generarPartidaParaUnSoloJugador} from './generarPartida.js';
+
 export const generarJuegoUnSoloJugador = async(contenido) => {
 	const presentacion = document.createElement('div');
 	const titutuloIntroduccion = document.createElement('h1');
@@ -80,7 +82,16 @@ export const generarJuegoUnSoloJugador = async(contenido) => {
 		banderaNazi.classList.add('flag');
 		banderaBritanica.classList.add('flag');
 		
-		
+		let bandoSeleccionado = '';
+
+		banderaNazi.addEventListener('click', () => {
+			bandoSeleccionado = 'a';
+			generarPartidaParaUnSoloJugador(bandoSeleccionado);
+		});
+		banderaBritanica.addEventListener('click', () => {
+			bandoSeleccionado = 'b';
+			generarPartidaParaUnSoloJugador(bandoSeleccionado);
+		});
 	}
 
 	botonContinuar.addEventListener('click', generarPartida);
@@ -88,6 +99,4 @@ export const generarJuegoUnSoloJugador = async(contenido) => {
 	await delay(500);
 
 	presentacion.classList.add('mostrar-contenido');
-
-
 }
