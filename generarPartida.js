@@ -8,7 +8,9 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 		const tituloConfigurar = document.createElement('h1');
 		const contenidoBarcosYTablero = document.createElement('div');
 		const botonFinalizarConfiguracion = document.createElement('button');
-		
+		const seccionBarcos = document.createElement('div');
+		const seccionTablero = document.createElement('div');
+
 		contenido.innerHTML = '';
 		contenido.appendChild(contenidoBandoNazi);
 
@@ -21,6 +23,12 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 
 		contenidoBarcosYTablero.classList.add('seleccion-barcos-tablero');
 		botonFinalizarConfiguracion.classList.add('button');
+
+		contenidoBarcosYTablero.appendChild(seccionBarcos);
+		contenidoBarcosYTablero.appendChild(seccionTablero);
+
+		seccionBarcos.classList.add('seccion-barcos');
+		seccionTablero.classList.add('seccion-tablero');
 
 		botonFinalizarConfiguracion.textContent = `Al campo de batalla!`;
 
