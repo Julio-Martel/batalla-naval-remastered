@@ -30,6 +30,65 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 		seccionBarcos.classList.add('seccion-barcos');
 		seccionTablero.classList.add('seccion-tablero');
 
+		const bismarkImagen = document.createElement('img');
+
+
+		for(let i = 0; i < 7; i++) {
+			let crearCasilla = document.createElement('div');
+			seccionBarcos.appendChild(crearCasilla);
+			crearCasilla.classList.add('casilla');
+			crearCasilla.setAttribute('id',`0-${i}`);
+			crearCasilla.setAttribute( `data-value`,`0-${i}`);	
+		}
+
+		const todasLasCasillasCreadas = document.getElementsByClassName('casilla');
+
+		let j = 0;
+		for(let casilla of todasLasCasillasCreadas) {
+			let casillaId = document.getElementById(`0-${j}`);
+			let nombreDelBarco = document.createElement('h2');
+			nombreDelBarco.classList.add('titulo-barcos');
+			switch(j) {
+				case 0:
+					nombreDelBarco.textContent = "Bismark";
+					casillaId.appendChild(nombreDelBarco);
+					bismarkImagen.src = `./images/barcos-alemanes/bismark.png`;
+					bismarkImagen.classList.add('barco');
+					casillaId.appendChild(bismarkImagen);
+				break;
+			
+				case 1: 
+					nombreDelBarco.textContent = "Tirpitz";
+					casillaId.appendChild(nombreDelBarco);
+				break;
+			
+				case 2:
+					nombreDelBarco.textContent = "Admiral Hipper";
+					casillaId.appendChild(nombreDelBarco);				
+				break;
+			
+				case 3:
+					nombreDelBarco.textContent = "Destructor Z23";
+					casillaId.appendChild(nombreDelBarco);
+				break;
+			
+				case 4:
+					nombreDelBarco.textContent = "U-boat Tipo VII";
+					casillaId.appendChild(nombreDelBarco);					
+				break;
+
+				case 5:
+					nombreDelBarco.textContent = "HSK-2 Atlantis";
+					casillaId.appendChild(nombreDelBarco);					
+				break;			
+			}
+			
+			j++; 
+		}
+
+
+
+
 		botonFinalizarConfiguracion.textContent = `Al campo de batalla!`;
 
 		contenidoBandoNazi.classList.add('contenido-bando-nazi','ocultar-contenido-opacado');
