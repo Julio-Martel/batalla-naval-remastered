@@ -57,6 +57,7 @@ export const generarJuegoUnSoloJugador = async(contenido) => {
 		const banderaBritanica = document.createElement('img');
 
 		contenido.innerHTML = ``;
+
 		contenido.appendChild(eleccionDeBandos);
 
 		eleccionDeBandos.classList.add('contenedor-bandos','opacidad-contenedor');
@@ -86,11 +87,11 @@ export const generarJuegoUnSoloJugador = async(contenido) => {
 
 		banderaNazi.addEventListener('click', () => {
 			bandoSeleccionado = 'a';
-			generarPartidaParaUnSoloJugador(bandoSeleccionado);
+			generarPartidaParaUnSoloJugador(bandoSeleccionado,contenido);
 		});
 		banderaBritanica.addEventListener('click', () => {
 			bandoSeleccionado = 'b';
-			generarPartidaParaUnSoloJugador(bandoSeleccionado);
+			generarPartidaParaUnSoloJugador(bandoSeleccionado,contenido);
 		});
 	}
 
