@@ -32,6 +32,8 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 
 		const bismarkImagen = document.createElement('img');
 		const tirpitzImagen = document.createElement('img');
+		const admirarlHipper = document.createElement('img');
+
 
 		for(let i = 0; i < 7; i++) {
 			let crearCasilla = document.createElement('div');
@@ -48,6 +50,7 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 			let casillaId = document.getElementById(`0-${j}`);
 			let nombreDelBarco = document.createElement('h2');
 			nombreDelBarco.classList.add('titulo-barcos');
+			console.log(j);
 			switch(j) {
 				case 0:
 					nombreDelBarco.textContent = "Bismark";
@@ -67,6 +70,7 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 			
 				case 2:
 					nombreDelBarco.textContent = "Admiral Hipper";
+					
 					casillaId.appendChild(nombreDelBarco);				
 				break;
 			
