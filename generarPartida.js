@@ -31,7 +31,7 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 		seccionTablero.classList.add('seccion-tablero');
 
 		const bismarkImagen = document.createElement('img');
-
+		const tirpitzImagen = document.createElement('img');
 
 		for(let i = 0; i < 7; i++) {
 			let crearCasilla = document.createElement('div');
@@ -60,6 +60,9 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 				case 1: 
 					nombreDelBarco.textContent = "Tirpitz";
 					casillaId.appendChild(nombreDelBarco);
+					tirpitzImagen.src = `./images/barcos-alemanes/tirpitz.png`;
+					tirpitzImagen.classList.add('barco');
+					casillaId.appendChild(tirpitzImagen);
 				break;
 			
 				case 2:
@@ -85,9 +88,6 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 			
 			j++; 
 		}
-
-
-
 
 		botonFinalizarConfiguracion.textContent = `Al campo de batalla!`;
 
