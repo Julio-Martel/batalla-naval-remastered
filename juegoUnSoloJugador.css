@@ -165,9 +165,8 @@
 	display: grid;
 	grid-template-columns: repeat(4, auto);
 	grid-template-rows: repeat(3,3fr);
-	border: solid 1px darkgrey;
-	border-radius: 5px;
 	margin: 1rem;
+	grid-gap: 5px;
 }
 
 .seccion-tablero {
@@ -188,7 +187,6 @@
 
 .casilla {
 	background: rgba(0, 0, 0, 0.6);
-	border: solid 1px darkgrey;
 	height: 100%;
 	max-height: 200px;
 	display: flex;
@@ -196,6 +194,8 @@
 	align-items: center;
 	flex-direction: column;
 	gap: 5px;
+	margin: 3px;
+	border-radius: 5px;
 }
 
 .titulo-barcos {
@@ -213,4 +213,10 @@
 .barco {
 	width: 100%;
 	max-width: 100px;
+	cursor: pointer;
+	transition: filter 0.5s ease-out;
+}
+
+.barco:hover { 
+	filter: brightness(1.9);	
 }
