@@ -75,7 +75,7 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 				break;
 			
 				case 2:
-					nombreDelBarco.textContent = "Admiral Hipper";
+					nombreDelBarco.textContent = "Ad. Hipper";
 					casillaId.appendChild(nombreDelBarco);		
 					admirarlHipper.src = `./images/barcos-alemanes/admiralHipper.png`;
 					admirarlHipper.classList.add('barco');
@@ -83,7 +83,7 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 				break;
 			
 				case 3:
-					nombreDelBarco.textContent = "Destructor Z23";
+					nombreDelBarco.textContent = "Dest. Z23";
 					casillaId.appendChild(nombreDelBarco);
 					z23.src = `./images/barcos-alemanes/z23.png`;
 					z23.classList.add('barco');
@@ -91,7 +91,7 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 				break;
 			
 				case 4:
-					nombreDelBarco.textContent = "U-boat Tipo VII";
+					nombreDelBarco.textContent = "U-boat T.VII";
 					casillaId.appendChild(nombreDelBarco);
 					uboat.src = `./images/barcos-alemanes/uboat.png`;
 					uboat.classList.add('barco');
@@ -107,8 +107,20 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 				break;		
 			}
 			casillaId.appendChild(botonColocar);
+			botonColocar.setAttribute('class','boton-colocar');
+			botonColocar.setAttribute('id', `0-${j}`);
 			j++; 
 		}
+
+		const todosLosBotonesColocar = document.getElementsByClassName('boton-colocar');
+
+		let k = 0;
+		for(let botonDeColocar of todosLosBotonesColocar) {
+			let botonDeColocarId = document.getElementById(`0-${k}`);
+			botonDeColocarId.addEventListener('click', () => console.log(botonDeColocarId));
+			k++;
+		}
+
 
 		botonFinalizarConfiguracion.textContent = `Al campo de batalla!`;
 
