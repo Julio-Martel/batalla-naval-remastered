@@ -30,6 +30,17 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 		seccionBarcos.classList.add('seccion-barcos');
 		seccionTablero.classList.add('seccion-tablero');
 
+
+		for(let i = 0; i < 120; i++) {
+			let casillaBarco = document.createElement('div');
+			casillaBarco.setAttribute('id',`0-${i}`);
+			casillaBarco.classList.add('casilla-barco');
+			seccionTablero.appendChild(casillaBarco);
+		}
+
+		
+
+
 		const bismarkImagen = document.createElement('img');
 		const tirpitzImagen = document.createElement('img');
 		const admirarlHipper = document.createElement('img');
@@ -117,7 +128,9 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 		let k = 0;
 		for(let botonDeColocar of todosLosBotonesColocar) {
 			let botonDeColocarId = document.getElementById(`0-${k}`);
-			botonDeColocarId.addEventListener('click', () => console.log(botonDeColocarId));
+			botonDeColocarId.addEventListener('click', async() => {
+
+			} );
 			k++;
 		}
 
