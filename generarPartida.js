@@ -38,8 +38,7 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 		const atlantis = document.createElement('img');
 		const hood = document.createElement('img');
 
-		const botonColocar = document.createElement('button');
-		botonColocar.textContent = 'colocar!'
+		/*Creacion de las casillas*/
 
 		for(let i = 0; i < 6; i++) {
 			let crearCasilla = document.createElement('div');
@@ -54,8 +53,10 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 		let j = 0;
 		for(let casilla of todasLasCasillasCreadas) {
 			let casillaId = document.getElementById(`0-${j}`);
-			let nombreDelBarco = document.createElement('h2');;
+			let nombreDelBarco = document.createElement('h2');
 			nombreDelBarco.classList.add('titulo-barcos');
+			let botonColocar = document.createElement('button');
+			botonColocar.textContent = '¡Colocar!'
 			switch(j) {
 				case 0:
 					nombreDelBarco.textContent = "Bismark";
@@ -63,7 +64,6 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 					bismarkImagen.src = `./images/barcos-alemanes/bismark1.png`;
 					bismarkImagen.classList.add('barco');
 					casillaId.appendChild(bismarkImagen);
-					casillaId.appendChild(botonColocar);
 				break;
 			
 				case 1: 
@@ -71,7 +71,7 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 					casillaId.appendChild(nombreDelBarco);
 					tirpitzImagen.src = `./images/barcos-alemanes/tirpitz.png`;
 					tirpitzImagen.classList.add('barco');
-					casillaId.appendChild(tirpitzImagen);		
+					casillaId.appendChild(tirpitzImagen);
 				break;
 			
 				case 2:
@@ -106,7 +106,7 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 					casillaId.appendChild(atlantis);									
 				break;		
 			}
-			
+			casillaId.appendChild(botonColocar);
 			j++; 
 		}
 
