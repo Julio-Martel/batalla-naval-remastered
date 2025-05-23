@@ -1,3 +1,18 @@
+import {colocarBarcosEnElTablero} from './colocarBarcos.js';
+
+let tableroMatriz = [];
+
+for(let i = 0; i < 11; i++) {
+	let fila = [];
+	tableroMatriz.push(fila);
+	for(let j = 0; j < 11; j++){
+		tableroMatriz[i][j] = 0;
+	}
+}
+
+
+// Hemos creado la matriz que representa el tablero del juego
+
 const delay = (ms) => {
 	return new Promise(resolve => setTimeout(resolve,ms));
 }
@@ -38,8 +53,7 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 			seccionTablero.appendChild(casillaBarco);
 		}
 
-		
-
+		seccionTablero.style.opacity = "0.5";
 
 		const bismarkImagen = document.createElement('img');
 		const tirpitzImagen = document.createElement('img');
@@ -128,9 +142,7 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 		let k = 0;
 		for(let botonDeColocar of todosLosBotonesColocar) {
 			let botonDeColocarId = document.getElementById(`0-${k}`);
-			botonDeColocarId.addEventListener('click', async() => {
-
-			} );
+			botonDeColocarId.addEventListener('click', setearTablero());
 			k++;
 		}
 
