@@ -220,3 +220,7 @@
 .barco:hover { 
 	filter: brightness(1.9);	
 }
+
+.casilla-barco {
+	border: solid 1px #000000;
+}
