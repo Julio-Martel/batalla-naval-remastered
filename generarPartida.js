@@ -10,7 +10,6 @@ for(let i = 0; i < 11; i++) {
 	}
 }
 
-
 // Hemos creado la matriz que representa el tablero del juego
 
 const delay = (ms) => {
