@@ -154,13 +154,10 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 			k++;
 		}
 
-		const todasLasCasillas = document.getElementsByClassName('casilla-barco');
+		const todasLasCasillas = document.querySelectorAll('.casilla-barco');
 
-		j = 0;
 		for(let casillaActual of todasLasCasillas){
-			let casillaActualASeleccionar = document.getElementById(`casilla-0-${j}`);
-			casillaActualASeleccionar.addEventListener('click', () => casillaActualASeleccionar);
-			j++;
+			casillaActual.addEventListener('mouseover', () => console.log(casillaActual));
 		}
 
 
