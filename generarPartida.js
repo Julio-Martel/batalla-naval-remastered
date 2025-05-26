@@ -1,5 +1,3 @@
-import {colocarBarcosEnElTablero} from './colocarBarcos.js';
-
 let tableroMatriz = [];
 
 for(let i = 0; i < 11; i++) {
@@ -44,15 +42,21 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 		seccionBarcos.classList.add('seccion-barcos');
 		seccionTablero.classList.add('seccion-tablero');
 
+		// CREACION DE CASILLAS DEL TABLERO
 
 		for(let i = 0; i < 120; i++) {
 			let casillaBarco = document.createElement('div');
-			casillaBarco.setAttribute('id',`0-${i}`);
+			casillaBarco.setAttribute('id',`casilla-0-${i}`);
 			casillaBarco.classList.add('casilla-barco');
 			seccionTablero.appendChild(casillaBarco);
 		}
 
+		// EL TABLERO PERMANECERA OPACADO HASTA QUE EL JUGADOR SELECCIONE UN BARCO
+
 		seccionTablero.style.opacity = "0.5";
+		seccionBarcos.style.opacity = "1";
+
+		// CREACION DE LOS BARCOS
 
 		const bismarkImagen = document.createElement('img');
 		const tirpitzImagen = document.createElement('img');
@@ -62,7 +66,7 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 		const atlantis = document.createElement('img');
 		const hood = document.createElement('img');
 
-		/*Creacion de las casillas*/
+		/*Creacion de las casillas de seleccion de barcos*/
 
 		for(let i = 0; i < 6; i++) {
 			let crearCasilla = document.createElement('div');
@@ -141,9 +145,25 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 		let k = 0;
 		for(let botonDeColocar of todosLosBotonesColocar) {
 			let botonDeColocarId = document.getElementById(`0-${k}`);
-			botonDeColocarId.addEventListener('click', setearTablero());
+			botonDeColocarId.addEventListener('click', () => {
+				seccionTablero.style.opacity = "1";
+				seccionBarcos.style.opacity = "0.5";
+				seccionBarcos.style.pointerEvents = "none";
+			});
+
 			k++;
 		}
+
+		const todasLasCasillas = document.getElementsByClassName('casilla-barco');
+
+		j = 0;
+		for(let casillaActual of todasLasCasillas){
+			let casillaActualASeleccionar = document.getElementById(`casilla-0-${j}`);
+			casillaActualASeleccionar.addEventListener('click', () => casillaActualASeleccionar);
+			j++;
+		}
+
+
 
 
 		botonFinalizarConfiguracion.textContent = `Al campo de batalla!`;
@@ -153,7 +173,6 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 		await delay(1000);
 
 		contenidoBandoNazi.classList.add('mostrar-contenido-opacado');
-
 
 	} else {
 		// aca bando britanico
