@@ -141,26 +141,60 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 		}
 
 		const todosLosBotonesColocar = document.getElementsByClassName('boton-colocar');
+		const todasLasCasillas = document.querySelectorAll('.casilla-barco');
+		
+		const colocarBarco = (nroBarco) => {
+			switch(nroBarco){
+				case 0:
+					let k = 0;
+					for(let casillaActual of todasLasCasillas) {
+						let casillaActualId = casillaActual.getAttribute('data-value');
+
+						/*aca nos quedamos, necesitamos pensar como poder que al seleccioar un cuadro se coloreen los siguientes*/
+						casillaActual.addEventListener('mouseover', () => {
+							casillaActual.style.background = "black";
+							
+
+
+							
+							
+							console.log(casillaActualId)
+
+						});
+						k++;
+					}
+				break;
+			}
+		}
 
 		let k = 0;
 		for(let botonDeColocar of todosLosBotonesColocar) {
 			let botonDeColocarId = document.getElementById(`0-${k}`);
 			botonDeColocarId.addEventListener('click', () => {
+				
 				seccionTablero.style.opacity = "1";
 				seccionBarcos.style.opacity = "0.5";
 				seccionBarcos.style.pointerEvents = "none";
+				
+				let nroBarco = k;
+				colocarBarco(nroBarco);
+
+				k++;					
+
 			});
 
-			k++;
 		}
 
-		const todasLasCasillas = document.querySelectorAll('.casilla-barco');
-
-		for(let casillaActual of todasLasCasillas){
-			casillaActual.addEventListener('mouseover', () => console.log(casillaActual));
-		}
+		
 
 
+
+		
+
+
+		/*for(let casillaActual of todasLasCasillas){
+			casillaActual.addEventListener('mouseover', () => casillaActual.style.background = "black");
+		}*/
 
 
 		botonFinalizarConfiguracion.textContent = `Al campo de batalla!`;
