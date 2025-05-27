@@ -146,23 +146,45 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 		const colocarBarco = (nroBarco) => {
 			switch(nroBarco){
 				case 0:
-					let k = 0;
-					for(let casillaActual of todasLasCasillas) {
-						let casillaActualId = casillaActual.getAttribute('data-value');
+					
+					let casillasBismark = [];
 
-						/*aca nos quedamos, necesitamos pensar como poder que al seleccioar un cuadro se coloreen los siguientes*/
+					todasLasCasillas.forEach(casillaActual => {
+						
 						casillaActual.addEventListener('mouseover', () => {
-							casillaActual.style.background = "black";
+							let obtenerIdCasillaActualParaCrearEfecto = casillaActual.getAttribute('id');
+							let casillaActualIdConElEfecto = document.getElementById(obtenerIdCasillaActualParaCrearEfecto);
+							casillaActualIdConElEfecto.style.background = "darkred";
 							
 
 
-							
-							
-							console.log(casillaActualId)
+							let ubicacionActual = Array.from(todasLasCasillas).indexOf(casillaActualIdConElEfecto);
 
-						});
-						k++;
-					}
+							let incrementarUbicacion = ubicacionActual;
+							
+							for(let i = 0; i < 5; i++) {
+								let obtenerIdCasilla = document.getElementById(`casilla-0-${incrementarUbicacion}`);
+								casillasBismark.push(obtenerIdCasilla);
+								incrementarUbicacion++;
+
+								obtenerIdCasilla.style.background = "darkred";
+							}
+							
+						})
+
+						casillaActual.addEventListener('mouseout', () => {
+							let obtenerIdCasillaActualParaQuitarEfecto = casillaActual.getAttribute('id');
+							let casillaActualIdSinElEfecto = document.getElementById(obtenerIdCasillaActualParaQuitarEfecto);						
+							casillaActualIdSinElEfecto.style.background = "none";
+						
+							casillasBismark.forEach(unaCasillaDelBismark => {
+								unaCasillaDelBismark.style.background = "none";
+							});				
+
+						})
+					
+						
+					});
 				break;
 			}
 		}
@@ -190,11 +212,6 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 
 
 		
-
-
-		/*for(let casillaActual of todasLasCasillas){
-			casillaActual.addEventListener('mouseover', () => casillaActual.style.background = "black");
-		}*/
 
 
 		botonFinalizarConfiguracion.textContent = `Al campo de batalla!`;
