@@ -156,8 +156,6 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 							let casillaActualIdConElEfecto = document.getElementById(obtenerIdCasillaActualParaCrearEfecto);
 							casillaActualIdConElEfecto.style.background = "darkred";
 							
-
-
 							let ubicacionActual = Array.from(todasLasCasillas).indexOf(casillaActualIdConElEfecto);
 
 							let incrementarUbicacion = ubicacionActual;
@@ -170,7 +168,48 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 								obtenerIdCasilla.style.background = "darkred";
 							}
 							
+						
+
+							casillaActual.addEventListener('click', () => {
+								todasLasCasillas.forEach(casillaPosicion => {
+									
+									//ARREGLAR ESTO, QUE HACE QUE QUEDE SEÑALADO EL BARCO EN EL TABLERO
+
+									let obtenerAtributoCasilla = casillaPosicion.getAttribute('id');
+									let casillaAMarcar = document.getElementById(obtenerAtributoCasilla);
+									let casillaIncluidaEnElArregloDeLaFicha = casillasBismark.includes(casillaAMarcar);
+									console.log(casillaIncluidaEnElArregloDeLaFicha)
+									if (casillaIncluidaEnElArregloDeLaFicha) {
+										casillaAMarcar.style.background = "darkred";
+										
+									}
+								});
+							
+								seccionTablero.style.opacity = "0.5";
+								seccionTablero.style.pointerEvents = "none";
+							})
+
+
+
 						})
+
+						
+
+						/*casillaActual.addEventListener('click', () => {
+							todasLasCasillas.forEach(casillaPosicion => {
+								
+
+
+								let casillaEncontradaEnElArregloDeLaFichaBarco = casillasBismark.includes(casillaPosicion);
+								console.log(casillaEncontradaEnElArregloDeLaFichaBarco)
+								if (casillaEncontradaEnElArregloDeLaFichaBarco) {
+									casillaPosicion.style.background = "darkred";
+									casillaPosicion.style.pointerEvents = "none";
+									casillaPosicion.style.cursor = "none";
+								}
+							});							
+						});*/
+
 
 						casillaActual.addEventListener('mouseout', () => {
 							let obtenerIdCasillaActualParaQuitarEfecto = casillaActual.getAttribute('id');
