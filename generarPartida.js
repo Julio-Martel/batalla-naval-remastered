@@ -187,6 +187,9 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 							
 								seccionTablero.style.opacity = "0.5";
 								seccionTablero.style.pointerEvents = "none";
+								seccionBarcos.style.opacity = "1";
+
+								// se agrego eso, verlo luego
 							})
 
 
