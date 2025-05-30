@@ -168,60 +168,47 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 								obtenerIdCasilla.style.background = "darkred";
 							}
 							
-						
+							console.log(casillasBismark);
+
+						})
 
 							casillaActual.addEventListener('click', () => {
+								
+								let ubicacion = 0;
 								todasLasCasillas.forEach(casillaPosicion => {
 									
-									//ARREGLAR ESTO, QUE HACE QUE QUEDE SEÑALADO EL BARCO EN EL TABLERO
+									let idCasillaPosicion = document.getElementById(`casilla-0-${ubicacion}`);
 
-									let obtenerAtributoCasilla = casillaPosicion.getAttribute('id');
-									let casillaAMarcar = document.getElementById(obtenerAtributoCasilla);
-									let casillaIncluidaEnElArregloDeLaFicha = casillasBismark.includes(casillaAMarcar);
-									console.log(casillaIncluidaEnElArregloDeLaFicha)
-									if (casillaIncluidaEnElArregloDeLaFicha) {
-										casillaAMarcar.style.background = "darkred";
-										
+									let seEncuentraEnElArregloBarco = casillasBismark.includes(idCasillaPosicion);
+
+									if (seEncuentraEnElArregloBarco) {
+										idCasillaPosicion.style.background = "darkred";
 									}
+								
+									ubicacion++;
 								});
 							
+								console.log(casillasBismark);
+
 								seccionTablero.style.opacity = "0.5";
 								seccionTablero.style.pointerEvents = "none";
 								seccionBarcos.style.opacity = "1";
 
-								// se agrego eso, verlo luego
 							})
 
-
-
-						})
-
-						
-
-						/*casillaActual.addEventListener('click', () => {
-							todasLasCasillas.forEach(casillaPosicion => {
-								
-
-
-								let casillaEncontradaEnElArregloDeLaFichaBarco = casillasBismark.includes(casillaPosicion);
-								console.log(casillaEncontradaEnElArregloDeLaFichaBarco)
-								if (casillaEncontradaEnElArregloDeLaFichaBarco) {
-									casillaPosicion.style.background = "darkred";
-									casillaPosicion.style.pointerEvents = "none";
-									casillaPosicion.style.cursor = "none";
-								}
-							});							
-						});*/
-
+				
 
 						casillaActual.addEventListener('mouseout', () => {
 							let obtenerIdCasillaActualParaQuitarEfecto = casillaActual.getAttribute('id');
 							let casillaActualIdSinElEfecto = document.getElementById(obtenerIdCasillaActualParaQuitarEfecto);						
+					
 							casillaActualIdSinElEfecto.style.background = "none";
 						
 							casillasBismark.forEach(unaCasillaDelBismark => {
-								unaCasillaDelBismark.style.background = "none";
-							});				
+								unaCasillaDelBismark.style.background = "none"
+							});	
+
+							casillasBismark = [];			
 
 						})
 					
