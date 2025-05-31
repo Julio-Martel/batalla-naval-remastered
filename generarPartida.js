@@ -44,7 +44,7 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 
 		// CREACION DE CASILLAS DEL TABLERO
 
-		for(let i = 0; i < 120; i++) {
+		for(let i = 0; i < 121; i++) {
 			let casillaBarco = document.createElement('div');
 			casillaBarco.setAttribute('id',`casilla-0-${i}`);
 			casillaBarco.classList.add('casilla-barco');
@@ -73,7 +73,7 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 			seccionBarcos.appendChild(crearCasilla);
 			crearCasilla.classList.add('casilla');
 			crearCasilla.setAttribute('id',`0-${i}`);
-			crearCasilla.setAttribute( `data-value`,`0-${i}`);	
+			crearCasilla.setAttribute( `data-value`,`coordenada-0-${i}`);	
 		}
 
 		const todasLasCasillasCreadas = document.getElementsByClassName('casilla');
@@ -136,14 +136,15 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 			}
 			casillaId.appendChild(botonColocar);
 			botonColocar.setAttribute('class','boton-colocar');
-			botonColocar.setAttribute('id', `0-${j}`);
+			botonColocar.setAttribute('id', `boton-${j}`);
 			j++; 
 		}
 
 		const todosLosBotonesColocar = document.getElementsByClassName('boton-colocar');
 		const todasLasCasillas = document.querySelectorAll('.casilla-barco');
+		const aplicarColorALasCasillas = document.querySelectorAll('.casilla-barco');
 		
-		const colocarBarco = (nroBarco) => {
+		/*const colocarBarco = (nroBarco) => {
 			switch(nroBarco){
 				case 0:
 					
@@ -167,34 +168,31 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 
 								obtenerIdCasilla.style.background = "darkred";
 							}
-							
-							console.log(casillasBismark);
-
 						})
 
-							casillaActual.addEventListener('click', () => {
-								
-								let ubicacion = 0;
-								todasLasCasillas.forEach(casillaPosicion => {
-									
-									let idCasillaPosicion = document.getElementById(`casilla-0-${ubicacion}`);
+						
+						casillaActual.addEventListener('click', () => {	
 
-									let seEncuentraEnElArregloBarco = casillasBismark.includes(idCasillaPosicion);
+							for (let ubicacion = 0; ubicacion < todasLasCasillas.length; ubicacion++) {
+								let idCasillaPosicion = document.getElementById(`casilla-0-${ubicacion}`);
+								let seEncuentraEnElArregloBarco = casillasBismark.includes(idCasillaPosicion);
 
-									if (seEncuentraEnElArregloBarco) {
-										idCasillaPosicion.style.background = "darkred";
-									}
-								
-									ubicacion++;
-								});
-							
-								console.log(casillasBismark);
+								if (seEncuentraEnElArregloBarco) {
+									idCasillaPosicion.style.background = "darkred";
+									idCasillaPosicion.style.pointerEvents = "none";
+									idCasillaPosicion.style.cursor = "pointer";
+								}
+							}
+	
+							seccionTablero.style.opacity = "0.5";
+							seccionTablero.style.pointerEvents = "none";
+							seccionBarcos.style.opacity = "1";
 
-								seccionTablero.style.opacity = "0.5";
-								seccionTablero.style.pointerEvents = "none";
-								seccionBarcos.style.opacity = "1";
+							casillaActual.style.pointerEvents = "none";
 
-							})
+							//seccionBarcos.style.pointerEvents = "auto";
+
+						})
 
 				
 
@@ -215,28 +213,29 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 						
 					});
 				break;
+			
+				case 1:
+				break;
 			}
-		}
+		}*/
 
-		let k = 0;
+	
+		// ESTE FOR RECORRE TODA LA COLECCION DE BOTONES PARA LA SELECCION DE BARCOS
+
 		for(let botonDeColocar of todosLosBotonesColocar) {
-			let botonDeColocarId = document.getElementById(`0-${k}`);
-			botonDeColocarId.addEventListener('click', () => {
+			botonDeColocar.addEventListener('click', async()=> {		
 				
-				seccionTablero.style.opacity = "1";
-				seccionBarcos.style.opacity = "0.5";
-				seccionBarcos.style.pointerEvents = "none";
-				
-				let nroBarco = k;
-				colocarBarco(nroBarco);
+				let botonIdColocar = botonDeColocar.getAttribute('id');
+				let idBotonColocar = document.getElementById(botonIdColocar);
 
-				k++;					
+				let nroBotonDeBarco = await obtenerNroDeBoton(idBotonColocar);
+
+				colocarBarco(nroBotonDeBarco);				
 
 			});
-
 		}
 
-		
+					
 
 
 
