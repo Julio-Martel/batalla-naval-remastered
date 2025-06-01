@@ -1,3 +1,5 @@
+import {colocarBarcosEnElTablero} from './colocarBarcos.js';
+
 let tableroMatriz = [];
 
 for(let i = 0; i < 11; i++) {
@@ -7,8 +9,6 @@ for(let i = 0; i < 11; i++) {
 		tableroMatriz[i][j] = 0;
 	}
 }
-
-// Hemos creado la matriz que representa el tablero del juego
 
 const delay = (ms) => {
 	return new Promise(resolve => setTimeout(resolve,ms));
@@ -66,8 +66,6 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 		const atlantisImagen = document.createElement('img');
 
 		// CREACION Y CONFIGURACION DE LAS TARJETAS QUE CADA UNA CONTIENE LA IMAGEN Y BOTON PARA COLOCAR UN BARCO AL TABLERO
-
-
 
 		for(let i = 0; i < 6; i++) {
 			let tarjetaBarco = document.createElement('div');
@@ -149,7 +147,7 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 			botonDeColocar.addEventListener('click', ()=> {						
 				let botonColocarDataValue = parseInt(botonDeColocar.getAttribute('data-value'));
 
-				colocarBarco(botonColocarDataValue);				
+				colocarBarcosEnElTablero(botonColocarDataValue);				
 			});
 		}
 
