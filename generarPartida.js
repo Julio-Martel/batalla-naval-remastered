@@ -56,15 +56,14 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 		seccionTablero.style.opacity = "0.5";
 		seccionBarcos.style.opacity = "1";
 
-		// CREACION DE LOS BARCOS
+		// IMAGENES PARA LA COLOCACION DE BARCOS
 
 		const bismarkImagen = document.createElement('img');
 		const tirpitzImagen = document.createElement('img');
-		const admirarlHipper = document.createElement('img');
-		const z23 = document.createElement('img');
-		const uboat = document.createElement('img');
-		const atlantis = document.createElement('img');
-		const hood = document.createElement('img');
+		const admirarlHipperImagen = document.createElement('img');
+		const z23Imagen = document.createElement('img');
+		const uboatImagen = document.createElement('img');
+		const atlantisImagen = document.createElement('img');
 
 		/*Creacion de las casillas de seleccion de barcos*/
 
@@ -105,33 +104,33 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 				case 2:
 					nombreDelBarco.textContent = "Ad. Hipper";
 					casillaId.appendChild(nombreDelBarco);		
-					admirarlHipper.src = `./images/barcos-alemanes/admiralHipper.png`;
-					admirarlHipper.classList.add('barco');
-					casillaId.appendChild(admirarlHipper);							
+					admirarlHipperImagen.src = `./images/barcos-alemanes/admiralHipper.png`;
+					admirarlHipperImagen.classList.add('barco');
+					casillaId.appendChild(admirarlHipperImagen);							
 				break;
 			
 				case 3:
 					nombreDelBarco.textContent = "Dest. Z23";
 					casillaId.appendChild(nombreDelBarco);
-					z23.src = `./images/barcos-alemanes/z23.png`;
-					z23.classList.add('barco');
-					casillaId.appendChild(z23);
+					z23Imagen.src = `./images/barcos-alemanes/z23.png`;
+					z23Imagen.classList.add('barco');
+					casillaId.appendChild(z23Imagen);
 				break;
 			
 				case 4:
 					nombreDelBarco.textContent = "U-boat T.VII";
 					casillaId.appendChild(nombreDelBarco);
-					uboat.src = `./images/barcos-alemanes/uboat.png`;
-					uboat.classList.add('barco');
-					casillaId.appendChild(uboat);									
+					uboatImagen.src = `./images/barcos-alemanes/uboat.png`;
+					uboatImagen.classList.add('barco');
+					casillaId.appendChild(uboatImagen);									
 				break;
 
 				case 5:
 					nombreDelBarco.textContent = "HSK-2 Atlantis";
 					casillaId.appendChild(nombreDelBarco);
-					atlantis.src = `./images/barcos-alemanes/atlantis.png`;
-					atlantis.classList.add('barco');
-					casillaId.appendChild(atlantis);									
+					atlantisImagen.src = `./images/barcos-alemanes/atlantis.png`;
+					atlantisImagen.classList.add('barco');
+					casillaId.appendChild(atlantisImagen);									
 				break;		
 			}
 			casillaId.appendChild(botonColocar);
@@ -222,13 +221,12 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 	
 		// ESTE FOR RECORRE TODA LA COLECCION DE BOTONES PARA LA SELECCION DE BARCOS
 
-		for(let botonDeColocar of todosLosBotonesColocar) {
-			botonDeColocar.addEventListener('click', async()=> {		
-				
+		for(let botonDeColocarBarco of todosLosBotonesColocar) {
+			botonDeColocar.addEventListener('click', ()=> {						
 				let botonIdColocar = botonDeColocar.getAttribute('id');
 				let idBotonColocar = document.getElementById(botonIdColocar);
 
-				let nroBotonDeBarco = await obtenerNroDeBoton(idBotonColocar);
+
 
 				colocarBarco(nroBotonDeBarco);				
 
