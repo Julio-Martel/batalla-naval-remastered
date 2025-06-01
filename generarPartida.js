@@ -65,21 +65,22 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 		const uboatImagen = document.createElement('img');
 		const atlantisImagen = document.createElement('img');
 
-		/*Creacion de las casillas de seleccion de barcos*/
+		// CREACION Y CONFIGURACION DE LAS TARJETAS QUE CADA UNA CONTIENE LA IMAGEN Y BOTON PARA COLOCAR UN BARCO AL TABLERO
+
+
 
 		for(let i = 0; i < 6; i++) {
-			let crearCasilla = document.createElement('div');
-			seccionBarcos.appendChild(crearCasilla);
-			crearCasilla.classList.add('casilla');
-			crearCasilla.setAttribute('id',`0-${i}`);
-			crearCasilla.setAttribute( `data-value`,`coordenada-0-${i}`);	
+			let tarjetaBarco = document.createElement('div');
+			seccionBarcos.appendChild(tarjetaBarco);
+			tarjetaBarco.classList.add('tarjeta');
+			tarjetaBarco.setAttribute('id',`tarjeta-${i}`);
 		}
 
-		const todasLasCasillasCreadas = document.getElementsByClassName('casilla');
+		const todasLasTarjetas = document.querySelectorAll('.tarjeta');
 
 		let j = 0;
-		for(let casilla of todasLasCasillasCreadas) {
-			let casillaId = document.getElementById(`0-${j}`);
+		for(let tarjeta of todasLasTarjetas) {
+			let tarjetaId = document.getElementById(`tarjeta-${j}`);
 			let nombreDelBarco = document.createElement('h2');
 			nombreDelBarco.classList.add('titulo-barcos');
 			let botonColocar = document.createElement('button');
@@ -87,158 +88,70 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 			switch(j) {
 				case 0:
 					nombreDelBarco.textContent = "Bismark";
-					casillaId.appendChild(nombreDelBarco);
+					tarjetaId.appendChild(nombreDelBarco);
 					bismarkImagen.src = `./images/barcos-alemanes/bismark1.png`;
 					bismarkImagen.classList.add('barco');
-					casillaId.appendChild(bismarkImagen);
+					tarjetaId.appendChild(bismarkImagen);
 				break;
 			
 				case 1: 
 					nombreDelBarco.textContent = "Tirpitz";
-					casillaId.appendChild(nombreDelBarco);
+					tarjetaId.appendChild(nombreDelBarco);
 					tirpitzImagen.src = `./images/barcos-alemanes/tirpitz.png`;
 					tirpitzImagen.classList.add('barco');
-					casillaId.appendChild(tirpitzImagen);
+					tarjetaId.appendChild(tirpitzImagen);
 				break;
 			
 				case 2:
 					nombreDelBarco.textContent = "Ad. Hipper";
-					casillaId.appendChild(nombreDelBarco);		
+					tarjetaId.appendChild(nombreDelBarco);		
 					admirarlHipperImagen.src = `./images/barcos-alemanes/admiralHipper.png`;
 					admirarlHipperImagen.classList.add('barco');
-					casillaId.appendChild(admirarlHipperImagen);							
+					tarjetaId.appendChild(admirarlHipperImagen);							
 				break;
 			
 				case 3:
 					nombreDelBarco.textContent = "Dest. Z23";
-					casillaId.appendChild(nombreDelBarco);
+					tarjetaId.appendChild(nombreDelBarco);
 					z23Imagen.src = `./images/barcos-alemanes/z23.png`;
 					z23Imagen.classList.add('barco');
-					casillaId.appendChild(z23Imagen);
+					tarjetaId.appendChild(z23Imagen);
 				break;
 			
 				case 4:
 					nombreDelBarco.textContent = "U-boat T.VII";
-					casillaId.appendChild(nombreDelBarco);
+					tarjetaId.appendChild(nombreDelBarco);
 					uboatImagen.src = `./images/barcos-alemanes/uboat.png`;
 					uboatImagen.classList.add('barco');
-					casillaId.appendChild(uboatImagen);									
+					tarjetaId.appendChild(uboatImagen);									
 				break;
 
 				case 5:
 					nombreDelBarco.textContent = "HSK-2 Atlantis";
-					casillaId.appendChild(nombreDelBarco);
+					tarjetaId.appendChild(nombreDelBarco);
 					atlantisImagen.src = `./images/barcos-alemanes/atlantis.png`;
 					atlantisImagen.classList.add('barco');
-					casillaId.appendChild(atlantisImagen);									
+					tarjetaId.appendChild(atlantisImagen);									
 				break;		
 			}
-			casillaId.appendChild(botonColocar);
+			tarjetaId.appendChild(botonColocar);
 			botonColocar.setAttribute('class','boton-colocar');
 			botonColocar.setAttribute('id', `boton-${j}`);
+			botonColocar.setAttribute('data-value', `${j}`)
 			j++; 
 		}
-
-		const todosLosBotonesColocar = document.getElementsByClassName('boton-colocar');
-		const todasLasCasillas = document.querySelectorAll('.casilla-barco');
-		const aplicarColorALasCasillas = document.querySelectorAll('.casilla-barco');
-		
-		/*const colocarBarco = (nroBarco) => {
-			switch(nroBarco){
-				case 0:
-					
-					let casillasBismark = [];
-
-					todasLasCasillas.forEach(casillaActual => {
-						
-						casillaActual.addEventListener('mouseover', () => {
-							let obtenerIdCasillaActualParaCrearEfecto = casillaActual.getAttribute('id');
-							let casillaActualIdConElEfecto = document.getElementById(obtenerIdCasillaActualParaCrearEfecto);
-							casillaActualIdConElEfecto.style.background = "darkred";
-							
-							let ubicacionActual = Array.from(todasLasCasillas).indexOf(casillaActualIdConElEfecto);
-
-							let incrementarUbicacion = ubicacionActual;
-							
-							for(let i = 0; i < 5; i++) {
-								let obtenerIdCasilla = document.getElementById(`casilla-0-${incrementarUbicacion}`);
-								casillasBismark.push(obtenerIdCasilla);
-								incrementarUbicacion++;
-
-								obtenerIdCasilla.style.background = "darkred";
-							}
-						})
-
-						
-						casillaActual.addEventListener('click', () => {	
-
-							for (let ubicacion = 0; ubicacion < todasLasCasillas.length; ubicacion++) {
-								let idCasillaPosicion = document.getElementById(`casilla-0-${ubicacion}`);
-								let seEncuentraEnElArregloBarco = casillasBismark.includes(idCasillaPosicion);
-
-								if (seEncuentraEnElArregloBarco) {
-									idCasillaPosicion.style.background = "darkred";
-									idCasillaPosicion.style.pointerEvents = "none";
-									idCasillaPosicion.style.cursor = "pointer";
-								}
-							}
 	
-							seccionTablero.style.opacity = "0.5";
-							seccionTablero.style.pointerEvents = "none";
-							seccionBarcos.style.opacity = "1";
+		// ESTE BUCLE FOR SE ENCARGARA DE RECORRER TODA LA COLECCION DE LOS BOTONES DE COLOCAR PARA SU POSTERIOR USO
 
-							casillaActual.style.pointerEvents = "none";
+		const todosLosBotonesDeColocar = document.querySelectorAll('.boton-colocar');
 
-							//seccionBarcos.style.pointerEvents = "auto";
-
-						})
-
-				
-
-						casillaActual.addEventListener('mouseout', () => {
-							let obtenerIdCasillaActualParaQuitarEfecto = casillaActual.getAttribute('id');
-							let casillaActualIdSinElEfecto = document.getElementById(obtenerIdCasillaActualParaQuitarEfecto);						
-					
-							casillaActualIdSinElEfecto.style.background = "none";
-						
-							casillasBismark.forEach(unaCasillaDelBismark => {
-								unaCasillaDelBismark.style.background = "none"
-							});	
-
-							casillasBismark = [];			
-
-						})
-					
-						
-					});
-				break;
-			
-				case 1:
-				break;
-			}
-		}*/
-
-	
-		// ESTE FOR RECORRE TODA LA COLECCION DE BOTONES PARA LA SELECCION DE BARCOS
-
-		for(let botonDeColocarBarco of todosLosBotonesColocar) {
+		for(let botonDeColocar of todosLosBotonesDeColocar) {
 			botonDeColocar.addEventListener('click', ()=> {						
-				let botonIdColocar = botonDeColocar.getAttribute('id');
-				let idBotonColocar = document.getElementById(botonIdColocar);
+				let botonColocarDataValue = parseInt(botonDeColocar.getAttribute('data-value'));
 
-
-
-				colocarBarco(nroBotonDeBarco);				
-
+				colocarBarco(botonColocarDataValue);				
 			});
 		}
-
-					
-
-
-
-		
-
 
 		botonFinalizarConfiguracion.textContent = `Al campo de batalla!`;
 
