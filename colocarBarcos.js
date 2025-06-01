@@ -38,7 +38,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 
 					let siguientePosicion = posicionActualDeLaCasilla;
 
-
 					for(let i = 0; i < 5; i++) {
 						let obtenerIdDeLaCasillaActual = document.getElementById(`casilla-0-${siguientePosicion}`);
 						casillasBismark.push(obtenerIdDeLaCasillaActual);
@@ -60,6 +59,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 					tablero.style.opacity = "0.5";
 					tablero.style.pointerEvents = "none";
 					barcos.style.opacity = "1";
+					barcos.style.pointerEvents = "auto";
 				})
 
 			
