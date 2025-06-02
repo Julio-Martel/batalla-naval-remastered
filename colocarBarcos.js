@@ -1,6 +1,7 @@
 export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasillasDelTablero,tablero,barcos) => {
 	return new Promise(resolve => {
 
+	tablero.style.pointerEvents = "auto";
 	tablero.style.opacity = "1";
 	barcos.style.opacity = "0.5";
 
@@ -9,6 +10,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 			let casillasBismark = [];
 
 			totalCasillasDelTablero.forEach(casillaDelTableroActual => {
+				
 				casillaDelTableroActual.addEventListener('mouseover', () => {
 					let obtenerIdCasillaActualParaAñadirColor = casillaDelTableroActual.getAttribute('id');
 					let casillaActualIdConElEfecto = document.getElementById(obtenerIdCasillaActualParaAñadirColor);
@@ -28,8 +30,15 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 					}					
 
 				});
+
+				casillaDelTableroActual.addEventListener('mouseout', () => {
+					casillaDelTableroActual.style.background = "none";
+					totalCasillasDelTablero.forEach(casillaActual => casillaActual.style.background = "none");	
+				})
+
+
 			
-				casillaDelTableroActual.addEventListener('click', () => {	
+			/*	casillaDelTableroActual.addEventListener('click', () => {	
 			
 					let casillaActualAAgregarEfecto = casillaDelTableroActual.getAttribute('id');
 					let idCasillaActualAAgregarEfecto = document.getElementById(casillaActualAAgregarEfecto);
@@ -60,31 +69,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 					tablero.style.pointerEvents = "none";
 					barcos.style.opacity = "1";
 					barcos.style.pointerEvents = "auto";
-				})
-
-			
-				/*ARREGLAR ESTO*/
-
-				casillaDelTableroActual.addEventListener('mouseout', () => {
-					let obtenerIdDeLaCasillaActual = casillaDelTableroActual.getAttribute('id');
-					let idCasillaActual = document.getElementById(obtenerIdDeLaCasillaActual);
-					let existeCasillaEnArreglo = Array.from(casillasBismark).indexOf(idCasillaActual);
-
-					if (existeCasillaEnArreglo) {
-					let obtenerIdCasillaActualParaQuitarEfecto = casillaDelTableroActual.getAttribute('id');
-					let casillaActualIdSinElEfecto = document.getElementById(obtenerIdCasillaActualParaQuitarEfecto);						
-					
-					casillaActualIdSinElEfecto.style.background = "none";
-						
-					casillasBismark.forEach(unaCasillaDelBismark => {
-						unaCasillaDelBismark.style.background = "none"
-					});	
-
-					casillasBismark = [];
-					}	
-				})
-
-
+				})*/
 			});
 		
 		break;
