@@ -1,4 +1,4 @@
-export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasillasDelTablero,tablero,barcos) => {
+export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasillasDelTablero,tablero,barcos,listadoDeCasillasOcupadas) => {
 	return new Promise(resolve => {
 
 	tablero.style.pointerEvents = "auto";
@@ -25,8 +25,11 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 						let obtenerIdDeLaCasillaActual = document.getElementById(`casilla-0-${siguientePosicion}`);
 						casillasBismark.push(obtenerIdDeLaCasillaActual);
 						siguientePosicion++;
-
 						obtenerIdDeLaCasillaActual.style.background = "darkred";
+
+						/*ACA VER COMO IMPLEMENTAR LA SOLUCION QUE TRATA DE COMO HACER QUE SI LOS CUADRADOS LLEGAN AL FINAL DEL TABLERO, QUE NO SIGUAN EN LA SIGUIENTE FILA*/
+
+
 					}					
 
 				});
