@@ -7,6 +7,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 
 	switch(nroBarcoSeleccionado) {
 		case 0:
+			let verificadorDeCasillas = [];
 			let casillasBismark = [];
 
 			totalCasillasDelTablero.forEach(casillaDelTableroActual => {
@@ -26,16 +27,31 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 						casillasBismark.push(obtenerIdDeLaCasillaActual);
 						siguientePosicion++;
 						obtenerIdDeLaCasillaActual.style.background = "darkred";
-
-						/*ACA VER COMO IMPLEMENTAR LA SOLUCION QUE TRATA DE COMO HACER QUE SI LOS CUADRADOS LLEGAN AL FINAL DEL TABLERO, QUE NO SIGUAN EN LA SIGUIENTE FILA*/
-
-
 					}					
+
+					console.log(siguientePosicion)
+
+					if (siguientePosicion === 12) {
+						let ultimaCasilla;
+						for(let j = 0; j < casillasBismark.length; j++){
+							let obtenerIdCasilla = casillasBismark[j].getAttribute('id');
+							let idCasilla = document.getElementById(obtenerIdCasilla);
+							console.log(idCasilla);
+							idCasilla.style.background = "none";
+							idCasilla.style.pointerEvents = "none";
+							ultimaCasilla =  idCasilla;
+						}
+						
+						ultimaCasilla.style.pointerEvents = "auto";
+					}
+
 
 				});
 
 				casillaDelTableroActual.addEventListener('mouseout', () => {
 					casillaDelTableroActual.style.background = "none";
+					casillasBismark = [];
+					verificadorDeCasillas = [];
 					totalCasillasDelTablero.forEach(casillaActual => casillaActual.style.background = "none");	
 				})
 
