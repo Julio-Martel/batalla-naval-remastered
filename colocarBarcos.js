@@ -29,8 +29,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 						obtenerIdDeLaCasillaActual.style.background = "darkred";
 					}					
 
-					console.log(siguientePosicion)
-
 					if (siguientePosicion === 12) {
 						let ultimaCasilla;
 						for(let j = 0; j < casillasBismark.length; j++){
