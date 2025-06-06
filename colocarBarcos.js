@@ -43,18 +43,15 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 						
 						ultimaCasilla.style.pointerEvents = "auto";
 					}
-
-
 				});
 
 				casillaDelTableroActual.addEventListener('mouseout', () => {
-					casillaDelTableroActual.style.background = "none";
-					casillasBismark = [];
-					verificadorDeCasillas = [];
-					
 					if(desactivarCeldas) {
 						return;
 					}
+					casillaDelTableroActual.style.background = "none";
+					casillasBismark = [];
+					verificadorDeCasillas = [];
 					
 					totalCasillasDelTablero.forEach(casillaActual => casillaActual.style.background = "none");	
 				
