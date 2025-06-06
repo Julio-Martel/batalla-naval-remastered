@@ -1,6 +1,8 @@
 export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasillasDelTablero,tablero,barcos,listadoDeCasillasOcupadas) => {
 	return new Promise(resolve => {
 
+		let desactivarCeldas = false;
+
 	tablero.style.pointerEvents = "auto";
 	tablero.style.opacity = "1";
 	barcos.style.opacity = "0.5";
@@ -34,7 +36,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 						for(let j = 0; j < casillasBismark.length; j++){
 							let obtenerIdCasilla = casillasBismark[j].getAttribute('id');
 							let idCasilla = document.getElementById(obtenerIdCasilla);
-							console.log(idCasilla);
 							idCasilla.style.background = "none";
 							idCasilla.style.pointerEvents = "none";
 							ultimaCasilla =  idCasilla;
@@ -50,43 +51,29 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 					casillaDelTableroActual.style.background = "none";
 					casillasBismark = [];
 					verificadorDeCasillas = [];
+					
+					if(desactivarCeldas) {
+						return;
+					}
+					
 					totalCasillasDelTablero.forEach(casillaActual => casillaActual.style.background = "none");	
+				
 				})
 
+				casillaDelTableroActual.addEventListener('click', () => {
+					for(let i = 0; i < casillasBismark.length; i++) {
+						let valorIdCasilla = casillasBismark[i];
+						let casillaAAplicarElCambio = valorIdCasilla.getAttribute('id');
+						let nodoObtenidoPorObjeto = document.getElementById(casillaAAplicarElCambio);
 
-			
-			/*	casillaDelTableroActual.addEventListener('click', () => {	
-			
-					let casillaActualAAgregarEfecto = casillaDelTableroActual.getAttribute('id');
-					let idCasillaActualAAgregarEfecto = document.getElementById(casillaActualAAgregarEfecto);
+						nodoObtenidoPorObjeto.style.background = "green";
+						nodoObtenidoPorObjeto.style.pointerEvents = "none";
+						nodoObtenidoPorObjeto.style.cursor = "auto";				
+					}
 
-					let posicionActualDeLaCasilla = Array.from(totalCasillasDelTablero).indexOf(idCasillaActualAAgregarEfecto);
-
-					let siguientePosicion = posicionActualDeLaCasilla;
-
-					for(let i = 0; i < 5; i++) {
-						let obtenerIdDeLaCasillaActual = document.getElementById(`casilla-0-${siguientePosicion}`);
-						casillasBismark.push(obtenerIdDeLaCasillaActual);
-						siguientePosicion++;
-					}	
-
-					totalCasillasDelTablero.forEach(casillaAAplicarColor => {
-						let idCasillaColor = casillaAAplicarColor.getAttribute('id');
-						let idCas = document.getElementById(idCasillaColor);
-						let casillaEnCasillasBismark = casillasBismark.includes(idCas);
-					
-						if (casillaEnCasillasBismark) {
-							idCas.style.background = "darkred";
-							idCas.style.pointerEvents = "none";
-							idCas.style.cursor = "none";
-						}
-					});
-
-					tablero.style.opacity = "0.5";
-					tablero.style.pointerEvents = "none";
-					barcos.style.opacity = "1";
-					barcos.style.pointerEvents = "auto";
-				})*/
+					desactivarCeldas = true;
+				})
+		
 			});
 		
 		break;
