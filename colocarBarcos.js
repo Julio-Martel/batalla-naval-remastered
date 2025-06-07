@@ -74,6 +74,12 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 					}
 
 					desactivarCeldas = true;
+					
+					tablero.style.opacity = "0.1";
+					tablero.style.pointerEvents = "none";
+
+					barcos.style.opacity = "1";
+					barcos.style.pointerEvents = "auto";
 				})
 		
 			});
