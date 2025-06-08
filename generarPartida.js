@@ -1,6 +1,7 @@
 import {colocarBarcosEnElTablero} from './colocarBarcos.js';
 
 let tableroMatriz = [];
+let casillasOcupadas = [];
 
 for(let i = 0; i < 11; i++) {
 	let fila = [];
@@ -45,16 +46,18 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 		// CREACION DE CASILLAS DEL TABLERO
 
 		for(let i = 0; i < 121; i++) {
-			let casillaBarco = document.createElement('div');
-			casillaBarco.setAttribute('id',`casilla-0-${i}`);
-			casillaBarco.classList.add('casilla-barco');
-			seccionTablero.appendChild(casillaBarco);
+			let casillaTablero = document.createElement('div');
+			casillaTablero.setAttribute('id',`casilla-0-${i}`);
+			casillaTablero.classList.add('casilla-tablero');
+			seccionTablero.appendChild(casillaTablero);
 		}
+
+		const todasLasCasillasDelTablero = document.querySelectorAll('.casilla-tablero');
 
 		// EL TABLERO PERMANECERA OPACADO HASTA QUE EL JUGADOR SELECCIONE UN BARCO
 
 		seccionTablero.style.opacity = "0.5";
-		seccionBarcos.style.opacity = "1";
+		seccionTablero.style.pointerEvents = "none";
 
 		// IMAGENES PARA LA COLOCACION DE BARCOS
 
@@ -134,7 +137,7 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 			}
 			tarjetaId.appendChild(botonColocar);
 			botonColocar.setAttribute('class','boton-colocar');
-			botonColocar.setAttribute('id', `boton-${j}`);
+			botonColocar.setAttribute('id', `${j}`);
 			botonColocar.setAttribute('data-value', `${j}`)
 			j++; 
 		}
@@ -144,10 +147,16 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 		const todosLosBotonesDeColocar = document.querySelectorAll('.boton-colocar');
 
 		for(let botonDeColocar of todosLosBotonesDeColocar) {
-			botonDeColocar.addEventListener('click', ()=> {						
+			botonDeColocar.addEventListener('click', async()=> {						
 				let botonColocarDataValue = parseInt(botonDeColocar.getAttribute('data-value'));
+				let botonColocarId = document.getElementById(botonColocarDataValue);
 
-				colocarBarcosEnElTablero(botonColocarDataValue);				
+				botonColocarId.textContent = "COLOCADO";
+				botonColocarId.style.pointerEvents = "none";
+				botonColocarId.style.opacity = "0.5";
+					
+				await colocarBarcosEnElTablero(botonColocarDataValue,todasLasCasillasDelTablero,seccionTablero,seccionBarcos,casillasOcupadas);
+
 			});
 		}
 
