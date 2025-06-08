@@ -6,7 +6,8 @@
 export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasillasDelTablero,tablero,barcos,listadoDeCasillasOcupadas) => {
 	return new Promise(resolve => {
 
-		let desactivarCeldas = false;
+	let desactivarCeldas = false;
+	let casillasYaOcupadas = [];
 
 	tablero.style.pointerEvents = "auto";
 	tablero.style.opacity = "1";
@@ -67,7 +68,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 						let valorIdCasilla = casillasBismark[i];
 						let casillaAAplicarElCambio = valorIdCasilla.getAttribute('id');
 						let nodoObtenidoPorObjeto = document.getElementById(casillaAAplicarElCambio);
-
+						casillasYaOcupadas.push(nodoObtenidoPorObjeto);
 						nodoObtenidoPorObjeto.style.background = "green";
 						nodoObtenidoPorObjeto.style.pointerEvents = "none";
 						nodoObtenidoPorObjeto.style.cursor = "auto";				
@@ -79,7 +80,9 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 					tablero.style.pointerEvents = "none";
 
 					barcos.style.opacity = "1";
-					barcos.style.pointerEvents = "auto";
+					barcos.style.pointerEvents = "auto"; // aqui llegamos
+				
+					console.log(casillasYaOcupadas);
 				})
 		
 			});
