@@ -3,11 +3,14 @@
 // . Ejemplo, el Bismark ocupa 5 casillas, entonces segun ese barco seleccionado, la longitud general se activira segun el barco que hayas seleccionado. usar parametros
 //  */
 
+import {ocuparCasillasDelTableo} from './rellenarTableroConCasillasOcupadas-js';
+
 export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasillasDelTablero,tablero,barcos,listadoDeCasillasOcupadas) => {
 	return new Promise(resolve => {
 
 	let desactivarCeldas = false;
 	let casillasYaOcupadas = [];
+	let tableroSeteadoPorPrimeravez = false;
 
 	tablero.style.pointerEvents = "auto";
 	tablero.style.opacity = "1";
@@ -17,6 +20,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 		case 0:
 			let verificadorDeCasillas = [];
 			let casillasBismark = [];
+
+			tableroSeteadoPorPrimeravez = true;
 
 			totalCasillasDelTablero.forEach(casillaDelTableroActual => {
 				
@@ -76,6 +81,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 
 					desactivarCeldas = true;
 					
+					ocuparCasillasDelTableo(tablero,casillasYaOcupadas);
+
 					tablero.style.opacity = "0.1";
 					tablero.style.pointerEvents = "none";
 
@@ -87,6 +94,30 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 		
 			});
 		
+		break;
+		
+		case 1: 
+			let casillasQueOcupaLaFichaDelBarco = [];
+			const cantidadDeCasillasTirpitz = 
+
+			tableroSeteadoPorPrimeravez = true;
+			
+			if(tableroSeteadoPorPrimeravez) {	
+				totalCasillasDelTablero.forEach(casillaActualDelTablero => {
+					if(casillaActualDelTablero.style.pointerEvents === "auto") {
+						casillaActualDelTablero.addEventListener('mouseover', () => {							
+							let obtenerValorPosicionDeLaCasilla = Array.from(totalCasillasDelTablero).indexOf(casillaActualDelTablero);
+
+							for(let i = 0; ) {
+
+							}
+						})
+					} else {
+
+					}
+				});
+			}
+
 		break;
 
 		/*luego se provara con los demas barcos*/
