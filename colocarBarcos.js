@@ -9,6 +9,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 	let desactivarCeldas = false;
 	let casillasYaOcupadas = [];
 	let tableroSeteadoPorPrimeravez = false;
+	let fichaColocada = false;
 
 	tablero.style.pointerEvents = "auto";
 	tablero.style.opacity = "1";
@@ -117,6 +118,11 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 					})
 
 					casillaActualDelTablero.addEventListener('mouseout', () => {
+						
+						if(fichaColocada) {
+							return;
+						}
+						
 						casillasQueOcupaLaFichaDelBarco.forEach(quitarEfectoDeLaCasillaActual => {
 							quitarEfectoDeLaCasillaActual.style.background = "none";
 						})
@@ -133,6 +139,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 							casillaActualAUsar.style.pointerEvents = "none";
 						})
 
+						fichaColocada = true;
 					})
 
 				})
