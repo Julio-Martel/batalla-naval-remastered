@@ -3,8 +3,6 @@
 // . Ejemplo, el Bismark ocupa 5 casillas, entonces segun ese barco seleccionado, la longitud general se activira segun el barco que hayas seleccionado. usar parametros
 //  */
 
-import {ocuparCasillasDelTableo} from './rellenarTableroConCasillasOcupadas-js';
-
 export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasillasDelTablero,tablero,barcos,listadoDeCasillasOcupadas) => {
 	return new Promise(resolve => {
 
@@ -98,24 +96,46 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 		
 		case 1: 
 			let casillasQueOcupaLaFichaDelBarco = [];
-			const cantidadDeCasillasTirpitz = 
+			const cantidadDeCasillasTirpitz = 4;
 
-			tableroSeteadoPorPrimeravez = true;
-			
-			if(tableroSeteadoPorPrimeravez) {	
+			if(!tableroSeteadoPorPrimeravez) {
+				tableroSeteadoPorPrimeravez = true;
 				totalCasillasDelTablero.forEach(casillaActualDelTablero => {
-					if(casillaActualDelTablero.style.pointerEvents === "auto") {
-						casillaActualDelTablero.addEventListener('mouseover', () => {							
-							let obtenerValorPosicionDeLaCasilla = Array.from(totalCasillasDelTablero).indexOf(casillaActualDelTablero);
+					casillaActualDelTablero.addEventListener('mouseover', () => {
+						let obtenerIdCasillaActualDelTablero = casillaActualDelTablero.getAttribute('id');
+						let idCasillaActualDelTablero = document.getElementById(obtenerIdCasillaActualDelTablero);
+						let obtenerPosicionActualDeLaCasilla = Array.from(totalCasillasDelTablero).indexOf(idCasillaActualDelTablero);
+						idCasillaActualDelTablero.style.background = "blue";
+					
+						for(let i = 0; i < cantidadDeCasillasTirpitz; i++) {
+							let obtenerElIdDeLaCasillaParaAplicarEfecto = document.getElementById(`casilla-0-${obtenerPosicionActualDeLaCasilla}`);
+							casillasQueOcupaLaFichaDelBarco.push(obtenerElIdDeLaCasillaParaAplicarEfecto);
+							obtenerElIdDeLaCasillaParaAplicarEfecto.style.background = "blue";
+							obtenerPosicionActualDeLaCasilla++;
+						}
+					
+					})
 
-							for(let i = 0; ) {
-
-							}
+					casillaActualDelTablero.addEventListener('mouseout', () => {
+						casillasQueOcupaLaFichaDelBarco.forEach(quitarEfectoDeLaCasillaActual => {
+							quitarEfectoDeLaCasillaActual.style.background = "none";
 						})
-					} else {
+						
+						casillasQueOcupaLaFichaDelBarco = [];
+					})
 
-					}
-				});
+					casillaActualDelTablero.addEventListener('click', () => {
+						let obtenerIdCasillaActualDelTablero = casillaActualDelTablero.getAttribute('id');
+						let idCasillaActualDelTablero = document.getElementById(obtenerIdCasillaActualDelTablero);
+						
+						casillasQueOcupaLaFichaDelBarco.forEach(casillaActualAUsar => {
+							casillaActualAUsar.style.background = "darkred";
+							casillaActualAUsar.style.pointerEvents = "none";
+						})
+
+					})
+
+				})
 			}
 
 		break;
