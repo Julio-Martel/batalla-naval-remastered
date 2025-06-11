@@ -3,6 +3,8 @@
 // . Ejemplo, el Bismark ocupa 5 casillas, entonces segun ese barco seleccionado, la longitud general se activira segun el barco que hayas seleccionado. usar parametros
 //  */
 
+import {ocuparCasillasDelTablero} from './ocuparCasillasDelTablero.js';
+
 export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasillasDelTablero,tablero,barcos,listadoDeCasillasOcupadas) => {
 	return new Promise(resolve => {
 
@@ -80,7 +82,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 
 					desactivarCeldas = true;
 					
-					ocuparCasillasDelTableo(tablero,casillasYaOcupadas);
+					ocuparCasillasDelTablero(tablero,casillasYaOcupadas);
 
 					tablero.style.opacity = "0.1";
 					tablero.style.pointerEvents = "none";
@@ -140,6 +142,15 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 						})
 
 						fichaColocada = true;
+
+						ocuparCasillasDelTablero(totalCasillasDelTablero,casillasQueOcupaLaFichaDelBarco);
+						
+						tablero.style.opacity = "0.1";
+						tablero.style.pointerEvents = "none";
+
+						barcos.style.opacity = "1";
+						barcos.style.pointerEvents = "auto"; // aqui llegamos					
+					
 					})
 
 				})
