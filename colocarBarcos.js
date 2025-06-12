@@ -145,11 +145,12 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 
 						ocuparCasillasDelTablero(totalCasillasDelTablero,casillasQueOcupaLaFichaDelBarco);
 						
+
 						tablero.style.opacity = "0.1";
 						tablero.style.pointerEvents = "none";
 
 						barcos.style.opacity = "1";
-						barcos.style.pointerEvents = "auto"; // aqui llegamos					
+						barcos.style.pointerEvents = "auto"; // aqui llegamos nuevamente					
 					
 					})
 
@@ -158,7 +159,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 
 		break;
 
-		/*luego se provara con los demas barcos*/
+		/*luego se probara con los demas barcos*/
 
 	}
 	});
