@@ -60,27 +60,46 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 							return;
 						}
 						casillaActualDelTablero.style.background = "none";
-						casillasBismark = [];
-						verificadorDeCasillas = [];
+						casillasQueHanSidoOcupadas = [];
 						
 						totalCasillasDelTablero.forEach(casillaActual => casillaActual.style.background = "none");	
 					
 					})
 
-					/*casillaActualDelTablero.addEventListener('click', () => {
+					casillaActualDelTablero.addEventListener('click', () => {
+						let obtenerIdCasillaActualDelTablero = casillaActualDelTablero.getAttribute('id');
+						let idCasillaActualDelTablero = document.getElementById(obtenerIdCasillaActualDelTablero);
 						
-						for(let i = 0; i < casillasBismark.length; i++) {
-							let casillaAAplicarElCambio = valorIdCasilla.getAttribute('id');
-							let nodoObtenidoPorObjeto = document.getElementById(casillaAAplicarElCambio);
-							casillasYaOcupadas.push(nodoObtenidoPorObjeto);
-							nodoObtenidoPorObjeto.style.background = "green";
-							nodoObtenidoPorObjeto.style.pointerEvents = "none";
-							nodoObtenidoPorObjeto.style.cursor = "auto";				
+						idCasillaActualDelTablero.style.background = "yellow";
+						idCasillaActualDelTablero.style.pointerEvents = "none";
+
+						for(let j = 0; j < casillasQueHanSidoOcupadas.length; j++){	
+							let ObtenerIdCasillaYaOcupada = casillasQueHanSidoOcupadas[j].getAttribute('id');						
+							let idCasillaYaOcupada = document.getElementById(ObtenerIdCasillaYaOcupada);
+				
+							idCasillaYaOcupada.style.background = "yellow";
+							idCasillaYaOcupada.style.pointerEvents = "none";
 						}
 
 						desactivarCeldas = true;
+					})
+
+					/*casillaActualDelTablero.addEventListener('click', () => {
 						
-						ocuparCasillasDelTablero(tablero,casillasYaOcupadas);
+						for(let i = 0; i < casillasQueHanSidoOcupadas.length; i++) {
+							let obtenerIdCasilla = casillasQueHanSidoOcupadas[i].getAttribute('id');
+							let idCasilla = document.getElementById(obtenerIdCasilla);
+							casillasQueHanSidoOcupadas.push(idCasilla);
+							idCasilla.style.background = "green";
+							idCasilla.style.pointerEvents = "none";
+							idCasilla.style.cursor = "auto";				
+						}
+
+						// corregir esto. que haga una correcta colocacion de la ficha barco
+
+						desactivarCeldas = true;
+						
+						ocuparCasillasDelTablero(tablero,casillasQueHanSidoOcupadas);
 
 						tablero.style.opacity = "0.1";
 						tablero.style.pointerEvents = "none";
