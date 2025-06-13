@@ -9,9 +9,9 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 	return new Promise(resolve => {
 
 	let desactivarCeldas = false;
-	let casillasYaOcupadas = [];
-	let tableroSeteadoPorPrimeravez = false;
+	let casillasQueHanSidoOcupadas = [];
 	let fichaColocada = false;
+	let tableroUsadoPorPrimeraVez = false; // si usamos por primera vez el tablero, todas las casillas estaran a nuestra disposicion, pero si ya fue usado todas las casillas pasaran por una condicional que nos permitira ignorar ciertas casillas
 
 	tablero.style.pointerEvents = "auto";
 	tablero.style.opacity = "1";
@@ -19,81 +19,82 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 
 	switch(nroBarcoSeleccionado) {
 		case 0:
-			let verificadorDeCasillas = [];
-			let casillasBismark = [];
+			const cantidadDeCasillasBismark = 5;
 
-			tableroSeteadoPorPrimeravez = true;
+			if(!tableroUsadoPorPrimeraVez) {
+				totalCasillasDelTablero.forEach(casillaActualDelTablero => {
+					
+					casillaActualDelTablero.addEventListener('mouseover', () => {
+						let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
+						let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
+					
+						idCasillaActual.style.background = "darkred";
 
-			totalCasillasDelTablero.forEach(casillaDelTableroActual => {
-				
-				casillaDelTableroActual.addEventListener('mouseover', () => {
-					let obtenerIdCasillaActualParaAñadirColor = casillaDelTableroActual.getAttribute('id');
-					let casillaActualIdConElEfecto = document.getElementById(obtenerIdCasillaActualParaAñadirColor);
-				
-					casillaActualIdConElEfecto.style.background = "darkred";
+						let posicionDeLaCasillaActual = Array.from(totalCasillasDelTablero).indexOf(idCasillaActual);
 
-					let posicionActualDeLaCasilla = Array.from(totalCasillasDelTablero).indexOf(casillaActualIdConElEfecto);
+						let siguientePosicion = posicionDeLaCasillaActual;
 
-					let siguientePosicion = posicionActualDeLaCasilla;
+						for(let i = 0; i < cantidadDeCasillasBismark; i++) {
+							let obtenerIdDeLaCasillaActual = document.getElementById(`casilla-0-${siguientePosicion}`);
+							casillasQueHanSidoOcupadas.push(obtenerIdDeLaCasillaActual);
+							siguientePosicion++;
+							obtenerIdDeLaCasillaActual.style.background = "darkred";
+						}					
 
-					for(let i = 0; i < 5; i++) {
-						let obtenerIdDeLaCasillaActual = document.getElementById(`casilla-0-${siguientePosicion}`);
-						casillasBismark.push(obtenerIdDeLaCasillaActual);
-						siguientePosicion++;
-						obtenerIdDeLaCasillaActual.style.background = "darkred";
-					}					
-
-					if (siguientePosicion === 12) {
-						let ultimaCasilla;
-						for(let j = 0; j < casillasBismark.length; j++){
-							let obtenerIdCasilla = casillasBismark[j].getAttribute('id');
-							let idCasilla = document.getElementById(obtenerIdCasilla);
-							idCasilla.style.background = "none";
-							idCasilla.style.pointerEvents = "none";
-							ultimaCasilla =  idCasilla;
+						if (siguientePosicion === 12) {
+							let ultimaCasilla;
+							for(let j = 0; j < casillasQueHanSidoOcupadas.length; j++){
+								let obtenerIdCasilla = casillasQueHanSidoOcupadas[j].getAttribute('id');
+								let idCasilla = document.getElementById(obtenerIdCasilla);
+								idCasilla.style.background = "none";
+								idCasilla.style.pointerEvents = "none";
+								ultimaCasilla =  idCasilla;
+							}
+							
+							ultimaCasilla.style.pointerEvents = "auto";
 						}
+					});
+
+					casillaActualDelTablero.addEventListener('mouseout', () => {
+						if(desactivarCeldas) {
+							return;
+						}
+						casillaActualDelTablero.style.background = "none";
+						casillasBismark = [];
+						verificadorDeCasillas = [];
 						
-						ultimaCasilla.style.pointerEvents = "auto";
-					}
+						totalCasillasDelTablero.forEach(casillaActual => casillaActual.style.background = "none");	
+					
+					})
+
+					/*casillaActualDelTablero.addEventListener('click', () => {
+						
+						for(let i = 0; i < casillasBismark.length; i++) {
+							let casillaAAplicarElCambio = valorIdCasilla.getAttribute('id');
+							let nodoObtenidoPorObjeto = document.getElementById(casillaAAplicarElCambio);
+							casillasYaOcupadas.push(nodoObtenidoPorObjeto);
+							nodoObtenidoPorObjeto.style.background = "green";
+							nodoObtenidoPorObjeto.style.pointerEvents = "none";
+							nodoObtenidoPorObjeto.style.cursor = "auto";				
+						}
+
+						desactivarCeldas = true;
+						
+						ocuparCasillasDelTablero(tablero,casillasYaOcupadas);
+
+						tablero.style.opacity = "0.1";
+						tablero.style.pointerEvents = "none";
+
+						barcos.style.opacity = "1";
+						barcos.style.pointerEvents = "auto"; // aqui llegamos
+					
+						console.log(casillasYaOcupadas);
+					})*/
+			
 				});
+			} else {
 
-				casillaDelTableroActual.addEventListener('mouseout', () => {
-					if(desactivarCeldas) {
-						return;
-					}
-					casillaDelTableroActual.style.background = "none";
-					casillasBismark = [];
-					verificadorDeCasillas = [];
-					
-					totalCasillasDelTablero.forEach(casillaActual => casillaActual.style.background = "none");	
-				
-				})
-
-				casillaDelTableroActual.addEventListener('click', () => {
-					for(let i = 0; i < casillasBismark.length; i++) {
-						let valorIdCasilla = casillasBismark[i];
-						let casillaAAplicarElCambio = valorIdCasilla.getAttribute('id');
-						let nodoObtenidoPorObjeto = document.getElementById(casillaAAplicarElCambio);
-						casillasYaOcupadas.push(nodoObtenidoPorObjeto);
-						nodoObtenidoPorObjeto.style.background = "green";
-						nodoObtenidoPorObjeto.style.pointerEvents = "none";
-						nodoObtenidoPorObjeto.style.cursor = "auto";				
-					}
-
-					desactivarCeldas = true;
-					
-					ocuparCasillasDelTablero(tablero,casillasYaOcupadas);
-
-					tablero.style.opacity = "0.1";
-					tablero.style.pointerEvents = "none";
-
-					barcos.style.opacity = "1";
-					barcos.style.pointerEvents = "auto"; // aqui llegamos
-				
-					console.log(casillasYaOcupadas);
-				})
-		
-			});
+			}
 		
 		break;
 		
@@ -101,61 +102,58 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 			let casillasQueOcupaLaFichaDelBarco = [];
 			const cantidadDeCasillasTirpitz = 4;
 
-			if(!tableroSeteadoPorPrimeravez) {
-				tableroSeteadoPorPrimeravez = true;
-				totalCasillasDelTablero.forEach(casillaActualDelTablero => {
-					casillaActualDelTablero.addEventListener('mouseover', () => {
-						let obtenerIdCasillaActualDelTablero = casillaActualDelTablero.getAttribute('id');
-						let idCasillaActualDelTablero = document.getElementById(obtenerIdCasillaActualDelTablero);
-						let obtenerPosicionActualDeLaCasilla = Array.from(totalCasillasDelTablero).indexOf(idCasillaActualDelTablero);
-						idCasillaActualDelTablero.style.background = "blue";
+			totalCasillasDelTablero.forEach(casillaActualDelTablero => {
+				casillaActualDelTablero.addEventListener('mouseover', () => {
+					let obtenerIdCasillaActualDelTablero = casillaActualDelTablero.getAttribute('id');
+					let idCasillaActualDelTablero = document.getElementById(obtenerIdCasillaActualDelTablero);
+					let obtenerPosicionActualDeLaCasilla = Array.from(totalCasillasDelTablero).indexOf(idCasillaActualDelTablero);
+					idCasillaActualDelTablero.style.background = "blue";
 					
-						for(let i = 0; i < cantidadDeCasillasTirpitz; i++) {
-							let obtenerElIdDeLaCasillaParaAplicarEfecto = document.getElementById(`casilla-0-${obtenerPosicionActualDeLaCasilla}`);
-							casillasQueOcupaLaFichaDelBarco.push(obtenerElIdDeLaCasillaParaAplicarEfecto);
-							obtenerElIdDeLaCasillaParaAplicarEfecto.style.background = "blue";
-							obtenerPosicionActualDeLaCasilla++;
-						}
+					for(let i = 0; i < cantidadDeCasillasTirpitz; i++) {
+						let obtenerElIdDeLaCasillaParaAplicarEfecto = document.getElementById(`casilla-0-${obtenerPosicionActualDeLaCasilla}`);
+						casillasQueOcupaLaFichaDelBarco.push(obtenerElIdDeLaCasillaParaAplicarEfecto);
+						obtenerElIdDeLaCasillaParaAplicarEfecto.style.background = "blue";
+						obtenerPosicionActualDeLaCasilla++;
+					}
 					
-					})
-
-					casillaActualDelTablero.addEventListener('mouseout', () => {
-						
-						if(fichaColocada) {
-							return;
-						}
-						
-						casillasQueOcupaLaFichaDelBarco.forEach(quitarEfectoDeLaCasillaActual => {
-							quitarEfectoDeLaCasillaActual.style.background = "none";
-						})
-						
-						casillasQueOcupaLaFichaDelBarco = [];
-					})
-
-					casillaActualDelTablero.addEventListener('click', () => {
-						let obtenerIdCasillaActualDelTablero = casillaActualDelTablero.getAttribute('id');
-						let idCasillaActualDelTablero = document.getElementById(obtenerIdCasillaActualDelTablero);
-						
-						casillasQueOcupaLaFichaDelBarco.forEach(casillaActualAUsar => {
-							casillaActualAUsar.style.background = "darkred";
-							casillaActualAUsar.style.pointerEvents = "none";
-						})
-
-						fichaColocada = true;
-
-						ocuparCasillasDelTablero(totalCasillasDelTablero,casillasQueOcupaLaFichaDelBarco);
-						
-
-						tablero.style.opacity = "0.1";
-						tablero.style.pointerEvents = "none";
-
-						barcos.style.opacity = "1";
-						barcos.style.pointerEvents = "auto"; // aqui llegamos nuevamente					
-					
-					})
-
 				})
-			}
+
+				casillaActualDelTablero.addEventListener('mouseout', () => {
+						
+					if(fichaColocada) {
+						return;
+					}
+						
+					casillasQueOcupaLaFichaDelBarco.forEach(quitarEfectoDeLaCasillaActual => {
+						quitarEfectoDeLaCasillaActual.style.background = "none";
+					})
+						
+					casillasQueOcupaLaFichaDelBarco = [];
+				})
+
+				casillaActualDelTablero.addEventListener('click', () => {
+					let obtenerIdCasillaActualDelTablero = casillaActualDelTablero.getAttribute('id');
+					let idCasillaActualDelTablero = document.getElementById(obtenerIdCasillaActualDelTablero);
+						
+					casillasQueOcupaLaFichaDelBarco.forEach(casillaActualAUsar => {
+						casillaActualAUsar.style.background = "darkred";
+						casillaActualAUsar.style.pointerEvents = "none";
+					})
+
+					fichaColocada = true;
+
+					ocuparCasillasDelTablero(totalCasillasDelTablero,casillasQueOcupaLaFichaDelBarco);
+						
+
+					tablero.style.opacity = "0.1";
+					tablero.style.pointerEvents = "none";
+
+					barcos.style.opacity = "1";
+					barcos.style.pointerEvents = "auto"; // aqui llegamos nuevamente					
+					
+				})
+			})
+		
 
 		break;
 
