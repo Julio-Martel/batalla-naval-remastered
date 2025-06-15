@@ -12,7 +12,14 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 	let casillasQueHanSidoOcupadas = [];
 	let fichaColocada = false;
 	let tableroUsadoPorPrimeraVez = false; // si usamos por primera vez el tablero, todas las casillas estaran a nuestra disposicion, pero si ya fue usado todas las casillas pasaran por una condicional que nos permitira ignorar ciertas casillas
+	let multiplosDeOnceMasUno = [];
 
+	for(let k = 0; k < 11; k++){
+		let multiploDeOnce = (k + 1) * 11;
+		let sumarleUno = multiploDeOnce + 1;
+		multiplosDeOnceMasUno.push(sumarleUno);
+	}
+	
 	tablero.style.pointerEvents = "auto";
 	tablero.style.opacity = "1";
 	barcos.style.opacity = "0.5";
@@ -23,14 +30,12 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 
 			if(!tableroUsadoPorPrimeraVez) {
 				totalCasillasDelTablero.forEach(casillaActualDelTablero => {
-				
-				// colocar el if aqui	
-
+			
 					casillaActualDelTablero.addEventListener('mouseover', () => {
 						let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
 						let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
 					
-						idCasillaActual.style.background = "darkred";
+						idCasillaActual.style.background = "darkgrey";
 
 						let posicionDeLaCasillaActual = Array.from(totalCasillasDelTablero).indexOf(idCasillaActual);
 
@@ -41,9 +46,22 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 							casillasQueHanSidoOcupadas.push(obtenerIdDeLaCasillaActual);
 							siguientePosicion++;
 							obtenerIdDeLaCasillaActual.style.background = "darkred";
+							
+							let nroEnElArregloDeMultiplosDeOnceMasUno = multiplosDeOnceMasUno.includes(siguientePosicion) ? true : false;
+
+							if(nroEnElArregloDeMultiplosDeOnceMasUno) {
+								let ultimaCasilla;
+								for(let j = 0; j < casillasQueHanSidoOcupadas.length; j++){
+									let obtenerIdCasilla = casillasQueHanSidoOcupadas[j].getAttribute('id');
+									let idCasilla = document.getElementById(obtenerIdCasilla);
+									idCasilla.style.background = "none";
+									idCasilla.style.pointerEvents = "none";
+									ultimaCasilla =  idCasilla;
+								}								
+							}
 						}					
 
-						if (siguientePosicion === 12) {
+						/*if (siguientePosicion === 12 || siguientePosicion === 23) {
 							let ultimaCasilla;
 							for(let j = 0; j < casillasQueHanSidoOcupadas.length; j++){
 								let obtenerIdCasilla = casillasQueHanSidoOcupadas[j].getAttribute('id');
@@ -54,7 +72,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 							}
 							
 							ultimaCasilla.style.pointerEvents = "auto";
-						}
+						}*/
 					});
 
 					casillaActualDelTablero.addEventListener('mouseout', () => {
