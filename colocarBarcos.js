@@ -19,7 +19,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 		let sumarleUno = multiploDeOnce + 1;
 		multiplosDeOnceMasUno.push(sumarleUno);
 	}
-	
+
 	tablero.style.pointerEvents = "auto";
 	tablero.style.opacity = "1";
 	barcos.style.opacity = "0.5";
@@ -46,7 +46,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 							casillasQueHanSidoOcupadas.push(obtenerIdDeLaCasillaActual);
 							siguientePosicion++;
 							obtenerIdDeLaCasillaActual.style.background = "darkred";
-							
+
 							let nroEnElArregloDeMultiplosDeOnceMasUno = multiplosDeOnceMasUno.includes(siguientePosicion) ? true : false;
 
 							if(nroEnElArregloDeMultiplosDeOnceMasUno) {
@@ -54,10 +54,15 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 								for(let j = 0; j < casillasQueHanSidoOcupadas.length; j++){
 									let obtenerIdCasilla = casillasQueHanSidoOcupadas[j].getAttribute('id');
 									let idCasilla = document.getElementById(obtenerIdCasilla);
-									idCasilla.style.background = "none";
+									idCasilla.style.background = "darkred";
 									idCasilla.style.pointerEvents = "none";
 									ultimaCasilla =  idCasilla;
 								}								
+								
+								idCasillaActual.style.pointerEvents = "none";
+
+								ultimaCasilla.style.background = "none";
+								ultimaCasilla.style.pointerEvents = "auto";						
 							}
 						}					
 
