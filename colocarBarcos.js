@@ -23,7 +23,9 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 
 			if(!tableroUsadoPorPrimeraVez) {
 				totalCasillasDelTablero.forEach(casillaActualDelTablero => {
-					
+				
+				// colocar el if aqui	
+
 					casillaActualDelTablero.addEventListener('mouseover', () => {
 						let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
 						let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
@@ -56,6 +58,9 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 					});
 
 					casillaActualDelTablero.addEventListener('mouseout', () => {
+						
+						console.log('aqui')
+						
 						if(desactivarCeldas) {
 							return;
 						}
@@ -82,37 +87,34 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 						}
 
 						desactivarCeldas = true;
-					})
-
-					/*casillaActualDelTablero.addEventListener('click', () => {
 						
-						for(let i = 0; i < casillasQueHanSidoOcupadas.length; i++) {
-							let obtenerIdCasilla = casillasQueHanSidoOcupadas[i].getAttribute('id');
-							let idCasilla = document.getElementById(obtenerIdCasilla);
-							casillasQueHanSidoOcupadas.push(idCasilla);
-							idCasilla.style.background = "green";
-							idCasilla.style.pointerEvents = "none";
-							idCasilla.style.cursor = "auto";				
-						}
-
-						// corregir esto. que haga una correcta colocacion de la ficha barco
-
-						desactivarCeldas = true;
-						
-						ocuparCasillasDelTablero(tablero,casillasQueHanSidoOcupadas);
+						ocuparCasillasDelTablero(totalCasillasDelTablero,casillasQueHanSidoOcupadas);
 
 						tablero.style.opacity = "0.1";
 						tablero.style.pointerEvents = "none";
 
 						barcos.style.opacity = "1";
-						barcos.style.pointerEvents = "auto"; // aqui llegamos
-					
-						console.log(casillasYaOcupadas);
-					})*/
-			
+						barcos.style.pointerEvents = "auto"; 			
+				
+					})		
 				});
+			
 			} else {
 
+				totalCasillasDelTablero.forEach(casillaActualDelTablero => {
+					let casillaOcupada = casillasQueHanSidoOcupadas.includes(casillaActualDelTablero);
+					if(!casillaOcupada){
+						casillaActualDelTablero.addEventListener('mouseover', () => {
+							
+							console.log('adasds')
+							
+							let obtenerIdCasillaActualDelTablero = casillaActualDelTablero.getAttribute('id')
+							let idCasilaActualDelTablero = document.getElementById(obtenerIdCasillaActualDelTablero);
+
+							idCasilaActualDelTablero.style.background = "pink";
+						})
+					}	
+				});			
 			}
 		
 		break;
