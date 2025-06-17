@@ -79,7 +79,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 							}
 							
 							ultimaCasilla.style.pointerEvents = "auto";
-						}*/
+						} cambiar*/
 					});
 
 					casillaActualDelTablero.addEventListener('mouseout', () => {
