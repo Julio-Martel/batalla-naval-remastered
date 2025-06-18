@@ -49,7 +49,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 
 							let nroEnElArregloDeMultiplosDeOnceMasUno = multiplosDeOnceMasUno.includes(siguientePosicion) ? true : false;
 
-							if(siguientePosicion === 12) {
+							if(siguientePosicion === 11) {
 								
 								let ultimaCasilla;
 								for(let j = 0; j < casillasQueHanSidoOcupadas.length; j++){
@@ -58,13 +58,16 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 									idCasilla.style.background = "darkred";
 									idCasilla.style.pointerEvents = "auto";
 									ultimaCasilla =  idCasilla;
+									console.log(ultimaCasilla)
 								}								
-
 
 								// VER COMO SOLUCIONAR EL PROBLEMA DE QUE AL SEGUIR SELECCIONANDO CASILLAS ESTE NO AVANZE POR FUERA DEL TABLERO, OSEA EL PUNTERO
 
-								ultimaCasilla.style.background = "none";
+								ultimaCasilla.style.background = "darkred";
 								ultimaCasilla.style.pointerEvents = "auto";						
+								
+								
+
 							}
 						}					
 
