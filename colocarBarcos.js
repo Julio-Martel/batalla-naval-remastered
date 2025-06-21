@@ -61,28 +61,17 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 									console.log(ultimaCasilla)
 								}								
 
+								// ARREGLADO EL PROBLEMA DEL ULTIMO CUADRO. AHORA ARREGLAR EL PROBLEMA DE LA SELECCION
+
 								// VER COMO SOLUCIONAR EL PROBLEMA DE QUE AL SEGUIR SELECCIONANDO CASILLAS ESTE NO AVANZE POR FUERA DEL TABLERO, OSEA EL PUNTERO
 
 								ultimaCasilla.style.background = "darkred";
 								ultimaCasilla.style.pointerEvents = "auto";						
 								
-								
+
 
 							}
 						}					
-
-						/*if (siguientePosicion === 12 || siguientePosicion === 23) {
-							let ultimaCasilla;
-							for(let j = 0; j < casillasQueHanSidoOcupadas.length; j++){
-								let obtenerIdCasilla = casillasQueHanSidoOcupadas[j].getAttribute('id');
-								let idCasilla = document.getElementById(obtenerIdCasilla);
-								idCasilla.style.background = "none";
-								idCasilla.style.pointerEvents = "none";
-								ultimaCasilla =  idCasilla;
-							}
-							
-							ultimaCasilla.style.pointerEvents = "auto";
-						} cambiar*/
 					});
 
 					casillaActualDelTablero.addEventListener('mouseout', () => {
