@@ -44,22 +44,20 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 						for(let i = 0; i < cantidadDeCasillasBismark; i++) {
 							let obtenerIdDeLaCasillaActual = document.getElementById(`casilla-0-${siguientePosicion}`);
 							casillasQueHanSidoOcupadas.push(obtenerIdDeLaCasillaActual);
-							console.log(siguientePosicion)
 							siguientePosicion++;
-							/*if(siguientePosicion === 6) {
-								let bloquearSiguienteCasilla = siguientePosicion;
-								for(let k = 0; k < 6; k++){
-									let bloquearCasilla = document.getElementById(`casilla-0-${bloquearSiguienteCasilla}`);
-									bloquearSiguienteCasilla++;
-									console.log(bloquearCasilla);
-									bloquearCasilla.style.pointerEvents = "none";
-									bloquearCasilla.style.background = "darkred";
-								}
-							}*/
+
 							obtenerIdDeLaCasillaActual.style.background = "darkred";
 
-							let nroEnElArregloDeMultiplosDeOnceMasUno = multiplosDeOnceMasUno.includes(siguientePosicion) ? true : false;
-
+							if(siguientePosicion === 1) {
+								console.log(`aqui se cumple la condicion ${siguientePosicion}`)
+								let pause = 6;
+								for(let pause = 6; pause < 11; pause++){
+									let bloquear = document.getElementById(`casilla-0-${pause}`);
+									bloquear.style.pointerEvents = "none";
+									bloquear.style.background = "darkred";
+								}
+							}
+					
 							if(siguientePosicion === 11) {
 								
 								let ultimaCasilla;
@@ -69,7 +67,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 									idCasilla.style.background = "darkred";
 									idCasilla.style.pointerEvents = "auto";
 									ultimaCasilla =  idCasilla;
-									console.log(ultimaCasilla)
 								}								
 
 								// ARREGLADO EL PROBLEMA DEL ULTIMO CUADRO. AHORA ARREGLAR EL PROBLEMA DE LA SELECCION
@@ -82,13 +79,12 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 
 
 							}
-						}					
+						}
+					
 					});
 
 					casillaActualDelTablero.addEventListener('mouseout', () => {
-						
-						console.log('aqui')
-						
+			
 						if(desactivarCeldas) {
 							return;
 						}
