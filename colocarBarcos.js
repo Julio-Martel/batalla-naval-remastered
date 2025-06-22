@@ -44,7 +44,18 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 						for(let i = 0; i < cantidadDeCasillasBismark; i++) {
 							let obtenerIdDeLaCasillaActual = document.getElementById(`casilla-0-${siguientePosicion}`);
 							casillasQueHanSidoOcupadas.push(obtenerIdDeLaCasillaActual);
+							console.log(siguientePosicion)
 							siguientePosicion++;
+							/*if(siguientePosicion === 6) {
+								let bloquearSiguienteCasilla = siguientePosicion;
+								for(let k = 0; k < 6; k++){
+									let bloquearCasilla = document.getElementById(`casilla-0-${bloquearSiguienteCasilla}`);
+									bloquearSiguienteCasilla++;
+									console.log(bloquearCasilla);
+									bloquearCasilla.style.pointerEvents = "none";
+									bloquearCasilla.style.background = "darkred";
+								}
+							}*/
 							obtenerIdDeLaCasillaActual.style.background = "darkred";
 
 							let nroEnElArregloDeMultiplosDeOnceMasUno = multiplosDeOnceMasUno.includes(siguientePosicion) ? true : false;
