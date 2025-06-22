@@ -13,6 +13,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 	let fichaColocada = false;
 	let tableroUsadoPorPrimeraVez = false; // si usamos por primera vez el tablero, todas las casillas estaran a nuestra disposicion, pero si ya fue usado todas las casillas pasaran por una condicional que nos permitira ignorar ciertas casillas
 	let multiplosDeOnceMasUno = [];
+	let bloquearCasillas = [];
 
 	for(let k = 0; k < 11; k++){
 		let multiploDeOnce = (k + 1) * 11;
@@ -39,18 +40,28 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 
 						let posicionDeLaCasillaActual = Array.from(totalCasillasDelTablero).indexOf(idCasillaActual);
 
+						casillaActualDelTablero.style.pointerEvents = "none";
+
 						if(posicionDeLaCasillaActual === 6) {
 							casillaActualDelTablero.style.pointerEvents = "none";
 							console.log('posicion correcta',posicionDeLaCasillaActual)
+							console.log(casillaActualDelTablero);
 							let bloquearSiguienteCasilla = posicionDeLaCasillaActual;
-							for(let k = 0; k < 5; k++){
+							for(let k = 1; k < 5; k++){
+								bloquearSiguienteCasilla++;
 								let IdCasillaActualaBloquear = document.getElementById(`casilla-0-${bloquearSiguienteCasilla}`);
 								IdCasillaActualaBloquear.style.pointerEvents = "none";
 								IdCasillaActualaBloquear.style.background = "darkred";
-								console.log(IdCasillaActualaBloquear)
-								bloquearSiguienteCasilla++;
+								bloquearCasillas.push(IdCasillaActualaBloquear);
+								
+
+								//AGREGAR LOGICA EXTERNA PARA CORREGIR ESTO DE UNA VEZ Y APLICARLO A LOS DEMAS BARCOS
+
 							}
 						}
+						
+
+
 
 						let siguientePosicion = posicionDeLaCasillaActual;
 
