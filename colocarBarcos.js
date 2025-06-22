@@ -39,6 +39,19 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 
 						let posicionDeLaCasillaActual = Array.from(totalCasillasDelTablero).indexOf(idCasillaActual);
 
+						if(posicionDeLaCasillaActual === 6) {
+							casillaActualDelTablero.style.pointerEvents = "none";
+							console.log('posicion correcta',posicionDeLaCasillaActual)
+							let bloquearSiguienteCasilla = posicionDeLaCasillaActual;
+							for(let k = 0; k < 5; k++){
+								let IdCasillaActualaBloquear = document.getElementById(`casilla-0-${bloquearSiguienteCasilla}`);
+								IdCasillaActualaBloquear.style.pointerEvents = "none";
+								IdCasillaActualaBloquear.style.background = "darkred";
+								console.log(IdCasillaActualaBloquear)
+								bloquearSiguienteCasilla++;
+							}
+						}
+
 						let siguientePosicion = posicionDeLaCasillaActual;
 
 						for(let i = 0; i < cantidadDeCasillasBismark; i++) {
@@ -48,7 +61,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 
 							obtenerIdDeLaCasillaActual.style.background = "darkred";
 
-							if(siguientePosicion === 1) {
+
+							/*if(siguientePosicion === 1) {
 								console.log(`aqui se cumple la condicion ${siguientePosicion}`)
 								let pause = 6;
 								for(let pause = 6; pause < 11; pause++){
@@ -56,7 +70,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 									bloquear.style.pointerEvents = "none";
 									bloquear.style.background = "darkred";
 								}
-							}
+							}*/
 					
 							if(siguientePosicion === 11) {
 								
