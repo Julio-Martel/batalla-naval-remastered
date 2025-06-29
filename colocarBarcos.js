@@ -44,6 +44,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 
 						if(posicionDeLaCasillaActual === 6) {
 							casillaActualDelTablero.style.pointerEvents = "none";
+							bloquearCasillas.push(casillaActualDelTablero)
 							let bloquearSiguienteCasilla = posicionDeLaCasillaActual;
 							for(let k = 1; k < 5; k++){
 								bloquearSiguienteCasilla++;
@@ -51,8 +52,15 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 								IdCasillaActualaBloquear.style.pointerEvents = "none";
 								IdCasillaActualaBloquear.style.background = "darkred";
 								bloquearCasillas.push(IdCasillaActualaBloquear);
-							}
-							
+							}						
+
+							totalCasillasDelTablero.forEach(casillaAbloquear => {
+								let incluido = bloquearCasillas.includes(casillaAbloquear);
+								if(incluido){
+									console.log(casillaAbloquear);
+								}
+							});
+
 						}
 						
 
