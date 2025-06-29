@@ -44,8 +44,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 
 						if(posicionDeLaCasillaActual === 6) {
 							casillaActualDelTablero.style.pointerEvents = "none";
-							console.log('posicion correcta',posicionDeLaCasillaActual)
-							console.log(casillaActualDelTablero);
 							let bloquearSiguienteCasilla = posicionDeLaCasillaActual;
 							for(let k = 1; k < 5; k++){
 								bloquearSiguienteCasilla++;
@@ -53,11 +51,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 								IdCasillaActualaBloquear.style.pointerEvents = "none";
 								IdCasillaActualaBloquear.style.background = "darkred";
 								bloquearCasillas.push(IdCasillaActualaBloquear);
-								
-
-								//AGREGAR LOGICA EXTERNA PARA CORREGIR ESTO DE UNA VEZ Y APLICARLO A LOS DEMAS BARCOS
-
 							}
+							
 						}
 						
 
@@ -72,17 +67,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 
 							obtenerIdDeLaCasillaActual.style.background = "darkred";
 
-
-							/*if(siguientePosicion === 1) {
-								console.log(`aqui se cumple la condicion ${siguientePosicion}`)
-								let pause = 6;
-								for(let pause = 6; pause < 11; pause++){
-									let bloquear = document.getElementById(`casilla-0-${pause}`);
-									bloquear.style.pointerEvents = "none";
-									bloquear.style.background = "darkred";
-								}
-							}*/
-					
 							if(siguientePosicion === 11) {
 								
 								let ultimaCasilla;
@@ -93,8 +77,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 									idCasilla.style.pointerEvents = "auto";
 									ultimaCasilla =  idCasilla;
 								}								
-
-								
 
 								// ARREGLADO EL PROBLEMA DEL ULTIMO CUADRO. AHORA ARREGLAR EL PROBLEMA DE LA SELECCION
 
