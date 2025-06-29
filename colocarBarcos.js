@@ -40,7 +40,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 
 						let posicionDeLaCasillaActual = Array.from(totalCasillasDelTablero).indexOf(idCasillaActual);
 
-						casillaActualDelTablero.style.pointerEvents = "none";
+						casillaActualDelTablero.style.pointerEvents = "auto";
 
 						if(posicionDeLaCasillaActual === 6) {
 							casillaActualDelTablero.style.pointerEvents = "none";
@@ -93,6 +93,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 									idCasilla.style.pointerEvents = "auto";
 									ultimaCasilla =  idCasilla;
 								}								
+
+								
 
 								// ARREGLADO EL PROBLEMA DEL ULTIMO CUADRO. AHORA ARREGLAR EL PROBLEMA DE LA SELECCION
 
