@@ -57,7 +57,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 							totalCasillasDelTablero.forEach(casillaAbloquear => {
 								let incluido = bloquearCasillas.includes(casillaAbloquear);
 								if(incluido){
-									console.log(casillaAbloquear);
+									
 								}
 							});
 
@@ -71,31 +71,20 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 						for(let i = 0; i < cantidadDeCasillasBismark; i++) {
 							let obtenerIdDeLaCasillaActual = document.getElementById(`casilla-0-${siguientePosicion}`);
 							casillasQueHanSidoOcupadas.push(obtenerIdDeLaCasillaActual);
+							console.log(siguientePosicion)
 							siguientePosicion++;
 
 							obtenerIdDeLaCasillaActual.style.background = "darkred";
 
 							if(siguientePosicion === 11) {
-								
-								let ultimaCasilla;
+							
 								for(let j = 0; j < casillasQueHanSidoOcupadas.length; j++){
 									let obtenerIdCasilla = casillasQueHanSidoOcupadas[j].getAttribute('id');
 									let idCasilla = document.getElementById(obtenerIdCasilla);
 									idCasilla.style.background = "darkred";
 									idCasilla.style.pointerEvents = "auto";
-									ultimaCasilla =  idCasilla;
 								}								
-
-								// ARREGLADO EL PROBLEMA DEL ULTIMO CUADRO. AHORA ARREGLAR EL PROBLEMA DE LA SELECCION
-
-								// VER COMO SOLUCIONAR EL PROBLEMA DE QUE AL SEGUIR SELECCIONANDO CASILLAS ESTE NO AVANZE POR FUERA DEL TABLERO, OSEA EL PUNTERO
-
-								ultimaCasilla.style.background = "darkred";
-								ultimaCasilla.style.pointerEvents = "auto";						
-								
-
-
-							}
+							} 
 						}
 					
 					});
