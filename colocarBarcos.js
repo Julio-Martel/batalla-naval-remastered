@@ -31,7 +31,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 
 			if(!tableroUsadoPorPrimeraVez) {
 				totalCasillasDelTablero.forEach(casillaActualDelTablero => {
-			
+				
 					casillaActualDelTablero.addEventListener('mouseover', () => {
 						let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
 						let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
@@ -43,7 +43,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 						casillaActualDelTablero.style.pointerEvents = "auto";
 
 						if(posicionDeLaCasillaActual === 6) {
-							casillaActualDelTablero.style.pointerEvents = "none";
 							bloquearCasillas.push(casillaActualDelTablero)
 							let bloquearSiguienteCasilla = posicionDeLaCasillaActual;
 							for(let k = 1; k < 5; k++){
@@ -54,18 +53,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 								bloquearCasillas.push(IdCasillaActualaBloquear);
 							}						
 
-							totalCasillasDelTablero.forEach(casillaAbloquear => {
-								let incluido = bloquearCasillas.includes(casillaAbloquear);
-								if(incluido){
-									
-								}
-							});
-
 						}
 						
-
-
-
 						let siguientePosicion = posicionDeLaCasillaActual;
 
 						for(let i = 0; i < cantidadDeCasillasBismark; i++) {
@@ -76,7 +65,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 
 							obtenerIdDeLaCasillaActual.style.background = "darkred";
 
-							if(siguientePosicion === 11) {
+							if(siguientePosicion <= 11) {
 							
 								for(let j = 0; j < casillasQueHanSidoOcupadas.length; j++){
 									let obtenerIdCasilla = casillasQueHanSidoOcupadas[j].getAttribute('id');
@@ -84,6 +73,19 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 									idCasilla.style.background = "darkred";
 									idCasilla.style.pointerEvents = "auto";
 								}								
+							} else {
+								let casillaAmarcar = bloquearCasillas[0];
+								casillaAmarcar.style.background = "darkred";
+								for(let k = 0; k < bloquearCasillas.length; k++){
+									let quitarColorDeLaCasilla = bloquearCasillas[k];
+									quitarColorDeLaCasilla.style.background = "darkred";		
+									
+									// CASI ARREGLADO PERO NECESITO QUE LAS CASILLAS DESAPAREZCAN CUANDO LA POSICION INCREMENTA A MAS DE 11 
+
+								}
+								
+
+							
 							} 
 						}
 					
