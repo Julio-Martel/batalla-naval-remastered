@@ -9,7 +9,7 @@ export const ocuparCasillasDelTablero = (listadoDeTodasLasCasillas,casillasQueOc
         if(existeEnElArregloEsaCasilla){
             casillaActual.style.pointerEvents = "none";
         } else {
-            casillaActual.style.pointerEvents = "auto";
+            //casillaActual.style.pointerEvents = "auto";
         }
     });
 }
