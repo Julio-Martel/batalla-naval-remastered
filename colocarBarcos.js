@@ -66,13 +66,14 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 							obtenerIdDeLaCasillaActual.style.background = "darkred";
 
 							if(siguientePosicion <= 11) {
-							
+		
 								for(let j = 0; j < casillasQueHanSidoOcupadas.length; j++){
 									let obtenerIdCasilla = casillasQueHanSidoOcupadas[j].getAttribute('id');
 									let idCasilla = document.getElementById(obtenerIdCasilla);
 									idCasilla.style.background = "darkred";
 									idCasilla.style.pointerEvents = "auto";
 								}								
+		
 							} else {
 								let casillaAmarcar = bloquearCasillas[0];
 								casillaAmarcar.style.background = "darkred";
@@ -80,7 +81,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 									let quitarColorDeLaCasilla = bloquearCasillas[k];
 									quitarColorDeLaCasilla.style.background = "darkred";		
 									
-									// CASI ARREGLADO PERO NECESITO QUE LAS CASILLAS DESAPAREZCAN CUANDO LA POSICION INCREMENTA A MAS DE 11 
+								
 
 								}
 								
