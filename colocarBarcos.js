@@ -60,9 +60,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 						for(let i = 0; i < cantidadDeCasillasBismark; i++) {
 							let obtenerIdDeLaCasillaActual = document.getElementById(`casilla-0-${siguientePosicion}`);
 							casillasQueHanSidoOcupadas.push(obtenerIdDeLaCasillaActual);
-							console.log(siguientePosicion)
 							siguientePosicion++;
-
+							console.log(siguientePosicion)
 							obtenerIdDeLaCasillaActual.style.background = "darkred";
 
 							if(siguientePosicion <= 11) {
@@ -75,13 +74,13 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 								}								
 		
 							} else {
+								console.log('paso la casilla nro 11')
 								let casillaAmarcar = bloquearCasillas[0];
 								casillaAmarcar.style.background = "darkred";
 								for(let k = 0; k < bloquearCasillas.length; k++){
 									let quitarColorDeLaCasilla = bloquearCasillas[k];
 									quitarColorDeLaCasilla.style.background = "darkred";		
-									
-								
+									calendar.removeEvents(quitarColorDeLaCasilla)
 
 								}
 								
