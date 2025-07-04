@@ -25,11 +25,17 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 	tablero.style.opacity = "1";
 	barcos.style.opacity = "0.5";
 
+
+	const aplicarCambios = () => {
+		
+	}
+
 	switch(nroBarcoSeleccionado) {
 		case 0:
 			const cantidadDeCasillasBismark = 5;
 
 			if(!tableroUsadoPorPrimeraVez) {
+				
 				totalCasillasDelTablero.forEach(casillaActualDelTablero => {
 				
 					casillaActualDelTablero.addEventListener('mouseover', () => {
@@ -48,7 +54,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 							for(let k = 1; k < 5; k++){
 								bloquearSiguienteCasilla++;
 								let IdCasillaActualaBloquear = document.getElementById(`casilla-0-${bloquearSiguienteCasilla}`);
-								IdCasillaActualaBloquear.style.pointerEvents = "none";
 								IdCasillaActualaBloquear.style.background = "darkred";
 								bloquearCasillas.push(IdCasillaActualaBloquear);
 							}						
@@ -64,7 +69,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 							console.log(siguientePosicion)
 							obtenerIdDeLaCasillaActual.style.background = "darkred";
 
-							if(siguientePosicion <= 11) {
+							if(siguientePosicion <= 10) {
 		
 								for(let j = 0; j < casillasQueHanSidoOcupadas.length; j++){
 									let obtenerIdCasilla = casillasQueHanSidoOcupadas[j].getAttribute('id');
@@ -74,17 +79,19 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 								}								
 		
 							} else {
-								console.log('paso la casilla nro 11')
-								let casillaAmarcar = bloquearCasillas[0];
-								casillaAmarcar.style.background = "darkred";
-								for(let k = 0; k < bloquearCasillas.length; k++){
-									let quitarColorDeLaCasilla = bloquearCasillas[k];
-									quitarColorDeLaCasilla.style.background = "darkred";		
-									calendar.removeEvents(quitarColorDeLaCasilla)
 
+								
+								
+								for(let k = 0; k < bloquearCasillas.length; k++) {
+									let ocultarCelda = bloquearCasillas[k];
+									ocultarCelda.style.background = "green";
+									ocultarCelda.style.pointerEvents = "none";
+									console.log(ocultarCelda);
+								
+									// SE HAN ARREGLADO PROBLEMAS DE LAS CASILLAS, SOLO FALTA QUE DESAPAREZCA CUANDO SUPERA EL LIMITE DEL TABLERO
+								
 								}
 								
-
 							
 							} 
 						}
