@@ -41,14 +41,15 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 					casillaActualDelTablero.addEventListener('mouseover', () => {
 						let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
 						let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
-					
-						idCasillaActual.style.background = "darkgrey";
 
 						let posicionDeLaCasillaActual = Array.from(totalCasillasDelTablero).indexOf(idCasillaActual);
 
 						casillaActualDelTablero.style.pointerEvents = "auto";
+						
+						// esta parte del codigo hace que al seleccionar la casilla actual se coloreen las siguientes a esta
 
 						if(posicionDeLaCasillaActual === 6) {
+							console.log(posicionDeLaCasillaActual)
 							bloquearCasillas.push(casillaActualDelTablero)
 							let bloquearSiguienteCasilla = posicionDeLaCasillaActual;
 							for(let k = 1; k < 5; k++){
@@ -60,34 +61,18 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 
 						}
 						
+						//////
+
 						let siguientePosicion = posicionDeLaCasillaActual;
 
 						for(let i = 0; i < cantidadDeCasillasBismark; i++) {
 							let obtenerIdDeLaCasillaActual = document.getElementById(`casilla-0-${siguientePosicion}`);
 							casillasQueHanSidoOcupadas.push(obtenerIdDeLaCasillaActual);
 							siguientePosicion++;
-							console.log(siguientePosicion)
+							
 							obtenerIdDeLaCasillaActual.style.background = "darkred";
 
-							if(siguientePosicion <= 10) {
-		
-								for(let j = 0; j < casillasQueHanSidoOcupadas.length; j++){
-									let obtenerIdCasilla = casillasQueHanSidoOcupadas[j].getAttribute('id');
-									let idCasilla = document.getElementById(obtenerIdCasilla);
-									idCasilla.style.background = "darkred";
-									idCasilla.style.pointerEvents = "auto";
-								}								
-		
-							} else {
-			
-								for(let k = 0; k < bloquearCasillas.length; k++) {
-									let ocultarCelda = bloquearCasillas[k];
-									ocultarCelda.style.background = "darkred";
-									console.log(ocultarCelda);								
-								// SE HAN ARREGLADO PROBLEMAS DE LAS CASILLAS, SOLO FALTA QUE DESAPAREZCA CUANDO SUPERA EL LIMITE DEL TABLERO							
-								}
 							
-							} 
 						}
 
 					
