@@ -14,6 +14,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 	let tableroUsadoPorPrimeraVez = false; // si usamos por primera vez el tablero, todas las casillas estaran a nuestra disposicion, pero si ya fue usado todas las casillas pasaran por una condicional que nos permitira ignorar ciertas casillas
 	let multiplosDeOnceMasUno = [];
 	let casillasABloquear = [];
+	let posclave;
+
 
 	for(let k = 0; k < 11; k++){
 		let multiploDeOnce = (k + 1) * 11;
@@ -64,7 +66,9 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 
 
 						if(posicionDeLaCasillaActual === 6) {
-					
+							
+							posclave = posicionDeLaCasillaActual;
+
 							for(let j = 0;  j < casillasABloquear.length; j++){
 								let obtenerElementoDeLasCasillasBloqueadas = casillasABloquear[j];
 								obtenerElementoDeLasCasillasBloqueadas.style.background = "blue";
@@ -85,12 +89,12 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 									let elemento = document.getElementById(obtenerElemento);
 								
 									elemento.style.background = "blue";
-									elemento.style.pointerEvents = "none";
+									
 									elemento.style.cursor = "auto";
 								} 
 							});
 							
-						}
+						} 
 
 						casillasABloquear = [];
 					});
@@ -101,13 +105,23 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 							return;
 						}
 						
+						// AVERIGUAR COMO HACER QUE LAS CASILLAS CERCANAS AL BORDE DEL TABLERO DESAPAREZCAN PARA LUEGO PODER HACE QUE TODOS LAS CASILLAS SELECCIONADAS DESAPAREZCAN
 
+						if(posclave === 5) {
+							console.log('aqui')
+						}
+
+						let idcasilla = casillaActualDelTablero.getAttribute('id');
+						let casillaid = document.getElementById(idcasilla);
+
+						let poscasilla = Array.from(totalCasillasDelTablero).indexOf(casillaid)
+
+						console.log(poscasilla)
+
+						totalCasillasDelTablero.forEach(casilla => casilla.style.background = "none")
 						
-
+						
 						casillasABloquear = [];
-						
-						//totalCasillasDelTablero.forEach(casillaActual => casillaActual.style.background = "none");	
-					
 					})
 
 					casillaActualDelTablero.addEventListener('click', () => {
