@@ -49,7 +49,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 						// esta parte del codigo hace que al seleccionar la casilla actual se coloreen las siguientes a esta
 
 						if(posicionDeLaCasillaActual === 6) {
-							console.log(posicionDeLaCasillaActual)
+							
 							bloquearCasillas.push(casillaActualDelTablero)
 							let bloquearSiguienteCasilla = posicionDeLaCasillaActual;
 							for(let k = 1; k < 5; k++){
@@ -58,8 +58,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 								IdCasillaActualaBloquear.style.background = "darkred";
 								bloquearCasillas.push(IdCasillaActualaBloquear);
 							}						
-
-						}
 						
 						//////
 
