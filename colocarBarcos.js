@@ -79,22 +79,17 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 								}								
 		
 							} else {
-
-								
-								
+			
 								for(let k = 0; k < bloquearCasillas.length; k++) {
 									let ocultarCelda = bloquearCasillas[k];
-									ocultarCelda.style.background = "green";
-									ocultarCelda.style.pointerEvents = "none";
-									console.log(ocultarCelda);
-								
-									// SE HAN ARREGLADO PROBLEMAS DE LAS CASILLAS, SOLO FALTA QUE DESAPAREZCA CUANDO SUPERA EL LIMITE DEL TABLERO
-								
+									ocultarCelda.style.background = "darkred";
+									console.log(ocultarCelda);								
+								// SE HAN ARREGLADO PROBLEMAS DE LAS CASILLAS, SOLO FALTA QUE DESAPAREZCA CUANDO SUPERA EL LIMITE DEL TABLERO							
 								}
-								
 							
 							} 
 						}
+
 					
 					});
 
