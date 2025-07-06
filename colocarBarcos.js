@@ -13,7 +13,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 	let fichaColocada = false;
 	let tableroUsadoPorPrimeraVez = false; // si usamos por primera vez el tablero, todas las casillas estaran a nuestra disposicion, pero si ya fue usado todas las casillas pasaran por una condicional que nos permitira ignorar ciertas casillas
 	let multiplosDeOnceMasUno = [];
-	let bloquearCasillas = [];
+	let casillasABloquear = [];
 
 	for(let k = 0; k < 11; k++){
 		let multiploDeOnce = (k + 1) * 11;
@@ -36,44 +36,63 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 
 			if(!tableroUsadoPorPrimeraVez) {
 				
+			
+			
 				totalCasillasDelTablero.forEach(casillaActualDelTablero => {
 				
 					casillaActualDelTablero.addEventListener('mouseover', () => {
+						
 						let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
 						let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
-
 						let posicionDeLaCasillaActual = Array.from(totalCasillasDelTablero).indexOf(idCasillaActual);
 
-						casillaActualDelTablero.style.pointerEvents = "auto";
-						
+						casillaActualDelTablero.style.background = "darkred";
+			
 						// esta parte del codigo hace que al seleccionar la casilla actual se coloreen las siguientes a esta
 
+						casillasABloquear.push(casillaActualDelTablero)
+							
+						let bloquearSiguienteCasilla = posicionDeLaCasillaActual;
+						for(let k = 1; k < 5; k++){
+							bloquearSiguienteCasilla++;
+							
+							let IdCasillaActualaBloquear = document.getElementById(`casilla-0-${bloquearSiguienteCasilla}`);
+							
+							IdCasillaActualaBloquear.style.background = "darkred";
+							casillasABloquear.push(IdCasillaActualaBloquear);
+						}	
+
+
 						if(posicionDeLaCasillaActual === 6) {
+					
+							for(let j = 0;  j < casillasABloquear.length; j++){
+								let obtenerElementoDeLasCasillasBloqueadas = casillasABloquear[j];
+								obtenerElementoDeLasCasillasBloqueadas.style.background = "blue";
+							}
 							
-							bloquearCasillas.push(casillaActualDelTablero)
-							let bloquearSiguienteCasilla = posicionDeLaCasillaActual;
-							for(let k = 1; k < 5; k++){
-								bloquearSiguienteCasilla++;
-								let IdCasillaActualaBloquear = document.getElementById(`casilla-0-${bloquearSiguienteCasilla}`);
-								IdCasillaActualaBloquear.style.background = "darkred";
-								bloquearCasillas.push(IdCasillaActualaBloquear);
-							}						
+							for(let k = 0; k < casillasABloquear.length; k++){
+								let obtenerElemento = casillasABloquear[k].getAttribute('id');
+								let elemento = document.getElementById(obtenerElemento);
+
+								elemento.style.background = "blue";
+							}
 						
-						//////
+							totalCasillasDelTablero.forEach(casillaAUsar => {
+								let verifCasilla = casillasABloquear.includes(casillaAUsar);
 
-						let siguientePosicion = posicionDeLaCasillaActual;
-
-						for(let i = 0; i < cantidadDeCasillasBismark; i++) {
-							let obtenerIdDeLaCasillaActual = document.getElementById(`casilla-0-${siguientePosicion}`);
-							casillasQueHanSidoOcupadas.push(obtenerIdDeLaCasillaActual);
-							siguientePosicion++;
-							
-							obtenerIdDeLaCasillaActual.style.background = "darkred";
-
+								if(verifCasilla){
+									let obtenerElemento = casillaAUsar.getAttribute('id');
+									let elemento = document.getElementById(obtenerElemento);
+								
+									elemento.style.background = "blue";
+									elemento.style.pointerEvents = "none";
+									elemento.style.cursor = "auto";
+								} 
+							});
 							
 						}
 
-					
+						casillasABloquear = [];
 					});
 
 					casillaActualDelTablero.addEventListener('mouseout', () => {
@@ -81,10 +100,13 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 						if(desactivarCeldas) {
 							return;
 						}
-						casillaActualDelTablero.style.background = "none";
-						casillasQueHanSidoOcupadas = [];
 						
-						totalCasillasDelTablero.forEach(casillaActual => casillaActual.style.background = "none");	
+
+						
+
+						casillasABloquear = [];
+						
+						//totalCasillasDelTablero.forEach(casillaActual => casillaActual.style.background = "none");	
 					
 					})
 
@@ -116,6 +138,12 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 					})		
 				});
 			
+			
+			
+			
+			
+			
+			
 			} else {
 
 				totalCasillasDelTablero.forEach(casillaActualDelTablero => {
@@ -136,7 +164,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 		
 		break;
 		
-		case 1: 
+		/*case 1: 
 			let casillasQueOcupaLaFichaDelBarco = [];
 			const cantidadDeCasillasTirpitz = 4;
 
@@ -193,9 +221,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 			})
 		
 
-		break;
-
-		/*luego se probara con los demas barcos*/
+		break;*/
 
 	}
 	});
