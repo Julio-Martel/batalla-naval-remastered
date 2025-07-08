@@ -49,12 +49,19 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 						let posicionDeLaCasillaActual = Array.from(totalCasillasDelTablero).indexOf(idCasillaActual);
 
 						casillaActualDelTablero.style.background = "darkred";
-			
-						// esta parte del codigo hace que al seleccionar la casilla actual se coloreen las siguientes a esta
+		
 
-						casillasABloquear.push(casillaActualDelTablero)
+						if(posicionDeLaCasillaActual === 6 || posicionDeLaCasillaActual === 7 || posicionDeLaCasillaActual === 8 || posicionDeLaCasillaActual === 9 || posicionDeLaCasillaActual === 10) {
 							
-						let bloquearSiguienteCasilla = posicionDeLaCasillaActual;
+							for(let u = 6; u < 11; u++) {
+								let obtenerIdPosicion = document.getElementById(`casilla-0-${u}`);
+								casillasABloquear.push(obtenerIdPosicion)
+								obtenerIdPosicion.style.background = "darkred";
+							}
+						
+						} else {
+						
+							let bloquearSiguienteCasilla = posicionDeLaCasillaActual;
 						
 						for(let k = 1; k < 5; k++){
 							bloquearSiguienteCasilla++;
@@ -63,10 +70,17 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 							
 							IdCasillaActualaBloquear.style.background = "darkred";
 							casillasABloquear.push(IdCasillaActualaBloquear);
-						}	
+						}								
+
+						}
 
 
-						if(posicionDeLaCasillaActual === 6) {
+
+						// esta parte del codigo hace que al seleccionar la casilla actual se coloreen las siguientes a esta
+						
+
+
+						/*if(posicionDeLaCasillaActual === 6) {
 							
 							posclave = posicionDeLaCasillaActual;
 
@@ -82,7 +96,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 								elemento.style.background = "blue";
 							}
 							
-						} 
+						} */
 
 						casillasABloquear = [];
 					});
