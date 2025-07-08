@@ -14,8 +14,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 	let tableroUsadoPorPrimeraVez = false; // si usamos por primera vez el tablero, todas las casillas estaran a nuestra disposicion, pero si ya fue usado todas las casillas pasaran por una condicional que nos permitira ignorar ciertas casillas
 	let multiplosDeOnceMasUno = [];
 	let casillasABloquear = [];
-	let posclave;
-
 
 	for(let k = 0; k < 11; k++){
 		let multiploDeOnce = (k + 1) * 11;
@@ -42,9 +40,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 						let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
 						let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);
 
-						casillaActualDelTablero.style.background = "darkred";
-		
-
 						if(posicionDeLaCasillaActual === 6 || posicionDeLaCasillaActual === 7 || posicionDeLaCasillaActual === 8 || posicionDeLaCasillaActual === 9 || posicionDeLaCasillaActual === 10) {
 							
 							for(let u = 6; u < 11; u++) {
@@ -55,17 +50,14 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 						
 						} else {
 						
-							let bloquearSiguienteCasilla = posicionDeLaCasillaActual;
+							let oscurecerSiguienteCasilla = posicionDeLaCasillaActual;
 						
-							for(let k = 1; k < 5; k++){
-								bloquearSiguienteCasilla++;
-							
-								let IdCasillaActualaBloquear = document.getElementById(`casilla-0-${bloquearSiguienteCasilla}`);
-							
+							for(let k = 0; k < 5; k++){				
+								let IdCasillaActualAOscurecer = document.getElementById(`casilla-0-${oscurecerSiguienteCasilla}`);
 								IdCasillaActualaBloquear.style.background = "darkred";
-								casillasABloquear.push(IdCasillaActualaBloquear);
+								casillasABloquear.push(IdCasillaActualAOscurecer);
+								oscurecerSiguienteCasilla++;
 							}								
-
 						}
 
 						casillasABloquear = [];
