@@ -5,7 +5,7 @@
 
 import {ocuparCasillasDelTablero} from './ocuparCasillasDelTablero.js';
 
-export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasillasDelTablero,tablero,barcos,listadoDeCasillasOcupadas) => {
+export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelTablero ,tablero,barcos,listadoDeCasillasOcupadas) => {
 	return new Promise(resolve => {
 
 	let desactivarCeldas = false;
@@ -27,26 +27,20 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 	tablero.style.opacity = "1";
 	barcos.style.opacity = "0.5";
 
-
-	const aplicarCambios = () => {
-		
-	}
-
 	switch(nroBarcoSeleccionado) {
 		case 0:
+			
 			const cantidadDeCasillasBismark = 5;
 
 			if(!tableroUsadoPorPrimeraVez) {
-				
-			
-			
-				totalCasillasDelTablero.forEach(casillaActualDelTablero => {
+					
+				casillasDelTablero.forEach(casillaActualDelTablero => {
 				
 					casillaActualDelTablero.addEventListener('mouseover', () => {
-						
+
 						let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
 						let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
-						let posicionDeLaCasillaActual = Array.from(totalCasillasDelTablero).indexOf(idCasillaActual);
+						let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);
 
 						casillaActualDelTablero.style.background = "darkred";
 		
@@ -63,40 +57,16 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 						
 							let bloquearSiguienteCasilla = posicionDeLaCasillaActual;
 						
-						for(let k = 1; k < 5; k++){
-							bloquearSiguienteCasilla++;
+							for(let k = 1; k < 5; k++){
+								bloquearSiguienteCasilla++;
 							
-							let IdCasillaActualaBloquear = document.getElementById(`casilla-0-${bloquearSiguienteCasilla}`);
+								let IdCasillaActualaBloquear = document.getElementById(`casilla-0-${bloquearSiguienteCasilla}`);
 							
-							IdCasillaActualaBloquear.style.background = "darkred";
-							casillasABloquear.push(IdCasillaActualaBloquear);
-						}								
+								IdCasillaActualaBloquear.style.background = "darkred";
+								casillasABloquear.push(IdCasillaActualaBloquear);
+							}								
 
 						}
-
-
-
-						// esta parte del codigo hace que al seleccionar la casilla actual se coloreen las siguientes a esta
-						
-
-
-						/*if(posicionDeLaCasillaActual === 6) {
-							
-							posclave = posicionDeLaCasillaActual;
-
-							for(let j = 0;  j < casillasABloquear.length; j++){
-								let obtenerElementoDeLasCasillasBloqueadas = casillasABloquear[j];
-								obtenerElementoDeLasCasillasBloqueadas.style.background = "blue";
-							}
-							
-							for(let k = 0; k < casillasABloquear.length; k++){
-								let obtenerElemento = casillasABloquear[k].getAttribute('id');
-								let elemento = document.getElementById(obtenerElemento);
-
-								elemento.style.background = "blue";
-							}
-							
-						} */
 
 						casillasABloquear = [];
 					});
@@ -109,18 +79,12 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 						
 						// AVERIGUAR COMO HACER QUE LAS CASILLAS CERCANAS AL BORDE DEL TABLERO DESAPAREZCAN PARA LUEGO PODER HACE QUE TODOS LAS CASILLAS SELECCIONADAS DESAPAREZCAN
 
-						if(posclave === 6) {
-							console.log('aqui')
-						}
-
 						let idcasilla = casillaActualDelTablero.getAttribute('id');
 						let casillaid = document.getElementById(idcasilla);
 
-						let poscasilla = Array.from(totalCasillasDelTablero).indexOf(casillaid)
+						let poscasilla = Array.from(casillasDelTablero).indexOf(casillaid);
 
-						console.log(poscasilla)
-
-						totalCasillasDelTablero.forEach(casilla => casilla.style.background = "none")
+						casillasDelTablero.forEach(casilla => casilla.style.background = "none")
 						
 						
 						casillasABloquear = [];
@@ -143,7 +107,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 
 						desactivarCeldas = true;
 						
-						ocuparCasillasDelTablero(totalCasillasDelTablero,casillasQueHanSidoOcupadas);
+						ocuparCasillasDelTablero(casillasDelTablero,casillasQueHanSidoOcupadas);
 
 						tablero.style.opacity = "0.1";
 						tablero.style.pointerEvents = "none";
@@ -160,9 +124,9 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 			
 			
 			
-			} else {
+			} /*else {
 
-				totalCasillasDelTablero.forEach(casillaActualDelTablero => {
+				casillasDelTablero.forEach(casillaActualDelTablero => {
 					let casillaOcupada = casillasQueHanSidoOcupadas.includes(casillaActualDelTablero);
 					if(!casillaOcupada){
 						casillaActualDelTablero.addEventListener('mouseover', () => {
@@ -176,68 +140,10 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 						})
 					}	
 				});			
-			}
+			}*/
 		
 		break;
-		
-		/*case 1: 
-			let casillasQueOcupaLaFichaDelBarco = [];
-			const cantidadDeCasillasTirpitz = 4;
-
-			totalCasillasDelTablero.forEach(casillaActualDelTablero => {
-				casillaActualDelTablero.addEventListener('mouseover', () => {
-					let obtenerIdCasillaActualDelTablero = casillaActualDelTablero.getAttribute('id');
-					let idCasillaActualDelTablero = document.getElementById(obtenerIdCasillaActualDelTablero);
-					let obtenerPosicionActualDeLaCasilla = Array.from(totalCasillasDelTablero).indexOf(idCasillaActualDelTablero);
-					idCasillaActualDelTablero.style.background = "blue";
-					
-					for(let i = 0; i < cantidadDeCasillasTirpitz; i++) {
-						let obtenerElIdDeLaCasillaParaAplicarEfecto = document.getElementById(`casilla-0-${obtenerPosicionActualDeLaCasilla}`);
-						casillasQueOcupaLaFichaDelBarco.push(obtenerElIdDeLaCasillaParaAplicarEfecto);
-						obtenerElIdDeLaCasillaParaAplicarEfecto.style.background = "blue";
-						obtenerPosicionActualDeLaCasilla++;
-					}
-					
-				})
-
-				casillaActualDelTablero.addEventListener('mouseout', () => {
-						
-					if(fichaColocada) {
-						return;
-					}
-						
-					casillasQueOcupaLaFichaDelBarco.forEach(quitarEfectoDeLaCasillaActual => {
-						quitarEfectoDeLaCasillaActual.style.background = "none";
-					})
-						
-					casillasQueOcupaLaFichaDelBarco = [];
-				})
-
-				casillaActualDelTablero.addEventListener('click', () => {
-					let obtenerIdCasillaActualDelTablero = casillaActualDelTablero.getAttribute('id');
-					let idCasillaActualDelTablero = document.getElementById(obtenerIdCasillaActualDelTablero);
-						
-					casillasQueOcupaLaFichaDelBarco.forEach(casillaActualAUsar => {
-						casillaActualAUsar.style.background = "darkred";
-						casillaActualAUsar.style.pointerEvents = "none";
-					})
-
-					fichaColocada = true;
-
-					ocuparCasillasDelTablero(totalCasillasDelTablero,casillasQueOcupaLaFichaDelBarco);
-						
-
-					tablero.style.opacity = "0.1";
-					tablero.style.pointerEvents = "none";
-
-					barcos.style.opacity = "1";
-					barcos.style.pointerEvents = "auto"; // aqui llegamos nuevamente					
-					
-				})
-			})
-		
-
-		break;*/
+	
 
 	}
 	});
