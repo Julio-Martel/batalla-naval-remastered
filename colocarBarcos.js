@@ -55,6 +55,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 						casillasABloquear.push(casillaActualDelTablero)
 							
 						let bloquearSiguienteCasilla = posicionDeLaCasillaActual;
+						
 						for(let k = 1; k < 5; k++){
 							bloquearSiguienteCasilla++;
 							
@@ -80,19 +81,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 
 								elemento.style.background = "blue";
 							}
-						
-							totalCasillasDelTablero.forEach(casillaAUsar => {
-								let verifCasilla = casillasABloquear.includes(casillaAUsar);
-
-								if(verifCasilla){
-									let obtenerElemento = casillaAUsar.getAttribute('id');
-									let elemento = document.getElementById(obtenerElemento);
-								
-									elemento.style.background = "blue";
-									
-									elemento.style.cursor = "auto";
-								} 
-							});
 							
 						} 
 
@@ -107,7 +95,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, totalCasilla
 						
 						// AVERIGUAR COMO HACER QUE LAS CASILLAS CERCANAS AL BORDE DEL TABLERO DESAPAREZCAN PARA LUEGO PODER HACE QUE TODOS LAS CASILLAS SELECCIONADAS DESAPAREZCAN
 
-						if(posclave === 5) {
+						if(posclave === 6) {
 							console.log('aqui')
 						}
 
