@@ -54,7 +54,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 						
 							for(let k = 0; k < 5; k++){				
 								let IdCasillaActualAOscurecer = document.getElementById(`casilla-0-${oscurecerSiguienteCasilla}`);
-								IdCasillaActualaBloquear.style.background = "darkred";
+								IdCasillaActualAOscurecer.style.background = "darkred";
 								casillasABloquear.push(IdCasillaActualAOscurecer);
 								oscurecerSiguienteCasilla++;
 							}								
