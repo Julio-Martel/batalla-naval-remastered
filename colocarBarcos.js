@@ -40,16 +40,18 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 						let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
 						let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);
 
-						if(posicionDeLaCasillaActual === 6 || posicionDeLaCasillaActual === 7 || posicionDeLaCasillaActual === 8 || posicionDeLaCasillaActual === 9 || posicionDeLaCasillaActual === 10) {
-							
+						console.log(posicionDeLaCasillaActual)
+
+						if(posicionDeLaCasillaActual >= 6 && posicionDeLaCasillaActual <= 10) {
+
 							for(let u = 6; u < 11; u++) {
-								let obtenerIdPosicion = document.getElementById(`casilla-0-${u}`);
-								casillasABloquear.push(obtenerIdPosicion)
-								obtenerIdPosicion.style.background = "darkred";
+								let obtenerIdPosicionDeLaCasillaActual = document.getElementById(`casilla-0-${u}`);
+								casillasABloquear.push(obtenerIdPosicionDeLaCasillaActual);
+								obtenerIdPosicionDeLaCasillaActual.style.background = "darkred";
 							}
 						
 						} else {
-						
+
 							let oscurecerSiguienteCasilla = posicionDeLaCasillaActual;
 						
 							for(let k = 0; k < 5; k++){				
