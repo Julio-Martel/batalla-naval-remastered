@@ -14,12 +14,22 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 	let tableroUsadoPorPrimeraVez = false; // si usamos por primera vez el tablero, todas las casillas estaran a nuestra disposicion, pero si ya fue usado todas las casillas pasaran por una condicional que nos permitira ignorar ciertas casillas
 	let multiplosDeOnceMasUno = [];
 	let casillasABloquear = [];
+	let listaPrimerasCasillasParaRemarcar = []
 
 	for(let k = 0; k < 11; k++){
 		let multiploDeOnce = (k + 1) * 11;
 		let sumarleUno = multiploDeOnce + 1;
 		multiplosDeOnceMasUno.push(sumarleUno);
 	}
+
+	let primerElementoListado = 6;
+	for(let i = 0; i < 11; i++){
+		listaPrimerasCasillasParaRemarcar.push(primerElementoListado);
+		let incrementarElemento = primerElementoListado + 11;
+		primerElementoListado = incrementarElemento;
+	}
+
+	console.log(listaPrimerasCasillasParaRemarcar)
 
 	tablero.style.pointerEvents = "auto";
 	tablero.style.opacity = "1";
@@ -43,6 +53,11 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 						console.log(posicionDeLaCasillaActual)
 
 						if((posicionDeLaCasillaActual >= 6 && posicionDeLaCasillaActual <= 10) || (posicionDeLaCasillaActual >= 17 && posicionDeLaCasillaActual <= 21)) {
+
+							let posicionClave = posicionDeLaCasillaActual;
+
+							
+							
 
 							
 							for(let y = 6; y < 11; y++){
