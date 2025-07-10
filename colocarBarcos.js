@@ -42,14 +42,17 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 						console.log(posicionDeLaCasillaActual)
 
-						if(posicionDeLaCasillaActual >= 6 && posicionDeLaCasillaActual <= 10) {
+						if((posicionDeLaCasillaActual >= 6 && posicionDeLaCasillaActual <= 10) || (posicionDeLaCasillaActual >= 17 && posicionDeLaCasillaActual <= 21)) {
 
-							for(let u = 6; u < 11; u++) {
-								let obtenerIdPosicionDeLaCasillaActual = document.getElementById(`casilla-0-${u}`);
-								casillasABloquear.push(obtenerIdPosicionDeLaCasillaActual);
-								obtenerIdPosicionDeLaCasillaActual.style.background = "darkred";
+							
+							for(let y = 6; y < 11; y++){
+								let obtenerIdCasillaActual = document.getElementById(`casilla-0-${y}`);
+								casillasABloquear.push(obtenerIdCasillaActual);
+								obtenerIdCasillaActual.style.background = "darkred";
 							}
 						
+							console.log(casillasABloquear)
+
 						} else {
 
 							let oscurecerSiguienteCasilla = posicionDeLaCasillaActual;
