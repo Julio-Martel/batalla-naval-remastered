@@ -39,6 +39,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 		case 0:
 			
 			const cantidadDeCasillasBismark = 5;
+			let ultimaPosicion, primeraPosicion;
 
 			if(!tableroUsadoPorPrimeraVez) {
 					
@@ -55,20 +56,27 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 						if((posicionDeLaCasillaActual >= 6 && posicionDeLaCasillaActual <= 10) || (posicionDeLaCasillaActual >= 17 && posicionDeLaCasillaActual <= 21)) {
 
 							let primerPosicionClave = listaPrimerasCasillasParaRemarcar.includes(posicionDeLaCasillaActual);
-							console.log(primerPosicionClave)
+
 							////////
 
 							if(primerPosicionClave){
-								let posicionDeLaCasillaActualMasOnce = posicionDeLaCasillaActual + 5;
+								primeraPosicion = posicionDeLaCasillaActual;
+								ultimaPosicion = primeraPosicion + 5;
 
-								for(let y = posicionDeLaCasillaActual; y < posicionDeLaCasillaActualMasOnce; y++){
+								for(let y = posicionDeLaCasillaActual; y < ultimaPosicion; y++){
 									let obtenerIdCasillaActual = document.getElementById(`casilla-0-${y}`);
 									casillasABloquear.push(obtenerIdCasillaActual);
 									obtenerIdCasillaActual.style.background = "darkred";
 								}								
+							} else {
+								for(let z = primeraPosicion; z < ultimaPosicion; z++) {
+									let obtenerIdCasillaActual = document.getElementById(`casilla-0-${z}`);
+									casillasABloquear.push(obtenerIdCasillaActual);
+									obtenerIdCasillaActual.style.background = "darkred";
+								}
 							}
 							
-							// AGREGAR LA FORMA EN LA QUE EL BUCLE FOR DEBERA TERMINAR PARA PODER EL REMARCADO DE CASILLAS
+							// SIMPLIFICAR EN UNA FUNCION PARA EVITAR LA REPETICION DE CODIGO
 							
 					
 						
