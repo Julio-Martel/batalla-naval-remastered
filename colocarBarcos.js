@@ -55,9 +55,13 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 						if((posicionDeLaCasillaActual >= 6 && posicionDeLaCasillaActual <= 10) || (posicionDeLaCasillaActual >= 17 && posicionDeLaCasillaActual <= 21)) {
 
 							let primerPosicionClave = listaPrimerasCasillasParaRemarcar.includes(posicionDeLaCasillaActual);
-							
+							console.log(primerPosicionClave)
+							////////
+
 							if(primerPosicionClave){
-								for(let y = primerPosicionClave; y < 11; y++){
+								let posicionDeLaCasillaActualMasOnce = posicionDeLaCasillaActual + 5;
+
+								for(let y = posicionDeLaCasillaActual; y < posicionDeLaCasillaActualMasOnce; y++){
 									let obtenerIdCasillaActual = document.getElementById(`casilla-0-${y}`);
 									casillasABloquear.push(obtenerIdCasillaActual);
 									obtenerIdCasillaActual.style.background = "darkred";
@@ -66,11 +70,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							
 							// AGREGAR LA FORMA EN LA QUE EL BUCLE FOR DEBERA TERMINAR PARA PODER EL REMARCADO DE CASILLAS
 							
-							for(let y = 6; y < 11; y++){
-								let obtenerIdCasillaActual = document.getElementById(`casilla-0-${y}`);
-								casillasABloquear.push(obtenerIdCasillaActual);
-								obtenerIdCasillaActual.style.background = "darkred";
-							}
+					
 						
 							console.log(casillasABloquear)
 
