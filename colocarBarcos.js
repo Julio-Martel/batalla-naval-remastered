@@ -37,8 +37,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 		}								
 	}
 
-	console.log(listaPrimerasCasillasParaRemarcar)
-
 	tablero.style.pointerEvents = "auto";
 	tablero.style.opacity = "1";
 	barcos.style.opacity = "0.5";
@@ -59,7 +57,9 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 						let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
 						let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);
 
-						if((posicionDeLaCasillaActual >= 6 && posicionDeLaCasillaActual <= 10) || (posicionDeLaCasillaActual >= 17 && posicionDeLaCasillaActual <= 21)) {
+						console.log(posicionDeLaCasillaActual)
+
+						if((posicionDeLaCasillaActual >= 6 && posicionDeLaCasillaActual <= 10) || (posicionDeLaCasillaActual >= 17 && posicionDeLaCasillaActual <= 21) || (posicionDeLaCasillaActual >= 28 && posicionDeLaCasillaActual <= 33)) {
 
 							let primerPosicionClave = listaPrimerasCasillasParaRemarcar.includes(posicionDeLaCasillaActual);
 
