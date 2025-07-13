@@ -29,6 +29,14 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 		primerElementoListado = incrementarElemento;
 	}
 
+	const remarcarCasillas = (elementoPosicion1, elmentoPosicion2) => {
+		for(let y = elementoPosicion1; y < elmentoPosicion2; y++){
+			let obtenerIdCasillaActual = document.getElementById(`casilla-0-${y}`);
+			casillasABloquear.push(obtenerIdCasillaActual);
+			obtenerIdCasillaActual.style.background = "darkred";
+		}								
+	}
+
 	console.log(listaPrimerasCasillasParaRemarcar)
 
 	tablero.style.pointerEvents = "auto";
@@ -51,49 +59,21 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 						let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
 						let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);
 
-						console.log(posicionDeLaCasillaActual)
-
 						if((posicionDeLaCasillaActual >= 6 && posicionDeLaCasillaActual <= 10) || (posicionDeLaCasillaActual >= 17 && posicionDeLaCasillaActual <= 21)) {
 
 							let primerPosicionClave = listaPrimerasCasillasParaRemarcar.includes(posicionDeLaCasillaActual);
 
-							////////
-
 							if(primerPosicionClave){
 								primeraPosicion = posicionDeLaCasillaActual;
 								ultimaPosicion = primeraPosicion + 5;
-
 								
 								remarcarCasillas(primeraPosicion,ultimaPosicion);
-								
-								/*for(let y = posicionDeLaCasillaActual; y < ultimaPosicion; y++){
-									let obtenerIdCasillaActual = document.getElementById(`casilla-0-${y}`);
-									casillasABloquear.push(obtenerIdCasillaActual);
-									obtenerIdCasillaActual.style.background = "darkred";
-								}	*/							
+														
 							} else {
 								
 								remarcarCasillas(primeraPosicion, ultimaPosicion);
 								
-								/*for(let z = primeraPosicion; z < ultimaPosicion; z++) {
-									let obtenerIdCasillaActual = document.getElementById(`casilla-0-${z}`);
-									casillasABloquear.push(obtenerIdCasillaActual);
-									obtenerIdCasillaActual.style.background = "darkred";
-								}*/
 							}
-							
-							const remarcarCasillas = (elementoPosicion1, elmentoPosicion2) => {
-
-								for(let y = elementoPosicion1; y < elmentoPosicion2; y++){
-									let obtenerIdCasillaActual = document.getElementById(`casilla-0-${y}`);
-									casillasABloquear.push(obtenerIdCasillaActual);
-									obtenerIdCasillaActual.style.background = "darkred";
-																
-							}
-							
-					
-						
-							console.log(casillasABloquear)
 
 						} else {
 
