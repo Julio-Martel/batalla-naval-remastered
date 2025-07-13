@@ -63,20 +63,33 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								primeraPosicion = posicionDeLaCasillaActual;
 								ultimaPosicion = primeraPosicion + 5;
 
-								for(let y = posicionDeLaCasillaActual; y < ultimaPosicion; y++){
+								
+								remarcarCasillas(primeraPosicion,ultimaPosicion);
+								
+								/*for(let y = posicionDeLaCasillaActual; y < ultimaPosicion; y++){
 									let obtenerIdCasillaActual = document.getElementById(`casilla-0-${y}`);
 									casillasABloquear.push(obtenerIdCasillaActual);
 									obtenerIdCasillaActual.style.background = "darkred";
-								}								
+								}	*/							
 							} else {
-								for(let z = primeraPosicion; z < ultimaPosicion; z++) {
+								
+								remarcarCasillas(primeraPosicion, ultimaPosicion);
+								
+								/*for(let z = primeraPosicion; z < ultimaPosicion; z++) {
 									let obtenerIdCasillaActual = document.getElementById(`casilla-0-${z}`);
 									casillasABloquear.push(obtenerIdCasillaActual);
 									obtenerIdCasillaActual.style.background = "darkred";
-								}
+								}*/
 							}
 							
-							// SIMPLIFICAR EN UNA FUNCION PARA EVITAR LA REPETICION DE CODIGO
+							const remarcarCasillas = (elementoPosicion1, elmentoPosicion2) => {
+
+								for(let y = elementoPosicion1; y < elmentoPosicion2; y++){
+									let obtenerIdCasillaActual = document.getElementById(`casilla-0-${y}`);
+									casillasABloquear.push(obtenerIdCasillaActual);
+									obtenerIdCasillaActual.style.background = "darkred";
+																
+							}
 							
 					
 						
