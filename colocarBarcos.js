@@ -113,7 +113,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 						let obtenerIdCasillaActualDelTablero = casillaActualDelTablero.getAttribute('id');
 						let idCasillaActualDelTablero = document.getElementById(obtenerIdCasillaActualDelTablero);
 						
-						idCasillaActualDelTablero.style.background = "yellow";
+						idCasillaActualDelTablero.style.background = "darkred";
 						idCasillaActualDelTablero.style.pointerEvents = "none";
 
 						for(let j = 0; j < casillasQueHanSidoOcupadas.length; j++){	
