@@ -87,6 +87,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							}								
 						}
 
+						// BUSCAR LA FORMA EN LA QUE DEBO AGREGAR OTRO TIPO DE CONDICIONAL PARA LAS CASILLAS
+
 						casillasABloquear = [];
 					});
 
