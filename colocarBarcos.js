@@ -42,8 +42,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 	barcos.style.opacity = "0.5";
 
 	switch(nroBarcoSeleccionado) {
-		case 0:
-			
+		case 0:		
 			const cantidadDeCasillasBismark = 5;
 			let ultimaPosicion, primeraPosicion;
 
@@ -145,23 +144,19 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			
 			
 			
-			} /*else {
+			} else {
 
-				casillasDelTablero.forEach(casillaActualDelTablero => {
-					let casillaOcupada = casillasQueHanSidoOcupadas.includes(casillaActualDelTablero);
-					if(!casillaOcupada){
-						casillaActualDelTablero.addEventListener('mouseover', () => {
-							
-							console.log('adasds')
-							
-							let obtenerIdCasillaActualDelTablero = casillaActualDelTablero.getAttribute('id')
-							let idCasilaActualDelTablero = document.getElementById(obtenerIdCasillaActualDelTablero);
+				// AGREGANDO EL ELSE EN CASO DE QUE SI NO ES LA PRIMERA VEZ, LA MISMA PODRA SELECCIONAR LAS CASILLAS PERO NO SE PODRA SUPERPONER SOBRE CASILLAS YA SELECCIONADAS
 
-							idCasilaActualDelTablero.style.background = "pink";
-						})
-					}	
-				});			
-			}*/
+				casillasABloquear.forEach(casillaActual => {
+					let casillaOcupada = casillasABloquear.includes(casillaActual);
+					if(!casillaActual){
+						casillaActual.addEventListener('mouseover')
+					}
+				});
+
+						
+			}
 		
 		break;
 	
