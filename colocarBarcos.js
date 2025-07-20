@@ -13,7 +13,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 	let fichaColocada = false;
 	let tableroUsadoPorPrimeraVez = false; // si usamos por primera vez el tablero, todas las casillas estaran a nuestra disposicion, pero si ya fue usado todas las casillas pasaran por una condicional que nos permitira ignorar ciertas casillas
 	let multiplosDeOnceMasUno = [];
-	let casillasABloquear = [];
+	let casillasABloquear;
 	let listaPrimerasCasillasParaRemarcar = []
 
 	for(let k = 0; k < 11; k++){
@@ -52,6 +52,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 				
 					casillaActualDelTablero.addEventListener('mouseover', () => {
 
+						casillasABloquear = [];
+
 						let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
 						let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
 						let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);
@@ -75,18 +77,19 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							}
 
 						} else {
+							
+							idCasillaActual.style.background = "darkred"
+							casillasABloquear.push(idCasillaActual);
+							
+							let asignarPosicionComoValorIncremental = posicionDeLaCasillaActual;
 
-							for(let k = 0; k < casillasABloquear.length; k++) {
-								let elementoDeCasillasABloquear = casillasABloquear[k];
-								let obtenerIdCaCasillasABloquear = elementoDeCasillasABloquear.getAttribute('id');
-								let idCasillaABloquear = document.getElementById(obtenerIdCaCasillasABloquear);
-								idCasillaABloquear.style.background = "none";
+							for(let k = 1; k < 5; k++ ){
+								asignarPosicionComoValorIncremental++;
+								let siguientePosicionEnCambiarDeColor = document.getElementById(`casilla-0-${asignarPosicionComoValorIncremental}`);
+								siguientePosicionEnCambiarDeColor.style.background = "darkred";
+								casillasABloquear.push(siguientePosicionEnCambiarDeColor);
 							}
-						
-							casillasABloquear = [];						
 						}
-
-						// BUSCAR LA FORMA EN LA QUE DEBO AGREGAR OTRO TIPO DE CONDICIONAL PARA LAS CASILLAS
 
 					});
 
