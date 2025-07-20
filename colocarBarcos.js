@@ -60,9 +60,11 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 						if((posicionDeLaCasillaActual >= 6 && posicionDeLaCasillaActual <= 10) || (posicionDeLaCasillaActual >= 17 && posicionDeLaCasillaActual <= 21) || (posicionDeLaCasillaActual >= 28 && posicionDeLaCasillaActual <= 33) || (posicionDeLaCasillaActual >= 116 && posicionDeLaCasillaActual <= 120)) {
 
+							console.log(posicionDeLaCasillaActual)
+
 							let primerPosicionClave = listaPrimerasCasillasParaRemarcar.includes(posicionDeLaCasillaActual);
 
-							if(primerPosicionClave){
+							if(primerPosicionClave){   
 								primeraPosicion = posicionDeLaCasillaActual;
 								ultimaPosicion = primeraPosicion + 5;
 								
@@ -76,19 +78,18 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 						} else {
 
-							let oscurecerSiguienteCasilla = posicionDeLaCasillaActual;
+							for(let k = 0; k < casillasABloquear.length; k++) {
+								let elementoDeCasillasABloquear = casillasABloquear[k];
+								let obtenerIdCaCasillasABloquear = elementoDeCasillasABloquear.getAttribute('id');
+								let idCasillaABloquear = document.getElementById(obtenerIdCaCasillasABloquear);
+								idCasillaABloquear.style.background = "none";
+							}
 						
-							for(let k = 0; k < 5; k++){				
-								let IdCasillaActualAOscurecer = document.getElementById(`casilla-0-${oscurecerSiguienteCasilla}`);
-								IdCasillaActualAOscurecer.style.background = "darkred";
-								casillasABloquear.push(IdCasillaActualAOscurecer);
-								oscurecerSiguienteCasilla++;
-							}								
+							casillasABloquear = [];						
 						}
 
 						// BUSCAR LA FORMA EN LA QUE DEBO AGREGAR OTRO TIPO DE CONDICIONAL PARA LAS CASILLAS
 
-						casillasABloquear = [];
 					});
 
 					casillaActualDelTablero.addEventListener('mouseout', () => {
