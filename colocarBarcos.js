@@ -94,22 +94,19 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 					});
 
 					casillaActualDelTablero.addEventListener('mouseout', () => {
-			
-						if(desactivarCeldas) {
-							return;
+						let obtenerIdCasillaActualASoltar = casillaActualDelTablero.getAttribute('id');
+						let idCasillaActualIdASoltar = document.getElementById(obtenerIdCasillaActualASoltar);
+						let posicionDeLaCasillaActualASoltar = Array.from(casillasDelTablero).indexOf(idCasillaActualIdASoltar);
+
+						idCasillaActualIdASoltar.style.background = "none";
+
+						// SOLUCION PARCIAL
+
+						if(posicionDeLaCasillaActualASoltar >= 6 && posicionDeLaCasillaActualASoltar <= 10) {
+							casillasDelTablero.forEach(casillaASoltar => {
+								casillaASoltar.style.background = "none";
+							})
 						}
-						
-						// AVERIGUAR COMO HACER QUE LAS CASILLAS CERCANAS AL BORDE DEL TABLERO DESAPAREZCAN PARA LUEGO PODER HACE QUE TODOS LAS CASILLAS SELECCIONADAS DESAPAREZCAN
-
-						let idcasilla = casillaActualDelTablero.getAttribute('id');
-						let casillaid = document.getElementById(idcasilla);
-
-						let poscasilla = Array.from(casillasDelTablero).indexOf(casillaid);
-
-						casillasDelTablero.forEach(casilla => casilla.style.background = "none")
-						
-						
-						casillasABloquear = [];
 					})
 
 					casillaActualDelTablero.addEventListener('click', () => {
