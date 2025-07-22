@@ -98,15 +98,22 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 						let idCasillaActualIdASoltar = document.getElementById(obtenerIdCasillaActualASoltar);
 						let posicionDeLaCasillaActualASoltar = Array.from(casillasDelTablero).indexOf(idCasillaActualIdASoltar);
 
-						idCasillaActualIdASoltar.style.background = "none";
+						// SOLUCION PARCIAL	
 
-						// SOLUCION PARCIAL
+						// UNA SOLUCION QUE PODRIA AGREGAR ES, MEDIANTE UNA CONDICIONAL QUE AL DETECTAR LA POSICION, LA MISMA SEA BUSCADA EN UN ARRAY DONDE SE ENCUENTREN EL PAR ORDENADO DE DICHAS COORDENADAS, SEGUN CUAL SEA COMPARANDO LA POSICION CON EL VALOR 0 DEL ARREGLO DEL PRIMER ELEMENTO, PODRIAMOS DETECTARLO ASI APLICAR LA DESARICION DE LOS CUADRADOS EN ROJO
 
-						if(posicionDeLaCasillaActualASoltar >= 6 && posicionDeLaCasillaActualASoltar <= 10) {
-							casillasDelTablero.forEach(casillaASoltar => {
-								casillaASoltar.style.background = "none";
+						if((posicionDeLaCasillaActualASoltar >= 6 && posicionDeLaCasillaActualASoltar <= 10) || (posicionDeLaCasillaActualASoltar >= 17 && posicionDeLaCasillaActualASoltar <= 21) || (posicionDeLaCasillaActualASoltar >= 28 && posicionDeLaCasillaActualASoltar <= 32) || (posicionDeLaCasillaActualASoltar >= 116 && posicionDeLaCasillaActualASoltar <= 120)) {
+								casillasDelTablero.forEach(casillaASoltar => {
+									casillaASoltar.style.background = "none";
+								})
+						} else {
+
+							casillasDelTablero.forEach(casillaASoltarGeneral => {
+								casillaASoltarGeneral.style.background = "none";
 							})
 						}
+					
+						casillasABloquear = [];
 					})
 
 					casillaActualDelTablero.addEventListener('click', () => {
