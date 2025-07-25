@@ -14,7 +14,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 	let tableroUsadoPorPrimeraVez = false; // si usamos por primera vez el tablero, todas las casillas estaran a nuestra disposicion, pero si ya fue usado todas las casillas pasaran por una condicional que nos permitira ignorar ciertas casillas
 	let multiplosDeOnceMasUno = [];
 	let casillasABloquear;
-	let listaPrimerasCasillasParaRemarcar = []
+	let listaPrimerasCasillasParaRemarcar = [];
+
 
 	for(let k = 0; k < 11; k++){
 		let multiploDeOnce = (k + 1) * 11;
@@ -36,6 +37,14 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			obtenerIdCasillaActual.style.background = "darkred";
 		}								
 	}
+
+	const verificarPosicionEnListado = (posicionAverificar) => {
+		const listadoParesOrdenados = [[6,10],[17,21],[28,32],[39,43],[50,54],[61,65],[72,76],[83,87],[94,98],[105,109],[116,120]];
+	
+		
+		
+	}
+
 
 	tablero.style.pointerEvents = "auto";
 	tablero.style.opacity = "1";
@@ -90,6 +99,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								casillasABloquear.push(siguientePosicionEnCambiarDeColor);
 							}
 						}
+
+						console.log(casillasABloquear)
 
 					});
 
