@@ -40,7 +40,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 	const verificarPosicionEnListado = (posicionAverificar) => {
 		const listadoParesOrdenados = [[6,10],[17,21],[28,32],[39,43],[50,54],[61,65],[72,76],[83,87],[94,98],[105,109],[116,120]];
-	
+		
+		// aqui agregar la logica
 		
 		
 	}
@@ -67,6 +68,10 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 						let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
 						let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);
 
+						
+						// posicionDeLaCasillaActual sera el argumento que se enviara a la funcion
+						
+						
 						if((posicionDeLaCasillaActual >= 6 && posicionDeLaCasillaActual <= 10) || (posicionDeLaCasillaActual >= 17 && posicionDeLaCasillaActual <= 21) || (posicionDeLaCasillaActual >= 28 && posicionDeLaCasillaActual <= 33) || (posicionDeLaCasillaActual >= 116 && posicionDeLaCasillaActual <= 120)) {
 
 							console.log(posicionDeLaCasillaActual)
