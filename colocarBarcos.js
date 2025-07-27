@@ -45,9 +45,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 		let verificaPosicionEnElArreglo = listadoParesOrdenados.includes(posicionAverificar);
 
-
-
-		// agregar condicional de verificaPosicionEnElArreglo
 		if(verificaPosicionEnElArreglo) {
 			listadoSegundosValoresCoordenadas.forEach(parOrdenado => {
 				let primerValorParOrdenado = parOrdenado[0];
