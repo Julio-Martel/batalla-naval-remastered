@@ -44,21 +44,24 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 		
 		let verificaPosicionEnElArreglo = listadoParesOrdenados.includes(posicionAverificar);
 
+		// agregar condicional de verificaPosicionEnElArreglo
+
+
 		listadoSegundosValoresCoordenadas.forEach(parOrdenado => {
 			let primerValorParOrdenado = parOrdenado[0];
+			let segundoValorParOrdenado;
 			if(primerValorParOrdenado === posicionAverificar) {
-				let segundoValorParOrdenado = parOrdenado[1];
+				segundoValorParOrdenado = parOrdenado[1];
 				
 				primeraPosicion = posicionAverificar;
-				ultimaPosicion = primeraPosicion + 5;
 								
-			    remarcarCasillas(primeraPosicion,ultimaPosicion);				
+			    remarcarCasillas(primeraPosicion,segundoValorParOrdenado);				
 			} else {
-				remarcarCasillas(primeraPosicion,ultimaPosicion);	
+				remarcarCasillas(primeraPosicion,segundoValorParOrdenado);	
 			}
 		})
 		
-		
+		return true;
 	}
 
 
@@ -83,12 +86,26 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 						let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
 						let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);
 						
-						verificarPosicionEnListado(posicionDeLaCasillaActual,primeraPosicion,ultimaPosicion);
+						let verifEstadoPosicion = verificarPosicionEnListado(posicionDeLaCasillaActual,primeraPosicion);
 
-						// posicionDeLaCasillaActual sera el argumento que se enviara a la funcion
+						if(!verifEstadoPosicion) {
+							idCasillaActual.style.background = "darkred"
+							casillasABloquear.push(idCasillaActual);
+							
+							let asignarPosicionComoValorIncremental = posicionDeLaCasillaActual;
+
+							for(let k = 1; k < 5; k++ ){
+								asignarPosicionComoValorIncremental++;
+								let siguientePosicionEnCambiarDeColor = document.getElementById(`casilla-0-${asignarPosicionComoValorIncremental}`);
+								siguientePosicionEnCambiarDeColor.style.background = "darkred";
+								casillasABloquear.push(siguientePosicionEnCambiarDeColor);
+							}
+						} 
 						
 						
-						if((posicionDeLaCasillaActual >= 6 && posicionDeLaCasillaActual <= 10) || (posicionDeLaCasillaActual >= 17 && posicionDeLaCasillaActual <= 21) || (posicionDeLaCasillaActual >= 28 && posicionDeLaCasillaActual <= 33) || (posicionDeLaCasillaActual >= 116 && posicionDeLaCasillaActual <= 120)) {
+						
+						
+						/*if((posicionDeLaCasillaActual >= 6 && posicionDeLaCasillaActual <= 10) || (posicionDeLaCasillaActual >= 17 && posicionDeLaCasillaActual <= 21) || (posicionDeLaCasillaActual >= 28 && posicionDeLaCasillaActual <= 33) || (posicionDeLaCasillaActual >= 116 && posicionDeLaCasillaActual <= 120)) {
 
 							console.log(posicionDeLaCasillaActual)
 
@@ -117,10 +134,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								siguientePosicionEnCambiarDeColor.style.background = "darkred";
 								casillasABloquear.push(siguientePosicionEnCambiarDeColor);
 							}
-						}
-
-						console.log(casillasABloquear)
-
+						}*/
 					});
 
 					casillaActualDelTablero.addEventListener('mouseout', () => {
