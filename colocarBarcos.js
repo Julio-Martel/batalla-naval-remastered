@@ -8,13 +8,24 @@ import {ocuparCasillasDelTablero} from './ocuparCasillasDelTablero.js';
 export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelTablero ,tablero,barcos,listadoDeCasillasOcupadas) => {
 	return new Promise(resolve => {
 
-	let desactivarCeldas = false;
-	let casillasQueHanSidoOcupadas = [];
-	let fichaColocada = false;
-	let tableroUsadoPorPrimeraVez = false; // si usamos por primera vez el tablero, todas las casillas estaran a nuestra disposicion, pero si ya fue usado todas las casillas pasaran por una condicional que nos permitira ignorar ciertas casillas
-	let multiplosDeOnceMasUno = [];
-	let casillasABloquear;
-	let listaPrimerasCasillasParaRemarcar = [];
+	const juego = {
+		desactivarCeldas: false,
+		casillasQueHanSidoOcupadas: [],
+		fichaColocada: false,
+		tableroUsadoPorPrimeraVez: false,
+		multiplosDeOnceMasUno: [],
+		casillasABloquear: null,
+		primeraPosicion: null,
+		ultimaPosicion: null,
+		listaPrimerasCasillasParaRemarcar: [],
+		listadoParesOrdenados: [6,17,28,39,50,61,72,83,94,105,116],
+		listadoSegundosValoresCoordenadas: [
+			[6,10],[17,21],[28,32],[39,43],
+			[50,54],[61,65],[72,76],[83,87],
+			[94,98],[105,109],[116,120]
+		]
+	};
+
 
 
 	for(let k = 0; k < 11; k++){
@@ -38,35 +49,41 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 		}								
 	}
 
-	const verificarPosicionEnListado = (posicionAverificar,primeraPosicion) => {
-		const listadoParesOrdenados = [6,17,28,39,50,61,72,83,94,105,116];
-		const listadoSegundosValoresCoordenadas = [[6,10],[17,21],[28,32],[39,43],[50,54],[61,65],[72,76],[83,87],[94,98],[105,109],[116,120]];
-		let verificado = false;
+
+//////////////////////////////////////////////
+
+	const verificarPosicionEnListado = (posicionAverificar) => {
+		let flag = true;
 
 		let verificaPosicionEnElArreglo = listadoParesOrdenados.includes(posicionAverificar);
-
-		if(verificaPosicionEnElArreglo) {
+		
+		
+		if(verificaPosicionEnElArreglo) {			
+			primeraPosicion = posicionAverificar;	
 			listadoSegundosValoresCoordenadas.forEach(parOrdenado => {
 				let primerValorParOrdenado = parOrdenado[0];
-				let segundoValorParOrdenado;
-				if(primerValorParOrdenado === posicionAverificar) {
-					segundoValorParOrdenado = parOrdenado[1] + 1;
-					
-					primeraPosicion = posicionAverificar;
-					
-					console.log(primeraPosicion,segundoValorParOrdenado)
-
-					remarcarCasillas(primeraPosicion,segundoValorParOrdenado);				
-				} else {
-					remarcarCasillas(primeraPosicion,segundoValorParOrdenado);	
+				if(primerValorParOrdenado === primeraPosicion) {					
+					ultimaPosicion = parOrdenado[1] + 1;			
+					remarcarCasillas(primeraPosicion,ultimaPosicion);				
 				}
-			})
-		
-			verificado = true;
+			})			
+		} else {
+			if(primeraPosicion === undefined) {
+				flag = false;
+			} else {
+				console.log(primeraPosicion, ultimaPosicion)
+				if(primeraPosicion >= posicionAverificar && posicionAverificar <= ultimaPosicion) {
+					remarcarCasillas(primeraPosicion,ultimaPosicion);
+				}
+			}
 		}
-	
-		return verificado;
-	}
+
+		return flag;
+}
+
+
+
+//////////////////////////////////////////////
 
 
 	tablero.style.pointerEvents = "auto";
@@ -76,7 +93,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 	switch(nroBarcoSeleccionado) {
 		case 0:		
 			const cantidadDeCasillasBismark = 5;
-			let ultimaPosicion, primeraPosicion;
 
 			if(!tableroUsadoPorPrimeraVez) {
 					
@@ -88,9 +104,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 						let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
 						let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
-						let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);
-						
-						let verifEstadoPosicion = verificarPosicionEnListado(posicionDeLaCasillaActual,primeraPosicion);
+						let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);	
+						let verifEstadoPosicion = verificarPosicionEnListado(posicionDeLaCasillaActual);
 
 						if(!verifEstadoPosicion) {
 							idCasillaActual.style.background = "darkred"
@@ -105,40 +120,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								casillasABloquear.push(siguientePosicionEnCambiarDeColor);
 							}
 						} 
-						
-						
-						
-						
-						/*if((posicionDeLaCasillaActual >= 6 && posicionDeLaCasillaActual <= 10) || (posicionDeLaCasillaActual >= 17 && posicionDeLaCasillaActual <= 21) || (posicionDeLaCasillaActual >= 28 && posicionDeLaCasillaActual <= 33) || (posicionDeLaCasillaActual >= 116 && posicionDeLaCasillaActual <= 120)) {
-
-							console.log(posicionDeLaCasillaActual)
-
-							let primerPosicionClave = listaPrimerasCasillasParaRemarcar.includes(posicionDeLaCasillaActual);
-
-							if(primerPosicionClave){   
-								primeraPosicion = posicionDeLaCasillaActual;
-								ultimaPosicion = primeraPosicion + 5;
-								
-								remarcarCasillas(primeraPosicion,ultimaPosicion);
-														
-							} else {
-								remarcarCasillas(primeraPosicion,ultimaPosicion);
-							}
-
-						} else {
-							
-							idCasillaActual.style.background = "darkred"
-							casillasABloquear.push(idCasillaActual);
-							
-							let asignarPosicionComoValorIncremental = posicionDeLaCasillaActual;
-
-							for(let k = 1; k < 5; k++ ){
-								asignarPosicionComoValorIncremental++;
-								let siguientePosicionEnCambiarDeColor = document.getElementById(`casilla-0-${asignarPosicionComoValorIncremental}`);
-								siguientePosicionEnCambiarDeColor.style.background = "darkred";
-								casillasABloquear.push(siguientePosicionEnCambiarDeColor);
-							}
-						}*/
 					});
 
 					casillaActualDelTablero.addEventListener('mouseout', () => {
