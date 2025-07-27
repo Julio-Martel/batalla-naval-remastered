@@ -39,7 +39,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 		let primerElementoListado = 6;
 		for(let i = 0; i < 11; i++){
-			listaPrimerasCasillasParaRemarcar.push(primerElementoListado);
+			juego.listaPrimerasCasillasParaRemarcar.push(primerElementoListado);
 			let incrementarElemento = primerElementoListado + 11;
 			juego.primerElementoListado = incrementarElemento;
 		}
@@ -58,25 +58,25 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 		const verificarPosicionEnListado = (posicionAverificar) => {
 			let flag = true;
 
-			let verificaPosicionEnElArreglo = listadoParesOrdenados.includes(posicionAverificar);
+			let verificaPosicionEnElArreglo = juego.listadoParesOrdenados.includes(posicionAverificar);
 			
 			
 			if(verificaPosicionEnElArreglo) {			
-				primeraPosicion = posicionAverificar;	
-				listadoSegundosValoresCoordenadas.forEach(parOrdenado => {
+				juego.primeraPosicion = posicionAverificar;	
+				juego.listadoSegundosValoresCoordenadas.forEach(parOrdenado => {
 					let primerValorParOrdenado = parOrdenado[0];
-					if(primerValorParOrdenado === primeraPosicion) {					
-						ultimaPosicion = parOrdenado[1] + 1;			
-						remarcarCasillas(primeraPosicion,ultimaPosicion);				
+					if(primerValorParOrdenado === juego.primeraPosicion) {					
+						juego.ultimaPosicion = parOrdenado[1] + 1;			
+						remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);				
 					}
 				})			
 			} else {
-				if(primeraPosicion === undefined) {
+				if(juego.primeraPosicion === undefined) {
 					flag = false;
 				} else {
-					console.log(primeraPosicion, ultimaPosicion)
-					if(primeraPosicion >= posicionAverificar && posicionAverificar <= ultimaPosicion) {
-						remarcarCasillas(primeraPosicion,ultimaPosicion);
+					
+					if(juego.primeraPosicion >= posicionAverificar && posicionAverificar <= juego.ultimaPosicion) {
+						remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);
 					}
 				}
 			}
@@ -118,7 +118,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								}
 							} 
 						});
-
+/*
 						casillaActualDelTablero.addEventListener('mouseout', () => {
 							let obtenerIdCasillaActualASoltar = casillaActualDelTablero.getAttribute('id');
 							let idCasillaActualIdASoltar = document.getElementById(obtenerIdCasillaActualASoltar);
@@ -167,7 +167,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							barcos.style.opacity = "1";
 							barcos.style.pointerEvents = "auto"; 			
 					
-						})		
+						})		*/
 					});
 				
 				
