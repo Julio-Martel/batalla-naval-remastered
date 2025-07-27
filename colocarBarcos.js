@@ -8,43 +8,43 @@ import {ocuparCasillasDelTablero} from './ocuparCasillasDelTablero.js';
 export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelTablero ,tablero,barcos,listadoDeCasillasOcupadas) => {
 	return new Promise(resolve => {
 
-	const juego = {
-		desactivarCeldas: false,
-		casillasQueHanSidoOcupadas: [],
-		fichaColocada: false,
-		tableroUsadoPorPrimeraVez: false,
-		multiplosDeOnceMasUno: [],
-		casillasABloquear: null,
-		primeraPosicion: null,
-		ultimaPosicion: null,
-		listaPrimerasCasillasParaRemarcar: [],
-		listadoParesOrdenados: [6,17,28,39,50,61,72,83,94,105,116],
-		listadoSegundosValoresCoordenadas: [
-			[6,10],[17,21],[28,32],[39,43],
-			[50,54],[61,65],[72,76],[83,87],
-			[94,98],[105,109],[116,120]
-		]
-	};
+		const juego = {
+			desactivarCeldas: false,
+			casillasQueHanSidoOcupadas: [],
+			fichaColocada: false,
+			tableroUsadoPorPrimeraVez: false,
+			multiplosDeOnceMasUno: [],
+			casillasABloquear: null,
+			primeraPosicion: null,
+			ultimaPosicion: null,
+			listaPrimerasCasillasParaRemarcar: [],
+			listadoParesOrdenados: [6,17,28,39,50,61,72,83,94,105,116],
+			listadoSegundosValoresCoordenadas: [
+				[6,10],[17,21],[28,32],[39,43],
+				[50,54],[61,65],[72,76],[83,87],
+				[94,98],[105,109],[116,120]
+			]
+		};
 
 
 
 	for(let k = 0; k < 11; k++){
 		let multiploDeOnce = (k + 1) * 11;
 		let sumarleUno = multiploDeOnce + 1;
-		multiplosDeOnceMasUno.push(sumarleUno);
+		juego.multiplosDeOnceMasUno.push(sumarleUno);
 	}
 
 	let primerElementoListado = 6;
 	for(let i = 0; i < 11; i++){
 		listaPrimerasCasillasParaRemarcar.push(primerElementoListado);
 		let incrementarElemento = primerElementoListado + 11;
-		primerElementoListado = incrementarElemento;
+		juego.primerElementoListado = incrementarElemento;
 	}
 
 	const remarcarCasillas = (elementoPosicion1, elmentoPosicion2) => {
 		for(let y = elementoPosicion1; y < elmentoPosicion2; y++){
 			let obtenerIdCasillaActual = document.getElementById(`casilla-0-${y}`);
-			casillasABloquear.push(obtenerIdCasillaActual);
+			juego.casillasABloquear.push(obtenerIdCasillaActual);
 			obtenerIdCasillaActual.style.background = "darkred";
 		}								
 	}
