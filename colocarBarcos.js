@@ -38,10 +38,25 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 		}								
 	}
 
-	const verificarPosicionEnListado = (posicionAverificar) => {
-		const listadoParesOrdenados = [[6,10],[17,21],[28,32],[39,43],[50,54],[61,65],[72,76],[83,87],[94,98],[105,109],[116,120]];
+	const verificarPosicionEnListado = (posicionAverificar,primeraPosicion,ultimaPosicion) => {
+		const listadoParesOrdenados = [6,17,28,39,50,61,72,83,94,105,116];
+		const listadoSegundosValoresCoordenadas = [[6,10],[17,21],[28,32],[39,43],[50,54],[61,65],[72,76],[83,87],[94,98],[105,109],[116,120]];
 		
-		// aqui agregar la logica
+		let verificaPosicionEnElArreglo = listadoParesOrdenados.includes(posicionAverificar);
+
+		listadoSegundosValoresCoordenadas.forEach(parOrdenado => {
+			let primerValorParOrdenado = parOrdenado[0];
+			if(primerValorParOrdenado === posicionAverificar) {
+				let segundoValorParOrdenado = parOrdenado[1];
+				
+				primeraPosicion = posicionAverificar;
+				ultimaPosicion = primeraPosicion + 5;
+								
+			    remarcarCasillas(primeraPosicion,ultimaPosicion);				
+			} else {
+				remarcarCasillas(primeraPosicion,ultimaPosicion);	
+			}
+		})
 		
 		
 	}
@@ -67,8 +82,9 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 						let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
 						let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
 						let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);
-
 						
+						verificarPosicionEnListado(posicionDeLaCasillaActual,primeraPosicion,ultimaPosicion);
+
 						// posicionDeLaCasillaActual sera el argumento que se enviara a la funcion
 						
 						
@@ -85,9 +101,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								remarcarCasillas(primeraPosicion,ultimaPosicion);
 														
 							} else {
-								
-								remarcarCasillas(primeraPosicion, ultimaPosicion);
-								
+								remarcarCasillas(primeraPosicion,ultimaPosicion);
 							}
 
 						} else {
