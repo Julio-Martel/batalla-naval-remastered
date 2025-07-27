@@ -104,7 +104,12 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);	
 							let verifEstadoPosicion = verificarPosicionEnListado(posicionDeLaCasillaActual);
 
-							if(!verifEstadoPosicion) {
+							// AGREGAR LA LOGICA PARA ARREGLAR LA SELECCION DE RECUADROS
+
+
+							idCasillaActual.style.background = "darkred";
+
+							/*if(!verifEstadoPosicion) {
 								idCasillaActual.style.background = "darkred"
 								casillasABloquear.push(idCasillaActual);
 								
@@ -116,9 +121,9 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									siguientePosicionEnCambiarDeColor.style.background = "darkred";
 									casillasABloquear.push(siguientePosicionEnCambiarDeColor);
 								}
-							} 
+							} */
 						});
-/*
+
 						casillaActualDelTablero.addEventListener('mouseout', () => {
 							let obtenerIdCasillaActualASoltar = casillaActualDelTablero.getAttribute('id');
 							let idCasillaActualIdASoltar = document.getElementById(obtenerIdCasillaActualASoltar);
@@ -139,10 +144,10 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								})
 							}
 						
-							casillasABloquear = [];
+							juego.casillasABloquear = [];
 						})
 
-						casillaActualDelTablero.addEventListener('click', () => {
+/*						casillaActualDelTablero.addEventListener('click', () => {
 							let obtenerIdCasillaActualDelTablero = casillaActualDelTablero.getAttribute('id');
 							let idCasillaActualDelTablero = document.getElementById(obtenerIdCasillaActualDelTablero);
 							
