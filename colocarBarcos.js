@@ -104,7 +104,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);	
 							let verifEstadoPosicion = verificarPosicionEnListado(posicionDeLaCasillaActual);
 
-							// AGREGAR LA LOGICA PARA ARREGLAR LA SELECCION DE RECUADROS	
+							
 
 
 							idCasillaActual.style.background = "darkred";
