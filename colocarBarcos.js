@@ -82,15 +82,19 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									juego.primeraPosicion = posicionDeLaCasillaActual;
 									juego.ultimaPosicion = juego.primeraPosicion + 4;
 									
-									for(let x = juego.primeraPosicion; x <= juego.ultimaPosicion; x++) {
+									/*for(let x = juego.primeraPosicion; x <= juego.ultimaPosicion; x++) {
 										let aplicarColorACasilla = document.getElementById(`casilla-0-${x}`);
 										aplicarColorACasilla.style.background = "darkred";	
 										juego.casillasABloquear.push();
-									}
+									}*/
+
+									remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion)
 
 									juego.posicionesCargadasPorPrimeraVez = false;
 
-								} 
+								} else {
+									remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion)
+								}
 
 							} else if(verifEstadoPosicion && (posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion) ) {
 										
@@ -133,6 +137,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								} else {
 									casillasDelTablero.forEach(casilla => casilla.style.background = "none");
 								}
+							
+								juego.casillasABloquear = [];
 							}
 
 						})
