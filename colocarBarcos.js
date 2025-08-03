@@ -80,7 +80,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion)
 								juego.posicionesCargadasPorPrimeraVez = true;
 
-							} else if(juego.posicionesCargadasPorPrimeraVe && juego.primeraPosicion !== null && juego.ultimaPosicion !== null && (posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion) ) {
+							} else if(juego.posicionesCargadasPorPrimeraVez && juego.primeraPosicion !== null && juego.ultimaPosicion !== null && (posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion) ) {
 			
 									remarcarCasillas(juego.primeraPosicion, juego.ultimaPosicion);
 									
