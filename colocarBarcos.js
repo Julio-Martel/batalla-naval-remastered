@@ -72,32 +72,26 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
 
 							if(verifEstadoPosicion) {
-								if(juego.posicionesCargadasPorPrimeraVez){
-									juego.primeraPosicion = posicionDeLaCasillaActual;
-									juego.ultimaPosicion = juego.primeraPosicion + 4;
+								juego.primeraPosicion = posicionDeLaCasillaActual;
+								juego.ultimaPosicion = juego.primeraPosicion + 4;
 									
-									/*for(let x = juego.primeraPosicion; x <= juego.ultimaPosicion; x++) {
-										let aplicarColorACasilla = document.getElementById(`casilla-0-${x}`);
-										aplicarColorACasilla.style.background = "darkred";	
-										juego.casillasABloquear.push();
-									}*/
+								remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion)
 
-									remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion)
-
-									juego.posicionesCargadasPorPrimeraVez = false;
-
-								} else {
-									remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion)
-								}
-
-							} else if(verifEstadoPosicion && (posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion) ) {
+							} else if(posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion) {
 										
 									for(let x  = juego.primeraPosicion; x <= juego.ultimaPosicion; x++){
 											let aplicarColorACasilla = document.getElementById(`casilla-0-${x}`);
 											aplicarColorACasilla.style.background = "darkred";	
 											juego.casillasABloquear.push();
-										}
+									}
 									
+							} else {
+								
+								for(let j = posicionDeLaCasillaActual; j < 4; j++){
+									let aplicarColorACasilla = document.getElementById(`casilla-0-${j}`);
+									aplicarColorACasilla.style.background = "darkred";	
+									juego.casillasABloquear.push();
+								}
 							}
 
 							
