@@ -17,6 +17,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			casillasABloquear: [],
 			primeraPosicion: null,
 			ultimaPosicion: null,
+			posicionesCargadasPorPrimeraVez : true,
 			listaPrimerasCasillasParaRemarcar: [],
 			listadoParesOrdenados: [6,17,28,39,50,61,72,83,94,105,116],
 			listadoSegundosValoresCoordenadas: [
@@ -55,34 +56,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 //////////////////////////////////////////////
 
-		const verificarPosicionEnListado = (posicionAverificar) => {
-			let flag = true;
-
-			let verificaPosicionEnElArreglo = juego.listadoParesOrdenados.includes(posicionAverificar);
-			
-			
-			if(verificaPosicionEnElArreglo) {			
-				juego.primeraPosicion = posicionAverificar;	
-				juego.listadoSegundosValoresCoordenadas.forEach(parOrdenado => {
-					let primerValorParOrdenado = parOrdenado[0];
-					if(primerValorParOrdenado === juego.primeraPosicion) {					
-						juego.ultimaPosicion = parOrdenado[1] + 1;			
-						remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);				
-					}
-				})			
-			} else {
-				if(juego.primeraPosicion === undefined) {
-					flag = false;
-				} else {
-					
-					if(juego.primeraPosicion >= posicionAverificar && posicionAverificar <= juego.ultimaPosicion) {
-						remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);
-					}
-				}
-			}
-
-			return flag;
-		}
 
 
 
@@ -102,49 +75,66 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
 							let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
 							let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);	
-							let verifEstadoPosicion = verificarPosicionEnListado(posicionDeLaCasillaActual);
+							let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
+
+							if(verifEstadoPosicion) {
+								if(juego.posicionesCargadasPorPrimeraVez){
+									juego.primeraPosicion = posicionDeLaCasillaActual;
+									juego.ultimaPosicion = juego.primeraPosicion + 4;
+									
+									for(let x = juego.primeraPosicion; x <= juego.ultimaPosicion; x++) {
+										let aplicarColorACasilla = document.getElementById(`casilla-0-${x}`);
+										aplicarColorACasilla.style.background = "darkred";	
+										juego.casillasABloquear.push();
+									}
+
+									juego.posicionesCargadasPorPrimeraVez = false;
+
+								} 
+
+							} else if(verifEstadoPosicion && (posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion) ) {
+										
+									for(let x  = juego.primeraPosicion; x <= juego.ultimaPosicion; x++){
+											let aplicarColorACasilla = document.getElementById(`casilla-0-${x}`);
+											aplicarColorACasilla.style.background = "darkred";	
+											juego.casillasABloquear.push();
+										}
+									
+							}
 
 							
-
-
-							idCasillaActual.style.background = "darkred";
-
-							/*if(!verifEstadoPosicion) {
-								idCasillaActual.style.background = "darkred"
-								casillasABloquear.push(idCasillaActual);
-								
-								let asignarPosicionComoValorIncremental = posicionDeLaCasillaActual;
-
-								for(let k = 1; k < 5; k++ ){
-									asignarPosicionComoValorIncremental++;
-									let siguientePosicionEnCambiarDeColor = document.getElementById(`casilla-0-${asignarPosicionComoValorIncremental}`);
-									siguientePosicionEnCambiarDeColor.style.background = "darkred";
-									casillasABloquear.push(siguientePosicionEnCambiarDeColor);
-								}
-							} */
 						});
 
 						casillaActualDelTablero.addEventListener('mouseout', () => {
-							let obtenerIdCasillaActualASoltar = casillaActualDelTablero.getAttribute('id');
-							let idCasillaActualIdASoltar = document.getElementById(obtenerIdCasillaActualASoltar);
-							let posicionDeLaCasillaActualASoltar = Array.from(casillasDelTablero).indexOf(idCasillaActualIdASoltar);
+							let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
+							let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
+							let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);
+							let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
 
-							// SOLUCION PARCIAL	
+							console.log(posicionDeLaCasillaActual)
 
-							// UNA SOLUCION QUE PODRIA AGREGAR ES, MEDIANTE UNA CONDICIONAL QUE AL DETECTAR LA POSICION, LA MISMA SEA BUSCADA EN UN ARRAY DONDE SE ENCUENTREN EL PAR ORDENADO DE DICHAS COORDENADAS, SEGUN CUAL SEA COMPARANDO LA POSICION CON EL VALOR 0 DEL ARREGLO DEL PRIMER ELEMENTO, PODRIAMOS DETECTARLO ASI APLICAR LA DESARICION DE LOS CUADRADOS EN ROJO
-
-							if((posicionDeLaCasillaActualASoltar >= 6 && posicionDeLaCasillaActualASoltar <= 10) || (posicionDeLaCasillaActualASoltar >= 17 && posicionDeLaCasillaActualASoltar <= 21) || (posicionDeLaCasillaActualASoltar >= 28 && posicionDeLaCasillaActualASoltar <= 32) || (posicionDeLaCasillaActualASoltar >= 116 && posicionDeLaCasillaActualASoltar <= 120)) {
-									casillasDelTablero.forEach(casillaASoltar => {
-										casillaASoltar.style.background = "none";
-									})
+							if(verifEstadoPosicion && ((posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion))){
+					
+								for(let x = juego.primeraPosicion; x <= juego.ultimaPosicion; x++) {
+									let aplicarColorACasilla = document.getElementById(`casilla-0-${x}`);
+									aplicarColorACasilla.style.background = "darkred";	
+								}												
+								
+								juego.casillasABloquear = [];
+							
 							} else {
-
-								casillasDelTablero.forEach(casillaASoltarGeneral => {
-									casillaASoltarGeneral.style.background = "none";
-								})
+								if((posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual < juego.ultimaPosicion)) {
+									
+									for(let x = juego.primeraPosicion; x <= juego.ultimaPosicion; x++) {
+										let aplicarColorACasilla = document.getElementById(`casilla-0-${x}`);
+										aplicarColorACasilla.style.background = "darkred";	
+									}									
+									
+								} else {
+									casillasDelTablero.forEach(casilla => casilla.style.background = "none");
+								}
 							}
-						
-							juego.casillasABloquear = [];
+
 						})
 
 /*						casillaActualDelTablero.addEventListener('click', () => {
