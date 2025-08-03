@@ -91,9 +91,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							
 						});
 
-
-						/// agregar la nueva mejora logica para el remarcado de las casillas
-
 						casillaActualDelTablero.addEventListener('mouseout', () => {
 							let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
 							let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
