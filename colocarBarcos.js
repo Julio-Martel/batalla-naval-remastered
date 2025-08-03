@@ -17,7 +17,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			casillasABloquear: [],
 			primeraPosicion: null,
 			ultimaPosicion: null,
-			posicionesCargadasPorPrimeraVez : true,
+			posicionesCargadasPorPrimeraVez : false,
 			listaPrimerasCasillasParaRemarcar: [],
 			listadoParesOrdenados: [6,17,28,39,50,61,72,83,94,105,116],
 			listadoSegundosValoresCoordenadas: [
@@ -70,30 +70,24 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
 							let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);	
 							let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
+							
+					
 
 							if(verifEstadoPosicion) {
 								juego.primeraPosicion = posicionDeLaCasillaActual;
 								juego.ultimaPosicion = juego.primeraPosicion + 4;
 									
 								remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion)
+								juego.posicionesCargadasPorPrimeraVez = true;
 
-							} else if(posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion) {
-										
-									for(let x  = juego.primeraPosicion; x <= juego.ultimaPosicion; x++){
-											let aplicarColorACasilla = document.getElementById(`casilla-0-${x}`);
-											aplicarColorACasilla.style.background = "darkred";	
-											juego.casillasABloquear.push();
-									}
+							} else if(juego.posicionesCargadasPorPrimeraVe && juego.primeraPosicion !== null && juego.ultimaPosicion !== null && (posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion) ) {
+			
+									remarcarCasillas(juego.primeraPosicion, juego.ultimaPosicion);
 									
 							} else {
-								
-								for(let j = posicionDeLaCasillaActual; j < 4; j++){
-									let aplicarColorACasilla = document.getElementById(`casilla-0-${j}`);
-									aplicarColorACasilla.style.background = "darkred";	
-									juego.casillasABloquear.push();
-								}
+								let incrementarElemento = posicionDeLaCasillaActual + 4;
+									remarcarCasillas(posicionDeLaCasillaActual,incrementarElemento);	
 							}
-
 							
 						});
 
@@ -106,7 +100,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);
 							let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
 
-							console.log(posicionDeLaCasillaActual)
+							
 
 							if(verifEstadoPosicion && ((posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion))){
 					
