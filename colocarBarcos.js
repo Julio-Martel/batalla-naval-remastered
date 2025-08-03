@@ -46,7 +46,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 		}
 
 		const remarcarCasillas = (elementoPosicion1, elmentoPosicion2) => {
-			for(let y = elementoPosicion1; y < elmentoPosicion2; y++){
+			for(let y = elementoPosicion1; y <= elmentoPosicion2; y++){
 				let obtenerIdCasillaActual = document.getElementById(`casilla-0-${y}`);
 				juego.casillasABloquear.push(obtenerIdCasillaActual);
 				obtenerIdCasillaActual.style.background = "darkred";
