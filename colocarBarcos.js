@@ -53,12 +53,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			}								
 		}
 
-
-//////////////////////////////////////////////
-
-
-
-
 ////////////////////////////////////
 
 		tablero.style.pointerEvents = "auto";
