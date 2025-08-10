@@ -49,7 +49,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			for(let y = elementoPosicion1; y <= elmentoPosicion2; y++){
 				let obtenerIdCasillaActual = document.getElementById(`casilla-0-${y}`);
 				juego.casillasABloquear.push(obtenerIdCasillaActual);
-				obtenerIdCasillaActual.style.background = "darkred";
+				obtenerIdCasillaActual.style.background = "darkred"; 
 			}								
 		}
 
@@ -91,12 +91,16 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							
 						});
 
+
+						/// AQUI EL PROBLEMA OCURRE YA QUE SI PASAMOS EN LA FILA POR EJ COLUMNA 6 FILA 1 Y PASAMOS A LA FILA 2 COLUMNA 6, HACIENDO QUE LA ANTERIOR QUEDE FIJA Y LA NUEVA FILA QUEDE MARCADA
+
 						casillaActualDelTablero.addEventListener('mouseout', () => {
 							let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
 							let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
 							let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);
 							let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
-
+							
+							casillasDelTablero.forEach(casilla => casilla.style.background = "none");
 							juego.casillasABloquear = [];
 							
 							if(verifEstadoPosicion && ((posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion))){
