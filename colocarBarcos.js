@@ -70,9 +70,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
 							let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);	
 							let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
-							
-					
-
+						
 							if(verifEstadoPosicion) {
 								juego.primeraPosicion = posicionDeLaCasillaActual;
 								juego.ultimaPosicion = juego.primeraPosicion + 4;
@@ -96,8 +94,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
 							let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);
 							let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
-
-							
 
 							if(verifEstadoPosicion && ((posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion))){
 					
