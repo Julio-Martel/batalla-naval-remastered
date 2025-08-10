@@ -154,7 +154,9 @@ export const generarPartidaParaUnSoloJugador = async(bandoSeleccionado,contenido
 				botonColocarId.textContent = "COLOCADO";
 				botonColocarId.style.pointerEvents = "none";
 				botonColocarId.style.opacity = "0.5";
-					
+				seccionBarcos.style.pointerEvents = "none";
+
+
 				await colocarBarcosEnElTablero(botonColocarDataValue,todasLasCasillasDelTablero,seccionTablero,seccionBarcos,casillasOcupadas);
 
 			});
