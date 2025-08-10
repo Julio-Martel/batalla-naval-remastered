@@ -72,6 +72,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
 					
 							if(verifEstadoPosicion) {
+								
 								juego.primeraPosicion = posicionDeLaCasillaActual;
 								juego.ultimaPosicion = juego.primeraPosicion + 4;
 									
@@ -81,7 +82,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							} else if(juego.posicionesCargadasPorPrimeraVez && juego.primeraPosicion !== null && juego.ultimaPosicion !== null && (posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion) ) {
 			
 									remarcarCasillas(juego.primeraPosicion, juego.ultimaPosicion);
-									
+
+
 							} else {
 								let incrementarElemento = posicionDeLaCasillaActual + 4;
 									remarcarCasillas(posicionDeLaCasillaActual,incrementarElemento);	
@@ -95,6 +97,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);
 							let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
 
+							juego.casillasABloquear = [];
+							
 							if(verifEstadoPosicion && ((posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion))){
 					
 								for(let x = juego.primeraPosicion; x <= juego.ultimaPosicion; x++) {
@@ -102,8 +106,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									aplicarColorACasilla.style.background = "darkred";	
 								}												
 								
-								juego.casillasABloquear = [];
-							
 							} else {
 								if((posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual < juego.ultimaPosicion)) {
 									
@@ -116,7 +118,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									casillasDelTablero.forEach(casilla => casilla.style.background = "none");
 								}
 							
-								juego.casillasABloquear = [];
+								
 							}
 
 						})
@@ -124,10 +126,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 					});
 				
 				
-				
-					juego.tableroUsadoPorPrimeraVez = true;
-				
-				
+			
+						
 				
 				} else {
 
