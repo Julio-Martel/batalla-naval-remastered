@@ -64,13 +64,13 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 				if(!juego.tableroUsadoPorPrimeraVez) {
 						
 					casillasDelTablero.forEach(casillaActualDelTablero => {
-					
+						
 						casillaActualDelTablero.addEventListener('mouseover', () => {
 							let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
 							let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
 							let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);	
 							let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
-						
+					
 							if(verifEstadoPosicion) {
 								juego.primeraPosicion = posicionDeLaCasillaActual;
 								juego.ultimaPosicion = juego.primeraPosicion + 4;
@@ -121,37 +121,11 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 						})
 
-/*						casillaActualDelTablero.addEventListener('click', () => {
-							let obtenerIdCasillaActualDelTablero = casillaActualDelTablero.getAttribute('id');
-							let idCasillaActualDelTablero = document.getElementById(obtenerIdCasillaActualDelTablero);
-							
-							idCasillaActualDelTablero.style.background = "darkred";
-							idCasillaActualDelTablero.style.pointerEvents = "none";
-
-							for(let j = 0; j < casillasQueHanSidoOcupadas.length; j++){	
-								let ObtenerIdCasillaYaOcupada = casillasQueHanSidoOcupadas[j].getAttribute('id');						
-								let idCasillaYaOcupada = document.getElementById(ObtenerIdCasillaYaOcupada);
-					
-								idCasillaYaOcupada.style.background = "yellow";
-								idCasillaYaOcupada.style.pointerEvents = "none";
-							}
-
-							desactivarCeldas = true;
-							
-							ocuparCasillasDelTablero(casillasDelTablero,casillasQueHanSidoOcupadas);
-
-							tablero.style.opacity = "0.1";
-							tablero.style.pointerEvents = "none";
-
-							barcos.style.opacity = "1";
-							barcos.style.pointerEvents = "auto"; 			
-					
-						})		*/
 					});
 				
 				
 				
-				
+					juego.tableroUsadoPorPrimeraVez = true;
 				
 				
 				
