@@ -75,39 +75,38 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								
 								juego.primeraPosicion = posicionDeLaCasillaActual;
 								juego.ultimaPosicion = juego.primeraPosicion + 4;
-									
-								remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion)
-								juego.posicionesCargadasPorPrimeraVez = true;
+								
+								
+								console.log(juego.primeraPosicion, juego.ultimaPosicion);
 
-							} else if(juego.posicionesCargadasPorPrimeraVez && juego.primeraPosicion !== null && juego.ultimaPosicion !== null && (posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion) ) {
+								remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion)
+								
+
+							} else if(juego.primeraPosicion !== null && juego.ultimaPosicion !== null && (posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion) ) {
 			
-									remarcarCasillas(juego.primeraPosicion, juego.ultimaPosicion);
+								remarcarCasillas(juego.primeraPosicion, juego.ultimaPosicion);
 
 
 							} else {
 								let incrementarElemento = posicionDeLaCasillaActual + 4;
-									remarcarCasillas(posicionDeLaCasillaActual,incrementarElemento);	
+								
+								
+								remarcarCasillas(posicionDeLaCasillaActual,incrementarElemento);		
 							}
 							
 						});
-
-
-						/// AQUI EL PROBLEMA OCURRE YA QUE SI PASAMOS EN LA FILA POR EJ COLUMNA 6 FILA 1 Y PASAMOS A LA FILA 2 COLUMNA 6, HACIENDO QUE LA ANTERIOR QUEDE FIJA Y LA NUEVA FILA QUEDE MARCADA
 
 						casillaActualDelTablero.addEventListener('mouseout', () => {
 							let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
 							let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
 							let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);
 							let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
-							
-							casillasDelTablero.forEach(casilla => casilla.style.background = "none");
-							juego.casillasABloquear = [];
-							
+													
 							if(verifEstadoPosicion && ((posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion))){
 					
 								for(let x = juego.primeraPosicion; x <= juego.ultimaPosicion; x++) {
 									let aplicarColorACasilla = document.getElementById(`casilla-0-${x}`);
-									aplicarColorACasilla.style.background = "darkred";	
+									aplicarColorACasilla.style.background = "none";	
 								}												
 								
 							} else {
@@ -115,7 +114,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									
 									for(let x = juego.primeraPosicion; x <= juego.ultimaPosicion; x++) {
 										let aplicarColorACasilla = document.getElementById(`casilla-0-${x}`);
-										aplicarColorACasilla.style.background = "darkred";	
+										aplicarColorACasilla.style.background = "none";	
 									}									
 									
 								} else {
@@ -124,6 +123,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							
 								
 							}
+
+							juego.casillasABloquear = [];
 
 						})
 
