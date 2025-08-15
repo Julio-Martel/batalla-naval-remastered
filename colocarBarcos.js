@@ -53,6 +53,10 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			}								
 		}
 
+		const desmarcarCasillas = (elementoPosicion1,elmentoPosicion2) => {
+
+		}
+
 ////////////////////////////////////
 
 		tablero.style.pointerEvents = "auto";
@@ -94,7 +98,12 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								remarcarCasillas(posicionDeLaCasillaActual,incrementarElemento);		
 							}
 							
+							console.log(juego.casillasABloquear)
+						
 						});
+
+
+						// corregir problema de que aun seleccionando las ultimas casillas, aun se guardan las demas, que al pasar por otras casillas, las anteriores se ven marcadas
 
 						casillaActualDelTablero.addEventListener('mouseout', () => {
 							let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
