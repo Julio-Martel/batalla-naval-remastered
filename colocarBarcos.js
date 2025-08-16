@@ -75,6 +75,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);	
 							let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
 					
+							// corregir aqui
+
 							if(verifEstadoPosicion) {
 								
 								juego.primeraPosicion = posicionDeLaCasillaActual;
