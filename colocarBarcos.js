@@ -101,11 +101,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 						
 						});
 
-
-						// corregir problema de que aun seleccionando las ultimas casillas, aun se guardan las demas, que al pasar por otras casillas, las anteriores se ven marcadas
-
-						// aplicar soluciones para el desmarcado
-
 						casillaActualDelTablero.addEventListener('mouseout', () => {
 
 							let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
