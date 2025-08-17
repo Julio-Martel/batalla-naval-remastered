@@ -12,19 +12,13 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			desactivarCeldas: false,
 			casillasQueHanSidoOcupadas: [],
 			fichaColocada: false,
-			tableroUsadoPorPrimeraVez: false,
 			multiplosDeOnceMasUno: [],
 			casillasABloquear: [],
 			primeraPosicion: null,
 			ultimaPosicion: null,
-			posicionesCargadasPorPrimeraVez : false,
-			listaPrimerasCasillasParaRemarcar: [],
 			listadoParesOrdenados: [6,17,28,39,50,61,72,83,94,105,116],
-			listadoSegundosValoresCoordenadas: [
-				[6,10],[17,21],[28,32],[39,43],
-				[50,54],[61,65],[72,76],[83,87],
-				[94,98],[105,109],[116,120]
-			]
+			listadoParesOrdenadosY: [10,21,32,43,54,65,76,87,98,109,120],
+			coordenadasXY: [[6,10],[17,21],[28,32],[39,43],[50,54],[61,65],[72,76],[83,87],[94,98],[105,109],[116,120]]
 		};
 
 		const casillasDeCadaBarco = {
@@ -36,13 +30,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			let multiploDeOnce = (k + 1) * 11;
 			let sumarleUno = multiploDeOnce + 1;
 			juego.multiplosDeOnceMasUno.push(sumarleUno);
-		}
-
-		let primerElementoListado = 6;
-		for(let i = 0; i < 11; i++){
-			juego.listaPrimerasCasillasParaRemarcar.push(primerElementoListado);
-			let incrementarElemento = primerElementoListado + 11;
-			juego.primerElementoListado = incrementarElemento;
 		}
 
 		const remarcarCasillas = (elementoPosicion1, elmentoPosicion2) => {
@@ -59,9 +46,24 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 				quitarColorDeLaCasilla.style.background = "none";	
 			}			
 		}
-		
 
-////////////////////////////////////
+		const comprobarRango = (numero) => {
+			let entreRango = false;
+			for(let i = 0; i < juego.coordenadasXY.length; i++) {	
+				
+				let coordenadaX = juego.coordenadasXY[i][0];
+				let coordenadaY = juego.coordenadasXY[i][1];
+		
+				if(numero >= coordenadaX && numero <= coordenadaY) {
+					juego.primeraPosicion = coordenadaX;
+					juego.ultimaPosicion = coordenadaY;
+					entreRango = true;
+					break;
+				}
+			}
+		
+			return entreRango;
+		}
 
 		tablero.style.pointerEvents = "auto";
 		tablero.style.opacity = "1";
@@ -69,7 +71,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 		switch(nroBarcoSeleccionado) {
 			case 0:		
-				if(!juego.tableroUsadoPorPrimeraVez) {
+				
 						
 					casillasDelTablero.forEach(casillaActualDelTablero => {
 						
@@ -77,28 +79,36 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
 							let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
 							let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);	
+							let posicionDeLaCasillaActualY = Array.from(casillasDelTablero).indexOf(idCasillaActual);
 							let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
-					
+							let verifEstadoPosicionY = juego.listadoParesOrdenadosY.includes(posicionDeLaCasillaActualY);
+							let numeroEntreRango = comprobarRango(posicionDeLaCasillaActual);
+
 							if(verifEstadoPosicion) {
-								
 								juego.primeraPosicion = posicionDeLaCasillaActual;
 								juego.ultimaPosicion = juego.primeraPosicion + 4;
+
+								remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);
+
+							} else if(juego.primeraPosicion !== null && juego.ultimaPosicion !== null && (posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion)) {
 						
-								remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion)
-
-							} else if(juego.primeraPosicion !== null && juego.ultimaPosicion !== null && (posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion) ) {
-			
-								remarcarCasillas(juego.primeraPosicion, juego.ultimaPosicion);
-
-							} else {
-								let incrementarElemento = posicionDeLaCasillaActual + 4;
+								remarcarCasillas(juego.primeraPosicion, juego.ultimaPosicion)			
+						
+							} else if(verifEstadoPosicionY){				
+								let decrementarElemento = posicionDeLaCasillaActual - 4;	
+								juego.primeraPosicion = decrementarElemento;
+								juego.ultimaPosicion = posicionDeLaCasillaActual;
 								
-								
-								remarcarCasillas(posicionDeLaCasillaActual,incrementarElemento);		
-							}
+								remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);		
 							
-							console.log(juego.primeraPosicion,juego.ultimaPosicion)
-						
+							} else if (numeroEntreRango) {
+								remarcarCasillas(juego.primeraPosicion, juego.ultimaPosicion);
+							
+							} else {
+											
+								let incrementarElemento = posicionDeLaCasillaActual + 4;
+								remarcarCasillas(posicionDeLaCasillaActual,incrementarElemento);
+							}
 						});
 
 						casillaActualDelTablero.addEventListener('mouseout', () => {
@@ -114,7 +124,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								
 							} else if (juego.primeraPosicion === null) {
 								let incrementarCasillaDeLaPosicionActual = juego.primeraPosicion + 4;	
-								desmarcarCasillas(posicionDeLaCasillaActual,)												
+								desmarcarCasillas(posicionDeLaCasillaActual,incrementarCasillaDeLaPosicionActual)												
 							}
 
 							casillasDelTablero.forEach(casilla => casilla.style.background = "none");
@@ -124,12 +134,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 						})
 
 					});
-				
-				
-			
-						
-				
-				} 
 			
 			break;
 		
