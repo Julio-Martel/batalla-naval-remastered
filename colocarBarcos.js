@@ -81,17 +81,12 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								
 								juego.primeraPosicion = posicionDeLaCasillaActual;
 								juego.ultimaPosicion = juego.primeraPosicion + 4;
-								
-								
-								console.log(juego.primeraPosicion, juego.ultimaPosicion);
-
+						
 								remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion)
-								
 
 							} else if(juego.primeraPosicion !== null && juego.ultimaPosicion !== null && (posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion) ) {
 			
 								remarcarCasillas(juego.primeraPosicion, juego.ultimaPosicion);
-
 
 							} else {
 								let incrementarElemento = posicionDeLaCasillaActual + 4;
@@ -108,32 +103,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 						// corregir problema de que aun seleccionando las ultimas casillas, aun se guardan las demas, que al pasar por otras casillas, las anteriores se ven marcadas
 
 						casillaActualDelTablero.addEventListener('mouseout', () => {
-							let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
-							let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
-							let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);
-							let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
-													
-							if(verifEstadoPosicion && ((posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion))){
-					
-								for(let x = juego.primeraPosicion; x <= juego.ultimaPosicion; x++) {
-									let aplicarColorACasilla = document.getElementById(`casilla-0-${x}`);
-									aplicarColorACasilla.style.background = "none";	
-								}												
-								
-							} else {
-								if((posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual < juego.ultimaPosicion)) {
-									
-									for(let x = juego.primeraPosicion; x <= juego.ultimaPosicion; x++) {
-										let aplicarColorACasilla = document.getElementById(`casilla-0-${x}`);
-										aplicarColorACasilla.style.background = "none";	
-									}									
-									
-								} else {
-									casillasDelTablero.forEach(casilla => casilla.style.background = "none");
-								}
 							
-								
-							}
+							casillasDelTablero.forEach(casilla => casilla.style.background = "none");
 
 							juego.casillasABloquear = [];
 
@@ -145,19 +116,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			
 						
 				
-				} else {
-
-					// AGREGANDO EL ELSE EN CASO DE QUE SI NO ES LA PRIMERA VEZ, LA MISMA PODRA SELECCIONAR LAS CASILLAS PERO NO SE PODRA SUPERPONER SOBRE CASILLAS YA SELECCIONADAS
-
-					casillasABloquear.forEach(casillaActual => {
-						let casillaOcupada = casillasABloquear.includes(casillaActual);
-						if(!casillaActual){
-							casillaActual.addEventListener('mouseover')
-						}
-					});
-
-							
-				}
+				} 
 			
 			break;
 		
