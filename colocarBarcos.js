@@ -102,8 +102,37 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 						// corregir problema de que aun seleccionando las ultimas casillas, aun se guardan las demas, que al pasar por otras casillas, las anteriores se ven marcadas
 
+						// aplicar soluciones para el desmarcado
+
 						casillaActualDelTablero.addEventListener('mouseout', () => {
+
+							let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
+							let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
+							let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);
+							let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
+													
+							if(verifEstadoPosicion && ((posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion))){
+					
+								for(let x = juego.primeraPosicion; x <= juego.ultimaPosicion; x++) {
+									let aplicarColorACasilla = document.getElementById(`casilla-0-${x}`);
+									aplicarColorACasilla.style.background = "none";	
+								}												
+								
+							} else {
+								if((posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual < juego.ultimaPosicion)) {
+									
+									for(let x = juego.primeraPosicion; x <= juego.ultimaPosicion; x++) {
+										let aplicarColorACasilla = document.getElementById(`casilla-0-${x}`);
+										aplicarColorACasilla.style.background = "none";	
+									}									
+									
+								} else {
+									casillasDelTablero.forEach(casilla => casilla.style.background = "none");
+								}
 							
+								
+							}
+
 							casillasDelTablero.forEach(casilla => casilla.style.background = "none");
 
 							juego.casillasABloquear = [];
