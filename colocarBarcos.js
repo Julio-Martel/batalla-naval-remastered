@@ -53,9 +53,13 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			}								
 		}
 
-		const desmarcarCasillas = (elementoPosicion1,elmentoPosicion2) => {
-
+		const desmarcarCasillas = (elementoPosicion1, elementoPosicion2) => {
+			for(let x = elementoPosicion1; x <= elementoPosicion2; x++) {
+				let quitarColorDeLaCasilla = document.getElementById(`casilla-0-${x}`);
+				quitarColorDeLaCasilla.style.background = "none";	
+			}			
 		}
+		
 
 ////////////////////////////////////
 
@@ -75,8 +79,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);	
 							let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
 					
-							// corregir aqui
-
 							if(verifEstadoPosicion) {
 								
 								juego.primeraPosicion = posicionDeLaCasillaActual;
@@ -95,7 +97,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								remarcarCasillas(posicionDeLaCasillaActual,incrementarElemento);		
 							}
 							
-							console.log(juego.casillasABloquear)
+							console.log(juego.primeraPosicion,juego.ultimaPosicion)
 						
 						});
 
@@ -113,24 +115,11 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 													
 							if(verifEstadoPosicion && ((posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion))){
 					
-								for(let x = juego.primeraPosicion; x <= juego.ultimaPosicion; x++) {
-									let aplicarColorACasilla = document.getElementById(`casilla-0-${x}`);
-									aplicarColorACasilla.style.background = "none";	
-								}												
+								desmarcarCasillas(juego.primeraPosicion, juego.ultimaPosicion);												
 								
-							} else {
-								if((posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual < juego.ultimaPosicion)) {
-									
-									for(let x = juego.primeraPosicion; x <= juego.ultimaPosicion; x++) {
-										let aplicarColorACasilla = document.getElementById(`casilla-0-${x}`);
-										aplicarColorACasilla.style.background = "none";	
-									}									
-									
-								} else {
-									casillasDelTablero.forEach(casilla => casilla.style.background = "none");
-								}
-							
-								
+							} else if (juego.primeraPosicion === null) {
+								let incrementarCasillaDeLaPosicionActual = juego.primeraPosicion + 4;	
+								desmarcarCasillas(posicionDeLaCasillaActual,)												
 							}
 
 							casillasDelTablero.forEach(casilla => casilla.style.background = "none");
