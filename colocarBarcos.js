@@ -16,6 +16,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			casillasABloquear: [],
 			primeraPosicion: null,
 			ultimaPosicion: null,
+			casillaColocada: false,
 			listadoParesOrdenados: [6,17,28,39,50,61,72,83,94,105,116],
 			listadoParesOrdenadosY: [10,21,32,43,54,65,76,87,98,109,120],
 			coordenadasXY: [[6,10],[17,21],[28,32],[39,43],[50,54],[61,65],[72,76],[83,87],[94,98],[105,109],[116,120]]
@@ -127,20 +128,34 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								desmarcarCasillas(posicionDeLaCasillaActual,incrementarCasillaDeLaPosicionActual)												
 							}
 
-							casillasDelTablero.forEach(casilla => casilla.style.background = "none");
 
+							if(!juego.casillaColocada){
+								casillasDelTablero.forEach(casilla => casilla.style.background = "none");
+								juego.casillaColocada = false;
+							}
+							
 							juego.casillasABloquear = [];
 
 						})
 
 						casillaActualDelTablero.addEventListener('click', () => {
-							for(let x = 0; x < juego.casillasABloquear.length; x++){
-								let elementoDelArreglo = juego.casillasABloquear[x];
-								let valueElementoDelArreglo = elementoDelArreglo.getAttribute('id');
-								let casillaAAplicarBloqueo = document.getElementById(valueElementoDelArreglo);
+						
+							casillasDelTablero.forEach(casilla => {
+								let incluidoEnElArreglo = juego.casillasABloquear.includes(casilla);
+								let valueDeLaCasilla = casilla.getAttribute('id');
+								let idCasilla = document.getElementById(valueDeLaCasilla);
+								
+								if(incluidoEnElArreglo){
+									idCasilla.style.pointerEvents = "none";
+									idCasilla.style.background = "blue";
+								}
+							})
 
-								casillaAAplicarBloqueo.style.background = "blue";
-							}
+							juego.casillaColocada = true;
+
+							tablero.style.opacity = "0.1";
+							tablero.style.pointerEvents = "none";
+						
 						})
 
 						casillaActualDelTablero.addEventListener("contextmenu", (event) => {
@@ -156,6 +171,9 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 		}
 
 	// AGREGAR EL RESOLVE QUE RETORNARA UNA PROMESA QUE PARA CUANDO SE COLOQUEN TODAS LAS CASILLAS EL BOTON DE EMPEZAR LA BATALLA ESTE LISTO PARA USARSE
+
+
+		
 
 	});
 }
