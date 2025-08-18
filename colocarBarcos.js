@@ -59,7 +59,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 					juego.ultimaPosicion = coordenadaY;
 					entreRango = true;
 					break;
-				}
+				} 
 			}
 		
 			return entreRango;
@@ -133,6 +133,21 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 						})
 
+						casillaActualDelTablero.addEventListener('click', () => {
+							for(let x = 0; x < juego.casillasABloquear.length; x++){
+								let elementoDelArreglo = juego.casillasABloquear[x];
+								let valueElementoDelArreglo = elementoDelArreglo.getAttribute('id');
+								let casillaAAplicarBloqueo = document.getElementById(valueElementoDelArreglo);
+
+								casillaAAplicarBloqueo.style.background = "blue";
+							}
+						})
+
+						casillaActualDelTablero.addEventListener("contextmenu", (event) => {
+							event.preventDefault();
+						})
+					
+					
 					});
 			
 			break;
