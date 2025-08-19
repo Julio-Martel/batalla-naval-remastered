@@ -110,6 +110,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								let incrementarElemento = posicionDeLaCasillaActual + 4;
 								remarcarCasillas(posicionDeLaCasillaActual,incrementarElemento);
 							}
+						
+							console.log(juego.casillasABloquear)
 						});
 
 						casillaActualDelTablero.addEventListener('mouseout', () => {
@@ -132,22 +134,30 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							if(!juego.casillaColocada){
 								casillasDelTablero.forEach(casilla => casilla.style.background = "none");
 								juego.casillaColocada = false;
+							} else {
+
 							}
 							
 							juego.casillasABloquear = [];
 
 						})
 
+
+						// ARREGLAR ESTO PARA MAÑANA, DONDE EL PROBLEMA RADICA EN EL QUE HACER CLICK EN CIERTAS CASILLAS SOLO REMARCA LAS ULTIMAS DEL ARREGLO, VER AHI 
+
 						casillaActualDelTablero.addEventListener('click', () => {
-						
+							console.log(juego.casillasABloquear)
 							casillasDelTablero.forEach(casilla => {
 								let incluidoEnElArreglo = juego.casillasABloquear.includes(casilla);
 								let valueDeLaCasilla = casilla.getAttribute('id');
 								let idCasilla = document.getElementById(valueDeLaCasilla);
 								
 								if(incluidoEnElArreglo){
-									idCasilla.style.pointerEvents = "none";
 									idCasilla.style.background = "blue";
+									idCasilla.style.pointerEvents = "none";
+									console.log(casilla)
+								} else {
+									casilla.style.background = "yellow"
 								}
 							})
 
@@ -155,6 +165,10 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 							tablero.style.opacity = "0.1";
 							tablero.style.pointerEvents = "none";
+						
+							barcos.style.opacity = "1";
+							barcos.style.pointerEvents = "auto";
+							
 						
 						})
 
