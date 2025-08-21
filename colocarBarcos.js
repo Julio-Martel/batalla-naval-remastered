@@ -142,9 +142,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 						})
 
-
-						// ARREGLAR ESTO PARA MAÑANA, DONDE EL PROBLEMA RADICA EN EL QUE HACER CLICK EN CIERTAS CASILLAS SOLO REMARCA LAS ULTIMAS DEL ARREGLO, VER AHI 
-
 						casillaActualDelTablero.addEventListener('click', () => {
 							console.log(juego.casillasABloquear)
 							casillasDelTablero.forEach(casilla => {
