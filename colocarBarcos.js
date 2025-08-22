@@ -130,20 +130,17 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								desmarcarCasillas(posicionDeLaCasillaActual,incrementarCasillaDeLaPosicionActual)												
 							}
 
-
 							if(!juego.casillaColocada){
 								casillasDelTablero.forEach(casilla => casilla.style.background = "none");
 								juego.casillaColocada = false;
-							} else {
-
-							}
+							} 
 							
 							juego.casillasABloquear = [];
 
 						})
 
 						casillaActualDelTablero.addEventListener('click', () => {
-							console.log(juego.casillasABloquear)
+						
 							casillasDelTablero.forEach(casilla => {
 								let incluidoEnElArreglo = juego.casillasABloquear.includes(casilla);
 								let valueDeLaCasilla = casilla.getAttribute('id');
@@ -154,7 +151,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									idCasilla.style.pointerEvents = "none";
 									console.log(casilla)
 								} else {
-									casilla.style.background = "yellow"
+									casilla.style.background = "yellow";
 								}
 							})
 
