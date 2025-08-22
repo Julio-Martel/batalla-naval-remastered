@@ -139,8 +139,10 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 						})
 
+						// EL PROBLEMA RADICA EN EL CICLO DE REMARCADO DE CASILLA, POR ALGUNA RAZON SI BIEN LE CORRECTAMENTE EL ARRAY, NO ESTA MARCANDO BIEN, DEBE HABER UN PROBLEMA EN EL BUCLE FOR, PORQUE REMARCA LAS CASILLAS SEGUN LA POSICION, ES DECIR SI ES LA POS 4 ENTONCES MARCA LAS CUATRA CASILLAS Y NO LA QUE HICE CLICK
+
 						casillaActualDelTablero.addEventListener('click', () => {
-						
+							console.log(juego.casillasABloquear)
 							casillasDelTablero.forEach(casilla => {
 								let incluidoEnElArreglo = juego.casillasABloquear.includes(casilla);
 								let valueDeLaCasilla = casilla.getAttribute('id');
