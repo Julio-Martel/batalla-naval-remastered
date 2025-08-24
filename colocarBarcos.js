@@ -120,7 +120,9 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
 							let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);
 							let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
-													
+							
+							// EL PROBLEMA RADICA EN LA PRIMERA POSICION Y ULTIMA POSICION NO HAN SIDO ASIGNADAS DADA POR ESA RAZON, EL BUCLE FOR PARA EL DESMARCADO DE CASILLAS ASIGNA LA CANTIDAD DE CICLOS SEGUN SE VAYA MOVIENDO EL MOUSE
+
 							if(verifEstadoPosicion && ((posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion))){
 					
 								desmarcarCasillas(juego.primeraPosicion, juego.ultimaPosicion);												
@@ -147,11 +149,10 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								let incluidoEnElArreglo = juego.casillasABloquear.includes(casilla);
 								let valueDeLaCasilla = casilla.getAttribute('id');
 								let idCasilla = document.getElementById(valueDeLaCasilla);
-								
+							
 								if(incluidoEnElArreglo){
 									idCasilla.style.background = "blue";
 									idCasilla.style.pointerEvents = "none";
-									console.log(casilla)
 								} else {
 									casilla.style.background = "yellow";
 								}
