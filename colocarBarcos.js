@@ -3,8 +3,6 @@
 // . Ejemplo, el Bismark ocupa 5 casillas, entonces segun ese barco seleccionado, la longitud general se activira segun el barco que hayas seleccionado. usar parametros
 //  */
 
-import {ocuparCasillasDelTablero} from './ocuparCasillasDelTablero.js';
-
 export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelTablero ,tablero,barcos,listadoDeCasillasOcupadas) => {
 	return new Promise(resolve => {
 
@@ -46,10 +44,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 				let quitarColorDeLaCasilla = document.getElementById(`casilla-0-${x}`);
 				quitarColorDeLaCasilla.style.background = "none";	
 			}			
-			
-			juego.primeraPosicion = null;
-			juego.ultimaPosicion = null;
-		
 		}
 
 		const comprobarRango = (numero) => {
@@ -66,7 +60,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 					break;
 				} 
 			}
-		
+
 			return entreRango;
 		}
 
@@ -75,9 +69,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 		barcos.style.opacity = "0.5";
 
 		switch(nroBarcoSeleccionado) {
-			case 0:		
-				
-						
+			case 0:							
 					casillasDelTablero.forEach(casillaActualDelTablero => {
 						
 						casillaActualDelTablero.addEventListener('mouseover', () => {
@@ -121,57 +113,57 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 						
 						});
 
-						// EL OTRO PROBLEMA ESTA AL MOMENTO DE SACAR EL PUNTERO DEL ELEMENTO
-
 						casillaActualDelTablero.addEventListener('mouseout', () => {
-
+							
 							let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
 							let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
 							let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);
 							let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
-							
-							// EL PROBLEMA RADICA EN LA PRIMERA POSICION Y ULTIMA POSICION NO HAN SIDO ASIGNADAS DADA POR ESA RAZON, EL BUCLE FOR PARA EL DESMARCADO DE CASILLAS ASIGNA LA CANTIDAD DE CICLOS SEGUN SE VAYA MOVIENDO EL MOUSE
 
 							if(verifEstadoPosicion && ((posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion))){
-					
+								console.log('asdsad')
 								desmarcarCasillas(juego.primeraPosicion, juego.ultimaPosicion);												
 								
 							} else if (juego.primeraPosicion === null) {
+								console.log(juego.primeraPosicion)
 								let incrementarCasillaDeLaPosicionActual = juego.primeraPosicion + 4;	
 								desmarcarCasillas(posicionDeLaCasillaActual,incrementarCasillaDeLaPosicionActual)												
 							} else {
-								
+						
+								console.log(juego.primeraPosicion,juego.ultimaPosicion)
+
 								desmarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion)
+
+								juego.primeraPosicion = null;
+								juego.ultimaPosicion = null;
 							}
 
 							if(!juego.casillaColocada){
 								casillasDelTablero.forEach(casilla => casilla.style.background = "none");
 								juego.casillaColocada = false;
+							} else {
+								casillasDelTablero.forEach(casilla => {
+									let incluidoEnElArreglo = juego.casillasABloquear.includes(casilla);
+									let valueDeLaCasilla = casilla.getAttribute('id');
+									let idCasilla = document.getElementById(valueDeLaCasilla);
+									
+									if(incluidoEnElArreglo){
+										idCasilla.style.pointerEvents = "none";
+										idCasilla.style.background = "blue";
+									} else {
+										casilla.style.background = "none";
+									}
+								})								
 							} 
 							
 							juego.casillasABloquear = [];
 
 						})
 
-						// EL PROBLEMA RADICA EN EL CICLO DE REMARCADO DE CASILLA, POR ALGUNA RAZON SI BIEN LE CORRECTAMENTE EL ARRAY, NO ESTA MARCANDO BIEN, DEBE HABER UN PROBLEMA EN EL BUCLE FOR, PORQUE REMARCA LAS CASILLAS SEGUN LA POSICION, ES DECIR SI ES LA POS 4 ENTONCES MARCA LAS CUATRA CASILLAS Y NO LA QUE HICE CLICK
-
 						casillaActualDelTablero.addEventListener('click', () => {
-							console.log(juego.casillasABloquear)
-							casillasDelTablero.forEach(casilla => {
-								let incluidoEnElArreglo = juego.casillasABloquear.includes(casilla);
-								let valueDeLaCasilla = casilla.getAttribute('id');
-								let idCasilla = document.getElementById(valueDeLaCasilla);
-							
-								if(incluidoEnElArreglo){
-									idCasilla.style.background = "blue";
-									idCasilla.style.pointerEvents = "none";
-								} else {
-									casilla.style.background = "none";
-								}
-							})
 
 							juego.casillaColocada = true;
-							
+
 							tablero.style.opacity = "0.1";
 							tablero.style.pointerEvents = "none";
 						
