@@ -121,7 +121,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
 
 							if(verifEstadoPosicion && ((posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion))){
-								console.log('asdsad')
+
 								desmarcarCasillas(juego.primeraPosicion, juego.ultimaPosicion);												
 								
 							} else if (juego.primeraPosicion === null) {
@@ -129,9 +129,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								let incrementarCasillaDeLaPosicionActual = juego.primeraPosicion + 4;	
 								desmarcarCasillas(posicionDeLaCasillaActual,incrementarCasillaDeLaPosicionActual)												
 							} else {
-						
-								console.log(juego.primeraPosicion,juego.ultimaPosicion)
-
+					
 								desmarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion)
 
 								juego.primeraPosicion = null;
