@@ -7,6 +7,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 	return new Promise(resolve => {
 
 		const juego = {
+			tableroUsadoPorPrimeraVez: true,
+			cantidadDeCasillasBarco: null,
 			desactivarCeldas: false,
 			casillasQueHanSidoOcupadas: [],
 			fichaColocada: false,
@@ -19,11 +21,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			listadoParesOrdenadosY: [10,21,32,43,54,65,76,87,98,109,120],
 			coordenadasXY: [[6,10],[17,21],[28,32],[39,43],[50,54],[61,65],[72,76],[83,87],[94,98],[105,109],[116,120]]
 		};
-
-		const casillasDeCadaBarco = {
-			cantidadDeCasillasBismark: 5
-		};
-
 
 		for(let k = 0; k < 11; k++){
 			let multiploDeOnce = (k + 1) * 11;
@@ -70,111 +67,124 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 		switch(nroBarcoSeleccionado) {
 			case 0:							
-					casillasDelTablero.forEach(casillaActualDelTablero => {
-						
-						casillaActualDelTablero.addEventListener('mouseover', () => {
-							let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
-							let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
-							let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);	
-							let posicionDeLaCasillaActualY = Array.from(casillasDelTablero).indexOf(idCasillaActual);
-							let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
-							let verifEstadoPosicionY = juego.listadoParesOrdenadosY.includes(posicionDeLaCasillaActualY);
-							let numeroEntreRango = comprobarRango(posicionDeLaCasillaActual);
+			
+			juego.cantidadDeCasillasBarco = 4;
 
-							if(verifEstadoPosicion) {
-								juego.primeraPosicion = posicionDeLaCasillaActual;
-								juego.ultimaPosicion = juego.primeraPosicion + 4;
+			if(juego.tableroUsadoPorPrimeraVez){	
+				casillasDelTablero.forEach(casillaActualDelTablero => {
+							
+							casillaActualDelTablero.addEventListener('mouseover', () => {
+								let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
+								let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
+								let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);	
+								let posicionDeLaCasillaActualY = Array.from(casillasDelTablero).indexOf(idCasillaActual);
+								let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
+								let verifEstadoPosicionY = juego.listadoParesOrdenadosY.includes(posicionDeLaCasillaActualY);
+								let numeroEntreRango = comprobarRango(posicionDeLaCasillaActual);
 
-								remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);
+								if(verifEstadoPosicion) {
+									juego.primeraPosicion = posicionDeLaCasillaActual;
+									juego.ultimaPosicion = juego.primeraPosicion + juego.cantidadDeCasillasBarco;
 
-							} else if(juego.primeraPosicion !== null && juego.ultimaPosicion !== null && (posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion)) {
-						
-								remarcarCasillas(juego.primeraPosicion, juego.ultimaPosicion)			
-						
-							} else if(verifEstadoPosicionY){				
-								let decrementarElemento = posicionDeLaCasillaActual - 4;	
-								juego.primeraPosicion = decrementarElemento;
-								juego.ultimaPosicion = posicionDeLaCasillaActual;
+									remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);
+
+								} else if(juego.primeraPosicion !== null && juego.ultimaPosicion !== null && (posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion)) {
+							
+									remarcarCasillas(juego.primeraPosicion, juego.ultimaPosicion)			
+							
+								} else if(verifEstadoPosicionY){				
+									let decrementarElemento = posicionDeLaCasillaActual - juego.cantidadDeCasillasBarco;	
+									juego.primeraPosicion = decrementarElemento;
+									juego.ultimaPosicion = posicionDeLaCasillaActual;
+									
+									remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);		
 								
-								remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);		
-							
-							} else if (numeroEntreRango) {
-								remarcarCasillas(juego.primeraPosicion, juego.ultimaPosicion);
-							
-							} else {
-				
-								let incrementarElemento = posicionDeLaCasillaActual + 4;
+								} else if (numeroEntreRango) {
+									remarcarCasillas(juego.primeraPosicion, juego.ultimaPosicion);
+								
+								} else {
+					
+									let incrementarElemento = posicionDeLaCasillaActual + juego.cantidadDeCasillasBarco;
 
-								juego.primeraPosicion = posicionDeLaCasillaActual;
-								juego.ultimaPosicion = incrementarElemento;
+									juego.primeraPosicion = posicionDeLaCasillaActual;
+									juego.ultimaPosicion = incrementarElemento;
 
-								remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);
-							}
+									remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);
+								}
+							
+							});
+
+							casillaActualDelTablero.addEventListener('mouseout', () => {
+								
+								let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
+								let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
+								let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);
+								let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
+
+								if(verifEstadoPosicion && ((posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion))){
+
+									desmarcarCasillas(juego.primeraPosicion, juego.ultimaPosicion);												
+									
+								} else if (juego.primeraPosicion === null) {
+									console.log(juego.primeraPosicion)
+									let incrementarCasillaDeLaPosicionActual = juego.primeraPosicion + juego.cantidadDeCasillasBarco;	
+									desmarcarCasillas(posicionDeLaCasillaActual,incrementarCasillaDeLaPosicionActual)												
+								} else {
+						
+									desmarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion)
+
+									juego.primeraPosicion = null;
+									juego.ultimaPosicion = null;
+								}
+
+								if(!juego.casillaColocada){
+									casillasDelTablero.forEach(casilla => casilla.style.background = "none");
+									juego.casillaColocada = false;
+								} else {
+									casillasDelTablero.forEach(casilla => {
+										let incluidoEnElArreglo = juego.casillasABloquear.includes(casilla);
+										let valueDeLaCasilla = casilla.getAttribute('id');
+										let idCasilla = document.getElementById(valueDeLaCasilla);
+										
+										if(incluidoEnElArreglo){
+											idCasilla.style.pointerEvents = "none";
+											idCasilla.style.background = "blue";
+										} else {
+											casilla.style.background = "none";
+										}
+									})								
+								} 
+								
+								juego.casillasABloquear = [];
+
+							})
+
+							casillaActualDelTablero.addEventListener('click', () => {
+
+								juego.casillaColocada = true;
+								juego.tableroUsadoPorPrimeraVez = true;
+
+								tablero.style.opacity = "0.1";
+								tablero.style.pointerEvents = "none";
+							
+								barcos.style.opacity = "1";
+								barcos.style.pointerEvents = "auto";
+							})
+
+							casillaActualDelTablero.addEventListener("contextmenu", (event) => {
+								event.preventDefault();
+							})
+						
 						
 						});
-
-						casillaActualDelTablero.addEventListener('mouseout', () => {
-							
-							let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
-							let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
-							let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);
-							let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
-
-							if(verifEstadoPosicion && ((posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion))){
-
-								desmarcarCasillas(juego.primeraPosicion, juego.ultimaPosicion);												
-								
-							} else if (juego.primeraPosicion === null) {
-								console.log(juego.primeraPosicion)
-								let incrementarCasillaDeLaPosicionActual = juego.primeraPosicion + 4;	
-								desmarcarCasillas(posicionDeLaCasillaActual,incrementarCasillaDeLaPosicionActual)												
-							} else {
-					
-								desmarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion)
-
-								juego.primeraPosicion = null;
-								juego.ultimaPosicion = null;
-							}
-
-							if(!juego.casillaColocada){
-								casillasDelTablero.forEach(casilla => casilla.style.background = "none");
-								juego.casillaColocada = false;
-							} else {
-								casillasDelTablero.forEach(casilla => {
-									let incluidoEnElArreglo = juego.casillasABloquear.includes(casilla);
-									let valueDeLaCasilla = casilla.getAttribute('id');
-									let idCasilla = document.getElementById(valueDeLaCasilla);
-									
-									if(incluidoEnElArreglo){
-										idCasilla.style.pointerEvents = "none";
-										idCasilla.style.background = "blue";
-									} else {
-										casilla.style.background = "none";
-									}
-								})								
-							} 
-							
-							juego.casillasABloquear = [];
-
-						})
-
-						casillaActualDelTablero.addEventListener('click', () => {
-
-							juego.casillaColocada = true;
-
-							tablero.style.opacity = "0.1";
-							tablero.style.pointerEvents = "none";
-						
-							barcos.style.opacity = "1";
-							barcos.style.pointerEvents = "auto";
-						})
-
-						casillaActualDelTablero.addEventListener("contextmenu", (event) => {
-							event.preventDefault();
-						})
-					
-					
-					});
+			} else {
+				casillasDelTablero.forEach(casilla => {
+					if(casilla.style.pointerEvents !== 'none') {
+						// AGREGAR LA LOGICA AQUI. SI TODO MI TABLERO ES COMO UNA MATRIZ, DEBO AGREGAR EL EVENTO EN LAS ZONAS DONDE LAS CASILLAS HORIZONALTES PUEDAN PASAR A VERTICALES
+					}
+				})
+			}
+			
 			
 			break;
 		
