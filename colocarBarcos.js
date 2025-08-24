@@ -46,6 +46,10 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 				let quitarColorDeLaCasilla = document.getElementById(`casilla-0-${x}`);
 				quitarColorDeLaCasilla.style.background = "none";	
 			}			
+			
+			juego.primeraPosicion = null;
+			juego.ultimaPosicion = null;
+		
 		}
 
 		const comprobarRango = (numero) => {
@@ -115,8 +119,9 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);
 							}
 						
-							console.log(juego.casillasABloquear)
 						});
+
+						// EL OTRO PROBLEMA ESTA AL MOMENTO DE SACAR EL PUNTERO DEL ELEMENTO
 
 						casillaActualDelTablero.addEventListener('mouseout', () => {
 
@@ -134,6 +139,9 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							} else if (juego.primeraPosicion === null) {
 								let incrementarCasillaDeLaPosicionActual = juego.primeraPosicion + 4;	
 								desmarcarCasillas(posicionDeLaCasillaActual,incrementarCasillaDeLaPosicionActual)												
+							} else {
+								
+								desmarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion)
 							}
 
 							if(!juego.casillaColocada){
@@ -163,7 +171,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							})
 
 							juego.casillaColocada = true;
-
+							
 							tablero.style.opacity = "0.1";
 							tablero.style.pointerEvents = "none";
 						
