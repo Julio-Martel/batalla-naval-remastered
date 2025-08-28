@@ -174,7 +174,18 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							casillaActualDelTablero.addEventListener("contextmenu", (event) => {
 								event.preventDefault();
 								
+								let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
+								let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
+								let posicionDeLaCasillaActual = Array.from(casillasABloquear).indexOf(idCasillaActual);
+								
+								
+
+
 								// DEBO MOSTRAR LA LOGICA DE COMO SI HAGO EL CLICK DERECHO LA SECCION DE CASILLAS SELECCIONADAS EN HORIZONTAL, DEBE DESAPARECER Y CAMBIAR A POSICION VERTICAL
+
+
+
+
 
 								console.log('aqui debo mostrar la logica')
 							
