@@ -8,6 +8,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 		const juego = {
 			tableroUsadoPorPrimeraVez: true,
+			modoDeColocacionDeBarco: false,
 			cantidadDeCasillasBarco: null,
 			desactivarCeldas: false,
 			casillasQueHanSidoOcupadas: [],
