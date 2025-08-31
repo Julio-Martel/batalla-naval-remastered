@@ -44,6 +44,16 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			}			
 		}
 
+
+		const remarcarCasillasVertical = () => {
+			for(let y = 0; y < 5; y++){
+				let multiploOnce = y * 11;
+				let obtenerIdCasillaActual = document.getElementById(`casilla-0-${multiploOnce}`);
+				juego.casillasABloquear.push(obtenerIdCasillaActual);
+				obtenerIdCasillaActual.style.background = "darkred"; 
+			}
+		}
+
 		const comprobarRango = (numero) => {
 			let entreRango = false;
 			for(let i = 0; i < juego.coordenadasXY.length; i++) {	
@@ -73,7 +83,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 			if(juego.tableroUsadoPorPrimeraVez){	
 				casillasDelTablero.forEach(casillaActualDelTablero => {
-						
+					
 					casillaActualDelTablero.addEventListener('mouseover', () => {
 								let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
 								let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
@@ -83,7 +93,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								let verifEstadoPosicionY = juego.listadoParesOrdenadosY.includes(posicionDeLaCasillaActualY);
 								let numeroEntreRango = comprobarRango(posicionDeLaCasillaActual);
 
-								console.log(posicionDeLaCasillaActual);
+								console.log(casillasDelTablero);
 
 								if(!juego.modoDeColocacionDeBarco){
 
@@ -119,7 +129,9 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									}
 
 								} else {
-									
+										
+
+																		
 								}
 
 
@@ -187,13 +199,27 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 					// SE AGREGO UNA POSIBLE SOLUCION, CONSISTE EN QUE SI HAGO EL CLICK DERECHO, PARA QUE SURGA EFECTO LA CONDICIONAL ES NECESARIO QUE SE ENCUENTRE DENTRO DEL MISMO EVENTO,POR EJEMPLOEN ESTE CASO SELECCIONAR MIENTRAS SE MUEVE EL MOUSE
 
+					// ARREGLAR PROBLEMA DE COMO DESMARCAR LAS CASILLAS Y QUE VUELVAN A SU POSICION ORIGINAL PARA LUEGO SE HAGA FUNCIONAL
+
 					casillaActualDelTablero.addEventListener("contextmenu", (event) => {
 						event.preventDefault();
 						if(!juego.modoDeColocacionDeBarco){
-							juego.modoDeColocacionDeBarco = true;
 							desmarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);
+							let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
+							let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
+							let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);
+
+							juego.primeraPosicion = posicionDeLaCasillaActual;
+							juego.ultimaPosicion = juego.primeraPosicion + (juego.cantidadDeCasillasBarco * 11);
+
+							remarcarCasillasVertical(juego.primeraPosicion,juego.ultimaPosicion);
+
+							juego.modoDeColocacionDeBarco = true;
+							
 						} else {
 							juego.modoDeColocacionDeBarco = false;
+							
+							remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);
 						}
 					})
 			
