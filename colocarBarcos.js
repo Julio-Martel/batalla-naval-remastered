@@ -181,7 +181,10 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								barcos.style.opacity = "1";
 								barcos.style.pointerEvents = "auto";
 					})					
-				
+					
+
+					// SE AGREGO UNA POSIBLE SOLUCION, CONSISTE EN QUE SI HAGO EL CLICK DERECHO, PARA QUE SURGA EFECTO LA CONDICIONAL ES NECESARIO QUE SE ENCUENTRE DENTRO DEL MISMO EVENTO,POR EJEMPLOEN ESTE CASO SELECCIONAR MIENTRAS SE MUEVE EL MOUSE
+
 					casillaActualDelTablero.addEventListener("contextmenu", (event) => {
 						event.preventDefault();
 						juego.modoDeColocacionDeBarco = true;
