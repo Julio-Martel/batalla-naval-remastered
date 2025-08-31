@@ -83,6 +83,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								let verifEstadoPosicionY = juego.listadoParesOrdenadosY.includes(posicionDeLaCasillaActualY);
 								let numeroEntreRango = comprobarRango(posicionDeLaCasillaActual);
 
+								console.log(posicionDeLaCasillaActual);
+
 								if(!juego.modoDeColocacionDeBarco){
 
 									if(verifEstadoPosicion) {
@@ -117,7 +119,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									}
 
 								} else {
-									console.log(casillaActualDelTablero);
+									
 								}
 
 
@@ -137,7 +139,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									desmarcarCasillas(juego.primeraPosicion, juego.ultimaPosicion);												
 									
 								} else if (juego.primeraPosicion === null) {
-									console.log(juego.primeraPosicion)
+									
 									let incrementarCasillaDeLaPosicionActual = juego.primeraPosicion + juego.cantidadDeCasillasBarco;	
 									desmarcarCasillas(posicionDeLaCasillaActual,incrementarCasillaDeLaPosicionActual)												
 								} else {
@@ -187,7 +189,12 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 					casillaActualDelTablero.addEventListener("contextmenu", (event) => {
 						event.preventDefault();
-						juego.modoDeColocacionDeBarco = true;
+						if(!juego.modoDeColocacionDeBarco){
+							juego.modoDeColocacionDeBarco = true;
+							desmarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);
+						} else {
+							juego.modoDeColocacionDeBarco = false;
+						}
 					})
 			
 			
