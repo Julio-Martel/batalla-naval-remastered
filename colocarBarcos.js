@@ -73,8 +73,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 			if(juego.tableroUsadoPorPrimeraVez){	
 				casillasDelTablero.forEach(casillaActualDelTablero => {
-							
-							casillaActualDelTablero.addEventListener('mouseover', () => {
+						
+					casillaActualDelTablero.addEventListener('mouseover', () => {
 								let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
 								let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
 								let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);	
@@ -83,39 +83,49 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								let verifEstadoPosicionY = juego.listadoParesOrdenadosY.includes(posicionDeLaCasillaActualY);
 								let numeroEntreRango = comprobarRango(posicionDeLaCasillaActual);
 
-								if(verifEstadoPosicion) {
-									juego.primeraPosicion = posicionDeLaCasillaActual;
-									juego.ultimaPosicion = juego.primeraPosicion + juego.cantidadDeCasillasBarco;
+								if(!juego.modoDeColocacionDeBarco){
 
-									remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);
+									if(verifEstadoPosicion) {
+										juego.primeraPosicion = posicionDeLaCasillaActual;
+										juego.ultimaPosicion = juego.primeraPosicion + juego.cantidadDeCasillasBarco;
 
-								} else if(juego.primeraPosicion !== null && juego.ultimaPosicion !== null && (posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion)) {
-							
-									remarcarCasillas(juego.primeraPosicion, juego.ultimaPosicion)			
-							
-								} else if(verifEstadoPosicionY){				
-									let decrementarElemento = posicionDeLaCasillaActual - juego.cantidadDeCasillasBarco;	
-									juego.primeraPosicion = decrementarElemento;
-									juego.ultimaPosicion = posicionDeLaCasillaActual;
+										remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);
+
+									} else if(juego.primeraPosicion !== null && juego.ultimaPosicion !== null && (posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion)) {
+								
+										remarcarCasillas(juego.primeraPosicion, juego.ultimaPosicion)			
+								
+									} else if(verifEstadoPosicionY){				
+										let decrementarElemento = posicionDeLaCasillaActual - juego.cantidadDeCasillasBarco;	
+										juego.primeraPosicion = decrementarElemento;
+										juego.ultimaPosicion = posicionDeLaCasillaActual;
+										
+										remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);		
 									
-									remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);		
-								
-								} else if (numeroEntreRango) {
-									remarcarCasillas(juego.primeraPosicion, juego.ultimaPosicion);
-								
+									} else if (numeroEntreRango) {
+										
+										remarcarCasillas(juego.primeraPosicion, juego.ultimaPosicion);
+									
+									} else {
+						
+										let incrementarElemento = posicionDeLaCasillaActual + juego.cantidadDeCasillasBarco;
+
+										juego.primeraPosicion = posicionDeLaCasillaActual;
+										juego.ultimaPosicion = incrementarElemento;
+
+										remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);
+									}
+
 								} else {
-					
-									let incrementarElemento = posicionDeLaCasillaActual + juego.cantidadDeCasillasBarco;
-
-									juego.primeraPosicion = posicionDeLaCasillaActual;
-									juego.ultimaPosicion = incrementarElemento;
-
-									remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);
+									console.log(casillaActualDelTablero);
 								}
+
+
 							
+
 							});
 
-							casillaActualDelTablero.addEventListener('mouseout', () => {
+					casillaActualDelTablero.addEventListener('mouseout', () => {
 								
 								let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
 								let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
@@ -158,9 +168,9 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								
 								juego.casillasABloquear = [];
 
-							})
+					})
 
-							casillaActualDelTablero.addEventListener('click', () => {
+					casillaActualDelTablero.addEventListener('click', () => {
 
 								juego.casillaColocada = true;
 								juego.tableroUsadoPorPrimeraVez = true;
@@ -170,35 +180,28 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							
 								barcos.style.opacity = "1";
 								barcos.style.pointerEvents = "auto";
-							})
-
-							casillaActualDelTablero.addEventListener("contextmenu", (event) => {
-								event.preventDefault();
-								
-								desmarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);
-
-
-											
-
-
-								// DEBO MOSTRAR LA LOGICA DE COMO SI HAGO EL CLICK DERECHO LA SECCION DE CASILLAS SELECCIONADAS EN HORIZONTAL, DEBE DESAPARECER Y CAMBIAR A POSICION VERTICAL
-
-
-
-
-
-								console.log('aqui debo mostrar la logica')
-							
-							})
-						
-						
-						});
+					})					
+				
+					casillaActualDelTablero.addEventListener("contextmenu", (event) => {
+						event.preventDefault();
+						juego.modoDeColocacionDeBarco = true;
+					})
+			
+			
+			
+			
+			
+			
+				});
+			
+			
+			
+			
+			
+			
+			
 			} else {
-				casillasDelTablero.forEach(casilla => {
-					if(casilla.style.pointerEvents !== 'none') {
-						// AGREGAR LA LOGICA AQUI. SI TODO MI TABLERO ES COMO UNA MATRIZ, DEBO AGREGAR EL EVENTO EN LAS ZONAS DONDE LAS CASILLAS HORIZONALTES PUEDAN PASAR A VERTICALES
-					}
-				})
+				// AGREGAR LA LOGICA AQUI. SI TODO MI TABLERO ES COMO UNA MATRIZ, DEBO AGREGAR EL EVENTO EN LAS ZONAS DONDE LAS CASILLAS HORIZONALTES PUEDAN PASAR A VERTICALES					
 			}
 			
 			
@@ -207,10 +210,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 		}
 
-	// AGREGAR EL RESOLVE QUE RETORNARA UNA PROMESA QUE PARA CUANDO SE COLOQUEN TODAS LAS CASILLAS EL BOTON DE EMPEZAR LA BATALLA ESTE LISTO PARA USARSE
-
-
-		
+	// AGREGAR EL RESOLVE QUE RETORNARA UNA PROMESA QUE PARA CUANDO SE COLOQUEN TODAS LAS CASILLAS EL BOTON DE EMPEZAR LA BATALLA ESTE LISTO PARA USARSE	
 
 	});
 }
