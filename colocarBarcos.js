@@ -6,7 +6,6 @@
 export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelTablero ,tablero,barcos,listadoDeCasillasOcupadas) => {
 	return new Promise(resolve => {
 
-
 		const juego = {
 			tableroUsadoPorPrimeraVez: true,
 			modoDeColocacionDeBarco: false,
@@ -24,6 +23,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			listadoNumeroPosicionesY: [],
 		};
 
+
+		/*
 		let numeroDeInicio = 66;
 		for(let x = 0; x < 11; x++){
 			let incrementarNumeroDeInicio = numeroDeInicio;
@@ -36,6 +37,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			numeroDeInicio = numeroDeInicio + 1;
 		}
 	
+		*/
+		
 		const remarcarCasillas = (elementoPosicion1, elmentoPosicion2) => {
 			for(let y = elementoPosicion1; y <= elmentoPosicion2; y++){
 				let obtenerIdCasillaActual = document.getElementById(`casilla-0-${y}`);
@@ -50,7 +53,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 				quitarColorDeLaCasilla.style.background = "none";	
 			}			
 		}
-
 
 		const remarcarCasillasVertical = () => {
 			for(let y = 0; y < 5; y++){
