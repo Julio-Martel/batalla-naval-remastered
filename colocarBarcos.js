@@ -6,6 +6,7 @@
 export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelTablero ,tablero,barcos,listadoDeCasillasOcupadas) => {
 	return new Promise(resolve => {
 
+
 		const juego = {
 			tableroUsadoPorPrimeraVez: true,
 			modoDeColocacionDeBarco: false,
@@ -13,22 +14,28 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			desactivarCeldas: false,
 			casillasQueHanSidoOcupadas: [],
 			fichaColocada: false,
-			multiplosDeOnceMasUno: [],
 			casillasABloquear: [],
 			primeraPosicion: null,
 			ultimaPosicion: null,
 			casillaColocada: false,
 			listadoParesOrdenados: [6,17,28,39,50,61,72,83,94,105,116],
 			listadoParesOrdenadosY: [10,21,32,43,54,65,76,87,98,109,120],
-			coordenadasXY: [[6,10],[17,21],[28,32],[39,43],[50,54],[61,65],[72,76],[83,87],[94,98],[105,109],[116,120]]
+			coordenadasXY: [[6,10],[17,21],[28,32],[39,43],[50,54],[61,65],[72,76],[83,87],[94,98],[105,109],[116,120]],
+			listadoNumeroPosicionesY: [],
 		};
 
-		for(let k = 0; k < 11; k++){
-			let multiploDeOnce = (k + 1) * 11;
-			let sumarleUno = multiploDeOnce + 1;
-			juego.multiplosDeOnceMasUno.push(sumarleUno);
+		let numeroDeInicio = 66;
+		for(let x = 0; x < 11; x++){
+			let incrementarNumeroDeInicio = numeroDeInicio;
+			let fila = [];
+			for(let z = 0; z < 5; z++){
+				fila.push(incrementarNumeroDeInicio);
+				incrementarNumeroDeInicio = incrementarNumeroDeInicio + 11;
+			}
+			juego.listadoNumeroPosicionesY.push(fila);
+			numeroDeInicio = numeroDeInicio + 1;
 		}
-
+	
 		const remarcarCasillas = (elementoPosicion1, elmentoPosicion2) => {
 			for(let y = elementoPosicion1; y <= elmentoPosicion2; y++){
 				let obtenerIdCasillaActual = document.getElementById(`casilla-0-${y}`);
@@ -93,7 +100,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								let verifEstadoPosicionY = juego.listadoParesOrdenadosY.includes(posicionDeLaCasillaActualY);
 								let numeroEntreRango = comprobarRango(posicionDeLaCasillaActual);
 
-								console.log(casillasDelTablero);
+								console.log(posicionDeLaCasillaActual)
 
 								if(!juego.modoDeColocacionDeBarco){
 
@@ -129,8 +136,9 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									}
 
 								} else {
-										
-
+									
+									
+									
 																		
 								}
 
@@ -204,22 +212,9 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 					casillaActualDelTablero.addEventListener("contextmenu", (event) => {
 						event.preventDefault();
 						if(!juego.modoDeColocacionDeBarco){
-							desmarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);
-							let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
-							let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
-							let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);
-
-							juego.primeraPosicion = posicionDeLaCasillaActual;
-							juego.ultimaPosicion = juego.primeraPosicion + (juego.cantidadDeCasillasBarco * 11);
-
-							remarcarCasillasVertical(juego.primeraPosicion,juego.ultimaPosicion);
-
 							juego.modoDeColocacionDeBarco = true;
-							
 						} else {
 							juego.modoDeColocacionDeBarco = false;
-							
-							remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);
 						}
 					})
 			
