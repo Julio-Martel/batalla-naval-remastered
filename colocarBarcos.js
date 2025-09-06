@@ -151,8 +151,9 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 									// crear aqui la logica para el marcado de las casillas verticales
 
-									juego.primeraPosicion = posicionDeLaCasillaActual;
+									//juego.primeraPosicion = posicionDeLaCasillaActual;
 									remarcarCasillasVertical(posicionDeLaCasillaActual);
+									
 									
 																		
 								}
@@ -205,7 +206,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									})								
 								} 
 							} else {
-
 								juego.primeraPosicion = posicionDeLaCasillaActual;
 								desmarcarCasillasVertical(juego.primeraPosicion);
 							}
@@ -249,8 +249,13 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 						event.preventDefault();
 						if(!juego.modoDeColocacionDeBarco){
 							juego.modoDeColocacionDeBarco = true;
+							desmarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion)
+							remarcarCasillasVertical(juego.primeraPosicion)
 						} else {
 							juego.modoDeColocacionDeBarco = false;
+							desmarcarCasillasVertical(juego.primeraPosicion);
+							console.log(juego.primeraPosicion,juego.ultimaPosicion)
+							remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion)
 						}
 					})
 			
