@@ -3,7 +3,7 @@
 // . Ejemplo, el Bismark ocupa 5 casillas, entonces segun ese barco seleccionado, la longitud general se activira segun el barco que hayas seleccionado. usar parametros
 //  */
 
-export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelTablero ,tablero,barcos,listadoDeCasillasOcupadas) => {
+export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelTablero ,tablero,barcos) => {
 	return new Promise(resolve => {
 
 		const juego = {
@@ -13,6 +13,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			desactivarCeldas: false,
 			casillasQueHanSidoOcupadas: [],
 			fichaColocada: false,
+			multiploOnceValor: null,
+			multiploOnceEstado: false,
 			casillasABloquear: [],
 			primeraPosicion: null,
 			ultimaPosicion: null,
@@ -24,7 +26,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 		};
 
 
-		/*
+		
 		let numeroDeInicio = 66;
 		for(let x = 0; x < 11; x++){
 			let incrementarNumeroDeInicio = numeroDeInicio;
@@ -36,9 +38,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			juego.listadoNumeroPosicionesY.push(fila);
 			numeroDeInicio = numeroDeInicio + 1;
 		}
-	
-		*/
-		
+			
 		const remarcarCasillas = (elementoPosicion1, elmentoPosicion2) => {
 			for(let y = elementoPosicion1; y <= elmentoPosicion2; y++){
 				let obtenerIdCasillaActual = document.getElementById(`casilla-0-${y}`);
@@ -91,6 +91,24 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			return entreRango;
 		}
 
+		const comprobarRangoY = (numero) => {
+			let numeroEncontrado = false;
+			for(let i = 0; i < juego.listadoNumeroPosicionesY.length; i++){
+				for(let j = 0; j < juego.listadoNumeroPosicionesY[i].length; j++){
+					if(numero === juego.listadoNumeroPosicionesY[i][j]){
+						numeroEncontrado = true;
+						break;
+					}
+				}
+			}
+
+			return numeroEncontrado;
+		}
+
+
+
+		console.log(juego.listadoNumeroPosicionesY)
+
 		tablero.style.pointerEvents = "auto";
 		tablero.style.opacity = "1";
 		barcos.style.opacity = "0.5";
@@ -111,6 +129,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
 								let verifEstadoPosicionY = juego.listadoParesOrdenadosY.includes(posicionDeLaCasillaActualY);
 								let numeroEntreRango = comprobarRango(posicionDeLaCasillaActual);
+								let numeroEntreRangoY = comprobarRangoY(posicionDeLaCasillaActual);
+							
 
 								console.log(posicionDeLaCasillaActual)
 
@@ -148,18 +168,18 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									}
 
 								} else {
-
-									// crear aqui la logica para el marcado de las casillas verticales
-
-									//juego.primeraPosicion = posicionDeLaCasillaActual;
-									remarcarCasillasVertical(posicionDeLaCasillaActual);
-									
-									
+									// AQUI HAY UN PROBLEMA DE LO QUE SON LOS MULTIPLOS DE ONCE Y EL REMARCADO DE CASILLAS DE FORMA VERTICAL POR LO QUE QUEDA VER COMO IMPLEMENTARLO
+									if(posicionDeLaCasillaActual >= 0 && posicionDeLaCasillaActual <= 65){
+										remarcarCasillasVertical(posicionDeLaCasillaActual);
+									} else if(posicionDeLaCasillaActual >= 66 && posicionDeLaCasillaActual <= 76){
+										juego.multiploOnceValor = posicionDeLaCasillaActual;
+										remarcarCasillasVertical(juego.multiploOnceValor);
+									} else{
+										console.log(posicionDeLaCasillaActual)
+										remarcarCasillasVertical(juego.multiploOnceValor);
+									}						
 																		
 								}
-
-
-							
 
 							});
 
