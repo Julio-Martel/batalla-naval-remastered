@@ -115,11 +115,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			if(juego.tableroUsadoPorPrimeraVez){	
 				casillasDelTablero.forEach(casillaActualDelTablero => {
 							
-
-								/*if(posicionDeLaCasillaActual >= 66 && posicionDeLaCasillaActual <= 120){
-									console.log(posicionDeLaCasillaActual)
-								}*/
-					
 					casillaActualDelTablero.addEventListener('mouseover', () => {
 								let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
 								let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
@@ -128,8 +123,9 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
 								let verifEstadoPosicionY = juego.listadoParesOrdenadosY.includes(posicionDeLaCasillaActualY);
 								let numeroEntreRango = comprobarRango(posicionDeLaCasillaActual);
-								let numeroEntreRangoY = comprobarRangoY(posicionDeLaCasillaActual);
-								console.log(posicionDeLaCasillaActual)
+								/*let numeroEntreRangoY =  juego.listadoParesOrdenadosY.includes(posicionDeLaCasillaActual);
+								let calcular = comprobarRangoY(posicionDeLaCasillaActual);*/
+								
 								
 								
 								if(!juego.modoDeColocacionDeBarco){
@@ -166,6 +162,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									}
 
 								} else {
+									
 									// AQUI HAY UN PROBLEMA DE LO QUE SON LOS MULTIPLOS DE ONCE Y EL REMARCADO DE CASILLAS DE FORMA VERTICAL POR LO QUE QUEDA VER COMO IMPLEMENTARLO
 									/*if(posicionDeLaCasillaActual >= 0 && posicionDeLaCasillaActual <= 65){
 										remarcarCasillasVertical(posicionDeLaCasillaActual);
@@ -199,9 +196,9 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
 								let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);
 								let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
-								let numeroEntreRangoY = comprobarRangoY(posicionDeLaCasillaActual);
-
+								
 							if(!juego.modoDeColocacionDeBarco){
+								
 								if(verifEstadoPosicion && ((posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion))){
 
 									desmarcarCasillas(juego.primeraPosicion, juego.ultimaPosicion);												
@@ -235,22 +232,11 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 										}
 									})								
 								} 
+							
 							} else {
-									
 								
 								
-								
-								/*	console.log(juego.multiploOnceValor)
-
-									if(!numeroEntreRangoY){									
-										desmarcarCasillasVertical(juego.multiploOnceValor);
-									} else if(numeroEntreRangoY && (posicionDeLaCasillaActual >= 77 && posicionDeLaCasillaActual <= 110)){
-										desmarcarCasillasVertical(juego.multiploOnceValor);
-									}*/
-
-
-
-
+							
 								
 							}
 
