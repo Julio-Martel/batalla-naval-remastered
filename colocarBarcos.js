@@ -173,30 +173,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									}
 
 
-					
-
-									// AQUI HAY UN PROBLEMA DE LO QUE SON LOS MULTIPLOS DE ONCE Y EL REMARCADO DE CASILLAS DE FORMA VERTICAL POR LO QUE QUEDA VER COMO IMPLEMENTARLO
-									/*if(posicionDeLaCasillaActual >= 0 && posicionDeLaCasillaActual <= 65){
-										remarcarCasillasVertical(posicionDeLaCasillaActual);
-									} else if(posicionDeLaCasillaActual >= 66 && posicionDeLaCasillaActual <= 76){
-										juego.multiploOnceValor = posicionDeLaCasillaActual;
-										remarcarCasillasVertical(juego.multiploOnceValor);
-									} else{
-										console.log(posicionDeLaCasillaActual)
-										remarcarCasillasVertical(juego.multiploOnceValor);
-									}		
-										
-									if(!numeroEntreRangoY){
-										juego.multiploOnceValor = posicionDeLaCasillaActual;
-										console.log(juego.multiploOnceValor)
-										remarcarCasillasVertical(juego.multiploOnceValor);
-										
-										
-									} else if(numeroEntreRangoY && (posicionDeLaCasillaActual >= 77 && posicionDeLaCasillaActual <= 110)){
-										console.log(juego.multiploOnceValor)
-										remarcarCasillasVertical(juego.multiploOnceValor);
-										
-									}*/
+			
 																		
 								}
 
