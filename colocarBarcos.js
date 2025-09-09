@@ -161,10 +161,19 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 								} else {
 								
-									if(!comprobarMultiploDeOnce){
+									if(comprobarMultiploDeOnce){
+										juego.primeraPosicion = posicionDeLaCasillaActual;
+										remarcarCasillasVertical(juego.primeraPosicion);
+									} else if(posicionDeLaCasillaActual >= 77 && posicionDeLaCasillaActual <= 110){
+										console.log('sadasd');
+										remarcarCasillasVertical(juego.primeraPosicion);
+									} else {
 										juego.primeraPosicion = posicionDeLaCasillaActual;
 										remarcarCasillasVertical(juego.primeraPosicion);
 									}
+
+
+					
 
 									// AQUI HAY UN PROBLEMA DE LO QUE SON LOS MULTIPLOS DE ONCE Y EL REMARCADO DE CASILLAS DE FORMA VERTICAL POR LO QUE QUEDA VER COMO IMPLEMENTARLO
 									/*if(posicionDeLaCasillaActual >= 0 && posicionDeLaCasillaActual <= 65){
@@ -201,6 +210,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
 							let comprobarMultiploDeOnce = comprobarRangoY(posicionDeLaCasillaActual);
 							
+
+								/// MEJORAR AQUI, POR EJEMPLO LA CASILLA 88, RESULTA QUE AL PASARLO DEBERIA SELECCIONAR SEGUN LO QUE HAYA SELECCIONADO Y TAMBIEN SOLUCIONAR EL PROBLEMA DE LOS NULOS
 
 							if(!juego.modoDeColocacionDeBarco){
 								
@@ -240,16 +251,19 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							
 							} else {
 								
+
+							
+
+
 								if(!comprobarMultiploDeOnce){
 
 									juego.primeraPosicion = posicionDeLaCasillaActual;
 									desmarcarCasillasVertical(juego.primeraPosicion);
 
 
-									
-
+		
 								} else if(comprobarMultiploDeOnce && (posicionDeLaCasillaActual >= 77 && posicionDeLaCasillaActual <= 110)){
-									
+									desmarcarCasillasVertical(juego.primeraPosicion);
 								}
 								
 							
