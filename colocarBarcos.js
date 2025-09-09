@@ -50,6 +50,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 		const remarcarCasillasVertical = (elementoPosicion) => {
 			let elementoIncremental = elementoPosicion;
+			console.log('elemento incremnteal',elementoIncremental)
 			for(let y = 0; y < 5; y++){
 				let obtenerIdCasillaActual = document.getElementById(`casilla-0-${elementoIncremental}`);
 				juego.casillasABloquear.push(obtenerIdCasillaActual);
@@ -88,11 +89,10 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 		const comprobarRangoY = (numero) => {
 			let numeroEncontrado = false;
 			for(let i = 0; i < juego.listadoNumeroPosicionesY.length; i++){
-				for(let j = 0; j < juego.listadoNumeroPosicionesY[i].length; j++){
-					if(numero === juego.listadoNumeroPosicionesY[i][j]){
-						numeroEncontrado = true;
-						break;
-					}
+				let elementoDelArreglo = juego.listadoNumeroPosicionesY[i];
+				if(elementoDelArreglo === numero){
+					numeroEncontrado = true;
+					break;
 				}
 			}
 
@@ -160,19 +160,26 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									}
 
 								} else {
-								
-									if(comprobarMultiploDeOnce){
+
+
+									// aqui el problema, al pasar por cada casilla si resulta verdadera, cada juego.primera posicion se le asigna un valor lo cual hace que el bucle incremente segun el numero de posicion de la casilla
+
+									if(comprobarMultiploDeOnce  && juego.multiploOnceValor === null){
+										
 										juego.primeraPosicion = posicionDeLaCasillaActual;
+										juego.multiploOnceValor = juego.primeraPosicion;
 										remarcarCasillasVertical(juego.primeraPosicion);
-									} else if(posicionDeLaCasillaActual >= 77 && posicionDeLaCasillaActual <= 110){
-										console.log('sadasd');
-										remarcarCasillasVertical(juego.primeraPosicion);
-									} else {
+										
+									} else if(comprobarMultiploDeOnce && (posicionDeLaCasillaActual >= 77 && posicionDeLaCasillaActual <= 110)){
+										
+										remarcarCasillasVertical(juego.multiploOnceValor);
+									
+									} else if(posicionDeLaCasillaActual < 77 || posicionDeLaCasillaActual > 110){
 										juego.primeraPosicion = posicionDeLaCasillaActual;
 										remarcarCasillasVertical(juego.primeraPosicion);
 									}
 
-
+									
 			
 																		
 								}
@@ -232,15 +239,10 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							
 
 
-								if(!comprobarMultiploDeOnce){
-
-									juego.primeraPosicion = posicionDeLaCasillaActual;
-									desmarcarCasillasVertical(juego.primeraPosicion);
-
-
-		
-								} else if(comprobarMultiploDeOnce && (posicionDeLaCasillaActual >= 77 && posicionDeLaCasillaActual <= 110)){
-									desmarcarCasillasVertical(juego.primeraPosicion);
+								if(!(comprobarMultiploDeOnce && (posicionDeLaCasillaActual >= 66 && posicionDeLaCasillaActual <= 110))){
+									desmarcarCasillasVertical(juego.primeraPosicion)
+								} else {
+									desmarcarCasillasVertical(juego.primeraPosicion)
 								}
 								
 							
