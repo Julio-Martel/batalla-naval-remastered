@@ -236,14 +236,13 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							} else {
 								
 
-							
+								desmarcarCasillasVertical(juego.primeraPosicion)
 
-
-								if(!(comprobarMultiploDeOnce && (posicionDeLaCasillaActual >= 66 && posicionDeLaCasillaActual <= 110))){
+								/*if(!(comprobarMultiploDeOnce && (posicionDeLaCasillaActual >= 66 && posicionDeLaCasillaActual <= 110))){
 									desmarcarCasillasVertical(juego.primeraPosicion)
 								} else {
 									desmarcarCasillasVertical(juego.primeraPosicion)
-								}
+								}*/
 								
 							
 								
