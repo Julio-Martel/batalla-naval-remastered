@@ -68,6 +68,15 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			}			
 		}
 
+		const remarcarCasillasVerticalDecrementar = (elementoPosicion) => {
+			let numeroDeInicio = elementoPosicion;
+			for(let i = 0; i < juego.cantidadDeCasillasBarco; i++){
+				let obtenerIdCasillaActual = document.getElementById(`casilla-0-${numeroDeInicio}`);
+				obtenerIdCasillaActual.style.background = "darkred";
+				numeroDeInicio--;
+			}
+		}
+ 
 		const comprobarRango = (numero) => {
 			let entreRango = false;
 			for(let i = 0; i < juego.coordenadasXY.length; i++) {	
@@ -121,6 +130,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								let numeroEntreRango = comprobarRango(posicionDeLaCasillaActual);
 								let comprobarMultiploDeOnce = comprobarRangoY(posicionDeLaCasillaActual);
 
+								console.log(posicionDeLaCasillaActual)
 
 								if(!juego.modoDeColocacionDeBarco){
 
@@ -170,7 +180,11 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									} else if(posicionDeLaCasillaActual < 77 || posicionDeLaCasillaActual > 110){
 										juego.primeraPosicion = posicionDeLaCasillaActual;
 										remarcarCasillasVertical(juego.primeraPosicion);
-									}										
+									} else if(posicionDeLaCasillaActual >= 110 && posicionDeLaCasillaActual <= 120){
+										
+										// 	AQUI AGREGAR  LA LOGICA PARA QUE AL SELECCIONAR LA ULTIMA CASILLA ESTE REMARQUE LAS CASILLAS DE ABAJO PARA ARRIBA
+										remarcarCasillasVerticalDecrementar(posicionDeLaCasillaActual)
+									} 										
 								}
 
 							});
