@@ -99,10 +99,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			return numeroEncontrado;
 		}
 
-
-
-		console.log(juego.listadoNumeroPosicionesY)
-
 		tablero.style.pointerEvents = "auto";
 		tablero.style.opacity = "1";
 		barcos.style.opacity = "0.5";
@@ -161,10 +157,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 								} else {
 
-
-									// aqui el problema, al pasar por cada casilla si resulta verdadera, cada juego.primera posicion se le asigna un valor lo cual hace que el bucle incremente segun el numero de posicion de la casilla
-
-									if(comprobarMultiploDeOnce  && juego.multiploOnceValor === null){
+									if(comprobarMultiploDeOnce && juego.multiploOnceValor === null){
 										
 										juego.primeraPosicion = posicionDeLaCasillaActual;
 										juego.multiploOnceValor = juego.primeraPosicion;
@@ -177,11 +170,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									} else if(posicionDeLaCasillaActual < 77 || posicionDeLaCasillaActual > 110){
 										juego.primeraPosicion = posicionDeLaCasillaActual;
 										remarcarCasillasVertical(juego.primeraPosicion);
-									}
-
-									
-			
-																		
+									}										
 								}
 
 							});
@@ -192,9 +181,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
 							let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);
 							let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
-							let comprobarMultiploDeOnce = comprobarRangoY(posicionDeLaCasillaActual);
-							
-
+	
 								/// MEJORAR AQUI, POR EJEMPLO LA CASILLA 88, RESULTA QUE AL PASARLO DEBERIA SELECCIONAR SEGUN LO QUE HAYA SELECCIONADO Y TAMBIEN SOLUCIONAR EL PROBLEMA DE LOS NULOS
 
 							if(!juego.modoDeColocacionDeBarco){
