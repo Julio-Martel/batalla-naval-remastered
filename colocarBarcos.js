@@ -308,11 +308,24 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 					// ARREGLAR EL TEMA DEL CLICK EN LA ULTIMA CASILLA PARA QUE ESTA NO TOME EL VALOR DE PRIMERA POSICION HORIZONTAL
 
 					casillaActualDelTablero.addEventListener("contextmenu", (event) => {
+						let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
+						let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
+						let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual)
+
 						event.preventDefault();
 						if(!juego.modoDeColocacionDeBarco){
 							juego.modoDeColocacionDeBarco = true;
 							desmarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion)
-							remarcarCasillasVertical(juego.primeraPosicion)
+
+							if(posicionDeLaCasillaActual === 110){
+								let restarElemento = posicionDeLaCasillaActual - (juego.cantidadDeCasillasBarco * 11);
+								juego.primeraPosicion = restarElemento;
+								remarcarCasillasVertical(juego.primeraPosicion)
+							} else {
+								remarcarCasillasVertical(juego.primeraPosicion)
+							}
+
+							
 						} else {
 							juego.modoDeColocacionDeBarco = false;
 							desmarcarCasillasVertical(juego.primeraPosicion);
