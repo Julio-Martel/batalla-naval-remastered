@@ -14,6 +14,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			casillasQueHanSidoOcupadas: [],
 			fichaColocada: false,
 			multiploOnceValor: null,
+			primerValor: true,
+			valoresEntreMedio: true,
 			casillasABloquear: [],
 			primeraPosicion: null,
 			ultimaPosicion: null,
@@ -30,8 +32,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			multiplo++;
 			numeroDeInicio = multiplo * 11;		
 		}
-			
-		console.log(juego.listadoParesOrdenadosY)
 
 		const remarcarCasillas = (elementoPosicion1, elmentoPosicion2) => {
 			for(let y = elementoPosicion1; y <= elmentoPosicion2; y++){
@@ -73,7 +73,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			for(let i = 0; i < juego.cantidadDeCasillasBarco; i++){
 				let obtenerIdCasillaActual = document.getElementById(`casilla-0-${numeroDeInicio}`);
 				obtenerIdCasillaActual.style.background = "darkred";
-				numeroDeInicio--;
+				console.log(numeroDeInicio)
+				numeroDeInicio = numeroDeInicio - 1;
 			}
 		}
  
@@ -167,24 +168,31 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 								} else {
 
-									if(comprobarMultiploDeOnce && juego.multiploOnceValor === null){
-										
+									if(comprobarMultiploDeOnce && juego.multiploOnceValor === null && (posicionDeLaCasillaActual !== 110)){
+										console.log('primer camino')
 										juego.primeraPosicion = posicionDeLaCasillaActual;
 										juego.multiploOnceValor = juego.primeraPosicion;
 										remarcarCasillasVertical(juego.primeraPosicion);
 										
-									} else if(comprobarMultiploDeOnce && (posicionDeLaCasillaActual >= 77 && posicionDeLaCasillaActual <= 110)){
+									} else if(comprobarMultiploDeOnce && (posicionDeLaCasillaActual >= 77 && posicionDeLaCasillaActual <= 99)){
 										
 										remarcarCasillasVertical(juego.multiploOnceValor);
-									
+										
+										// ALGO QUE SE PODRIA IMPLEMENTAR
+
 									} else if(posicionDeLaCasillaActual < 77 || posicionDeLaCasillaActual > 110){
+										console.log('tercer camino')
 										juego.primeraPosicion = posicionDeLaCasillaActual;
 										remarcarCasillasVertical(juego.primeraPosicion);
+
+										///////////////////////////////////////
 									} else if(posicionDeLaCasillaActual >= 110 && posicionDeLaCasillaActual <= 120){
 										
-										// 	AQUI AGREGAR  LA LOGICA PARA QUE AL SELECCIONAR LA ULTIMA CASILLA ESTE REMARQUE LAS CASILLAS DE ABAJO PARA ARRIBA
-										remarcarCasillasVerticalDecrementar(posicionDeLaCasillaActual)
-									} 										
+										let restarElemento = posicionDeLaCasillaActual - (juego.cantidadDeCasillasBarco * 11);
+										juego.primeraPosicion = restarElemento;
+										remarcarCasillasVertical(restarElemento);
+									
+									}									
 								}
 
 							});
@@ -237,7 +245,19 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							} else {
 								
 
+							
+
+
+
 								desmarcarCasillasVertical(juego.primeraPosicion)
+
+
+
+
+
+
+
+
 
 								/*if(!(comprobarMultiploDeOnce && (posicionDeLaCasillaActual >= 66 && posicionDeLaCasillaActual <= 110))){
 									desmarcarCasillasVertical(juego.primeraPosicion)
@@ -283,6 +303,9 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 					// SE AGREGO UNA POSIBLE SOLUCION, CONSISTE EN QUE SI HAGO EL CLICK DERECHO, PARA QUE SURGA EFECTO LA CONDICIONAL ES NECESARIO QUE SE ENCUENTRE DENTRO DEL MISMO EVENTO,POR EJEMPLOEN ESTE CASO SELECCIONAR MIENTRAS SE MUEVE EL MOUSE
 
 					// ARREGLAR PROBLEMA DE COMO DESMARCAR LAS CASILLAS Y QUE VUELVAN A SU POSICION ORIGINAL PARA LUEGO SE HAGA FUNCIONAL. Y SEGUN LAS PRIMERAS CASILLAS QUE SIRVAN COMO PUNTO DE INICIO PARA EL MARCADO DE LAS PRIMERAS COLUMNAS
+
+
+					// ARREGLAR EL TEMA DEL CLICK EN LA ULTIMA CASILLA PARA QUE ESTA NO TOME EL VALOR DE PRIMERA POSICION HORIZONTAL
 
 					casillaActualDelTablero.addEventListener("contextmenu", (event) => {
 						event.preventDefault();
