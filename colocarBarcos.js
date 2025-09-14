@@ -178,15 +178,11 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 										
 										remarcarCasillasVertical(juego.multiploOnceValor);
 										
-										
-										// ALGO QUE SE PODRIA IMPLEMENTAR
-
 									} else if(posicionDeLaCasillaActual < 77 || posicionDeLaCasillaActual > 110){
 										console.log('tercer camino')
 										juego.primeraPosicion = posicionDeLaCasillaActual;
 										remarcarCasillasVertical(juego.primeraPosicion);
-
-										///////////////////////////////////////
+										
 									} else if(posicionDeLaCasillaActual >= 110 && posicionDeLaCasillaActual <= 120){
 										
 										let restarElemento = posicionDeLaCasillaActual - (juego.cantidadDeCasillasBarco * 11);
