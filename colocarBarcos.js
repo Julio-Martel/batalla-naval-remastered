@@ -251,21 +251,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 								desmarcarCasillasVertical(juego.primeraPosicion)
 
-
-
-
-
-
-
-
-
-								/*if(!(comprobarMultiploDeOnce && (posicionDeLaCasillaActual >= 66 && posicionDeLaCasillaActual <= 110))){
-									desmarcarCasillasVertical(juego.primeraPosicion)
-								} else {
-									desmarcarCasillasVertical(juego.primeraPosicion)
-								}*/
-								
-							
+													
 								
 							}
 
@@ -320,6 +306,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							if(posicionDeLaCasillaActual === 110){
 								let restarElemento = posicionDeLaCasillaActual - (juego.cantidadDeCasillasBarco * 11);
 								juego.primeraPosicion = restarElemento;
+								juego.multiploOnceValor = juego.primeraPosicion;
+								
 								remarcarCasillasVertical(juego.primeraPosicion)
 							} else {
 								remarcarCasillasVertical(juego.primeraPosicion)
@@ -329,6 +317,10 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 						} else {
 							juego.modoDeColocacionDeBarco = false;
 							desmarcarCasillasVertical(juego.primeraPosicion);
+							
+							juego.primeraPosicion = posicionDeLaCasillaActual;
+							juego.ultimaPosicion = juego.primeraPosicion + juego.cantidadDeCasillasBarco;
+							
 							remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion)
 						}
 					})
