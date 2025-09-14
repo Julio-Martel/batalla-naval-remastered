@@ -174,7 +174,10 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 										juego.primeraPosicion = restarElemento;
 										remarcarCasillasVertical(restarElemento);
 									
-									} 								
+									} else {
+										juego.primeraPosicion = posicionDeLaCasillaActual;
+										remarcarCasillasVertical(juego.primeraPosicion)
+									}								
 								}
 
 							});
