@@ -205,8 +205,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);
 							let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
 	
-								/// MEJORAR AQUI, POR EJEMPLO LA CASILLA 88, RESULTA QUE AL PASARLO DEBERIA SELECCIONAR SEGUN LO QUE HAYA SELECCIONADO Y TAMBIEN SOLUCIONAR EL PROBLEMA DE LOS NULOS
-
 							if(!juego.modoDeColocacionDeBarco){
 								
 								if(verifEstadoPosicion && ((posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion))){
@@ -274,6 +272,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 					})
 
+					
 					casillaActualDelTablero.addEventListener('click', () => {
 
 								juego.casillaColocada = true;
@@ -286,14 +285,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								barcos.style.pointerEvents = "auto";
 					})					
 					
-
-					// SE AGREGO UNA POSIBLE SOLUCION, CONSISTE EN QUE SI HAGO EL CLICK DERECHO, PARA QUE SURGA EFECTO LA CONDICIONAL ES NECESARIO QUE SE ENCUENTRE DENTRO DEL MISMO EVENTO,POR EJEMPLOEN ESTE CASO SELECCIONAR MIENTRAS SE MUEVE EL MOUSE
-
-					// ARREGLAR PROBLEMA DE COMO DESMARCAR LAS CASILLAS Y QUE VUELVAN A SU POSICION ORIGINAL PARA LUEGO SE HAGA FUNCIONAL. Y SEGUN LAS PRIMERAS CASILLAS QUE SIRVAN COMO PUNTO DE INICIO PARA EL MARCADO DE LAS PRIMERAS COLUMNAS
-
-
-					// ARREGLAR EL TEMA DEL CLICK EN LA ULTIMA CASILLA PARA QUE ESTA NO TOME EL VALOR DE PRIMERA POSICION HORIZONTAL
-
+					
 					casillaActualDelTablero.addEventListener("contextmenu", (event) => {
 						let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
 						let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
