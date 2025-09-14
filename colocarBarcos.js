@@ -45,7 +45,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 		const remarcarCasillasVertical = (elementoPosicion) => {
 			let elementoIncremental = elementoPosicion;
-			console.log('elemento incremnteal',elementoIncremental)
 			for(let y = 0; y < 5; y++){
 				let obtenerIdCasillaActual = document.getElementById(`casilla-0-${elementoIncremental}`);
 				juego.casillasABloquear.push(obtenerIdCasillaActual);
