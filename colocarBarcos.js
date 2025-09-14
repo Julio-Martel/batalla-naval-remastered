@@ -67,16 +67,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 				elementoIncremental = elementoIncremental + 11;
 			}			
 		}
-
-		const remarcarCasillasVerticalDecrementar = (elementoPosicion) => {
-			let numeroDeInicio = elementoPosicion;
-			for(let i = 0; i < juego.cantidadDeCasillasBarco; i++){
-				let obtenerIdCasillaActual = document.getElementById(`casilla-0-${numeroDeInicio}`);
-				obtenerIdCasillaActual.style.background = "darkred";
-				console.log(numeroDeInicio)
-				numeroDeInicio = numeroDeInicio - 1;
-			}
-		}
  
 		const comprobarRango = (numero) => {
 			let entreRango = false;
