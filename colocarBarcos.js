@@ -182,7 +182,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 										console.log('tercer camino')
 										juego.primeraPosicion = posicionDeLaCasillaActual;
 										remarcarCasillasVertical(juego.primeraPosicion);
-										
+
 									} else if(posicionDeLaCasillaActual >= 110 && posicionDeLaCasillaActual <= 120){
 										
 										let restarElemento = posicionDeLaCasillaActual - (juego.cantidadDeCasillasBarco * 11);
@@ -250,21 +250,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								
 							}
 
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-								juego.casillasABloquear = [];
+							juego.casillasABloquear = [];
 
 					})
 
@@ -301,6 +287,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							} else if(posicionDeLaCasillaActual >= 77 && posicionDeLaCasillaActual <= 99){
 								let restarElemento = 110 - (juego.cantidadDeCasillasBarco * 11);
 								juego.primeraPosicion = restarElemento;
+								juego.multiploOnceValor = juego.primeraPosicion;
 								remarcarCasillasVertical(juego.primeraPosicion)
 							} else {
 								remarcarCasillasVertical(juego.primeraPosicion)
