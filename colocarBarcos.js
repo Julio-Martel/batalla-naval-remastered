@@ -173,6 +173,9 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 										juego.primeraPosicion = restarElemento;
 										remarcarCasillasVertical(restarElemento);
 									
+
+										// AGREGAR LA LOGICA DONDE LAS DEMAS CASILLAS QUE QUEDEN AL FINAL NO SE SUMEN AL FINAL Y SALGAN ERRORES, REPETIR EL MISMO PATRON QUE LOS ANTERIORES
+
 									} else {
 										juego.primeraPosicion = posicionDeLaCasillaActual;
 										remarcarCasillasVertical(juego.primeraPosicion)
