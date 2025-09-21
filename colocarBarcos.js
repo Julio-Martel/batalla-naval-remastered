@@ -162,12 +162,12 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 										
 										remarcarCasillasVertical(juego.multiploOnceValor);
 										
-									} else if(posicionDeLaCasillaActual < 77 || posicionDeLaCasillaActual > 110){
+									} /*else if(posicionDeLaCasillaActual < 77 || posicionDeLaCasillaActual > 110){
 										console.log('tercer camino')
 										juego.primeraPosicion = posicionDeLaCasillaActual;
 										remarcarCasillasVertical(juego.primeraPosicion);
 
-									} else if(posicionDeLaCasillaActual >= 110 && posicionDeLaCasillaActual <= 120){
+									} */else if(posicionDeLaCasillaActual >= 110 && posicionDeLaCasillaActual <= 120){
 										
 										let restarElemento = posicionDeLaCasillaActual - (juego.cantidadDeCasillasBarco * 11);
 										juego.primeraPosicion = restarElemento;
@@ -176,8 +176,15 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 										// AGREGAR LA LOGICA DONDE LAS DEMAS CASILLAS QUE QUEDEN AL FINAL NO SE SUMEN AL FINAL Y SALGAN ERRORES, REPETIR EL MISMO PATRON QUE LOS ANTERIORES
 
-									} else {
+									} else if(posicionDeLaCasillaActual >= 67 && posicionDeLaCasillaActual <= 76){
+										
+
 										juego.primeraPosicion = posicionDeLaCasillaActual;
+										remarcarCasillasVertical(juego.primeraPosicion);
+										
+										console.log('wewwwwww')
+
+									} else {
 										remarcarCasillasVertical(juego.primeraPosicion)
 									}								
 								}
@@ -229,10 +236,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							
 							} else {
 								
-
-							
-
-
 
 								desmarcarCasillasVertical(juego.primeraPosicion)
 
