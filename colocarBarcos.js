@@ -178,7 +178,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 										// AGREGAR LA LOGICA DONDE LAS DEMAS CASILLAS QUE QUEDEN AL FINAL NO SE SUMEN AL FINAL Y SALGAN ERRORES, REPETIR EL MISMO PATRON QUE LOS ANTERIORES
 
-<<<<<<< HEAD
+
 									} else if(posicionDeLaCasillaActual >= 67 && posicionDeLaCasillaActual <= 76){
 										
 
@@ -187,15 +187,9 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 										
 										console.log('wewwwwww')
 
-									} else {
-=======
-										// AGREGAR LA COMPROBACION DE NUMERO POR EL CUAL SE PODRA APLICAR EL REMARCADO COMO LO ES EN LA FORMA HORIZONTAL
-
-										// NO APLICAR EL POINTEREVENTS EN NONE PORQUE NO VA A FUNCIONAR
-
 									} else if(posicionDeLaCasillaActual >= 67 && posicionDeLaCasillaActual <= 76){
 										juego.primeraPosicion = posicionDeLaCasillaActual; 
->>>>>>> c0b581708b22d3b4c8c6cd8b53e76187a598e277
+
 										remarcarCasillasVertical(juego.primeraPosicion)
 									}								
 								}
