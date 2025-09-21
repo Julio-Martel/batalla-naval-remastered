@@ -152,6 +152,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 								} else {
 
+									// SOLUCIONAR PROBLEMAS DE LAS DEMAS CASILLAS FALTANTES	
+
 									if(comprobarMultiploDeOnce && juego.multiploOnceValor === null && (posicionDeLaCasillaActual !== 110)){
 										console.log('primer camino')
 										juego.primeraPosicion = posicionDeLaCasillaActual;
