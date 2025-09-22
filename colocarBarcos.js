@@ -1,6 +1,11 @@
 export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelTablero ,tablero,barcos) => {
 	return new Promise(resolve => {
 
+		const generarArreglo = () => {
+  			return Array.from({ length: 120 - 67 + 1 }, (_, i) => i + 67)
+              .filter(num => num % 11 !== 0);
+		};
+
 		const juego = {
 			tableroUsadoPorPrimeraVez: true,
 			modoDeColocacionDeBarco: false,
@@ -10,6 +15,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			fichaColocada: false,
 			multiploOnceValor: null,
 			primerValor: true,
+			tercerValor: null,
 			valoresEntreMedio: true,
 			casillasABloquear: [],
 			primeraPosicion: null,
@@ -19,6 +25,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			listadoParesOrdenadosY: [10,21,32,43,54,65,76,87,98,109,120],
 			coordenadasXY: [[6,10],[17,21],[28,32],[39,43],[50,54],[61,65],[72,76],[83,87],[94,98],[105,109],[116,120]],
 			listadoNumeroPosicionesY: [],
+			arregloNuevosNumeros: generarArreglo()
 		};
 	
 		let numeroDeInicio = 66, multiplo = 6;
@@ -93,6 +100,9 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			return numeroEncontrado;
 		}
 
+
+
+
 		tablero.style.pointerEvents = "auto";
 		tablero.style.opacity = "1";
 		barcos.style.opacity = "0.5";
@@ -114,7 +124,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								let verifEstadoPosicionY = juego.listadoParesOrdenadosY.includes(posicionDeLaCasillaActualY);
 								let numeroEntreRango = comprobarRango(posicionDeLaCasillaActual);
 								let comprobarMultiploDeOnce = comprobarRangoY(posicionDeLaCasillaActual);
-
+								let comprobarNuevoNumero = juego.arregloNuevosNumeros.includes(posicionDeLaCasillaActual)
 								console.log(posicionDeLaCasillaActual)
 
 								if(!juego.modoDeColocacionDeBarco){
@@ -164,33 +174,26 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 										
 										remarcarCasillasVertical(juego.multiploOnceValor);
 										
-									} /*else if(posicionDeLaCasillaActual < 77 || posicionDeLaCasillaActual > 110){
-										console.log('tercer camino')
-										juego.primeraPosicion = posicionDeLaCasillaActual;
-										remarcarCasillasVertical(juego.primeraPosicion);
-
-									} */else if(posicionDeLaCasillaActual >= 110 && posicionDeLaCasillaActual <= 120){
+									} else if (posicionDeLaCasillaActual === 110) {
+									
+										remarcarCasillasVertical(juego.multiploOnceValor);
+									
+									} else if((posicionDeLaCasillaActual >= 67 && posicionDeLaCasillaActual <= 76) && juego.tercerValor === null){
+										juego.primeraPosicion = posicionDeLaCasillaActual; 
+										juego.tercerValor = posicionDeLaCasillaActual;
+										remarcarCasillasVertical(juego.tercerValor)
 										
-										let restarElemento = posicionDeLaCasillaActual - (juego.cantidadDeCasillasBarco * 11);
-										juego.primeraPosicion = restarElemento;
-										remarcarCasillasVertical(restarElemento);
+									} else if(comprobarNuevoNumero){
+										
+										remarcarCasillasVertical(juego.tercerValor);
 									
 
 										// AGREGAR LA LOGICA DONDE LAS DEMAS CASILLAS QUE QUEDEN AL FINAL NO SE SUMEN AL FINAL Y SALGAN ERRORES, REPETIR EL MISMO PATRON QUE LOS ANTERIORES
 
 
-									} else if(posicionDeLaCasillaActual >= 67 && posicionDeLaCasillaActual <= 76){
-										
-
+									} else {
 										juego.primeraPosicion = posicionDeLaCasillaActual;
 										remarcarCasillasVertical(juego.primeraPosicion);
-										
-										console.log('wewwwwww')
-
-									} else if(posicionDeLaCasillaActual >= 67 && posicionDeLaCasillaActual <= 76){
-										juego.primeraPosicion = posicionDeLaCasillaActual; 
-
-										remarcarCasillasVertical(juego.primeraPosicion)
 									}								
 								}
 
@@ -241,8 +244,12 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							
 							} else {
 								
-
-								desmarcarCasillasVertical(juego.primeraPosicion)
+								if(juego.tercerValor === null){
+									desmarcarCasillasVertical(juego.primeraPosicion)
+								} else {
+									desmarcarCasillasVertical(juego.tercerValor)
+								}
+								
 
 													
 								
