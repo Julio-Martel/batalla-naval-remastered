@@ -194,18 +194,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									}
 									
 									
-									/*else if(comprobarNuevoNumero){
-										
-										remarcarCasillasVertical(juego.tercerValor);
-										juego.primerValor = null;
-
-										// AGREGAR LA LOGICA DONDE LAS DEMAS CASILLAS QUE QUEDEN AL FINAL NO SE SUMEN AL FINAL Y SALGAN ERRORES, REPETIR EL MISMO PATRON QUE LOS ANTERIORES
-
-
-									} else {
-										juego.primeraPosicion = posicionDeLaCasillaActual;
-										remarcarCasillasVertical(juego.primeraPosicion);
-									}	*/							
+							
 								}
 
 							});
