@@ -166,7 +166,15 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 									// SOLUCIONAR PROBLEMAS DE LAS DEMAS CASILLAS FALTANTES	
 
-									if(comprobarMultiploDeOnce && juego.multiploOnceValor === null && (posicionDeLaCasillaActual !== 110)){
+									if(!comprobarMultiploDeOnce){
+										juego.primeraPosicion = posicionDeLaCasillaActual;
+										remarcarCasillasVertical(juego.primeraPosicion);
+									}
+
+
+
+
+									/*if(comprobarMultiploDeOnce && juego.multiploOnceValor === null && (posicionDeLaCasillaActual !== 110)){
 
 										juego.primeraPosicion = posicionDeLaCasillaActual;
 										juego.multiploOnceValor = juego.primeraPosicion;
@@ -191,7 +199,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									} else if(comprobarNuevoNumero) {
 										let incrementarElemento = posicionDeLaCasillaActual + (juego.cantidadDeCasillasBarco * 11);
 
-									}
+									}*/
 									
 									
 							
@@ -245,11 +253,9 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							
 							} else {
 													
-								if(comprobarMultiploDeOnce){
+								if(!comprobarMultiploDeOnce){
 									desmarcarCasillasVertical(juego.primeraPosicion);
-								} else if(posicionDeLaCasillaActual >= 67 && posicionDeLaCasillaActual <= 76){
-									desmarcarCasillasVertical(juego.primeraPosicion)
-								}
+								} 
 
 								
 								
