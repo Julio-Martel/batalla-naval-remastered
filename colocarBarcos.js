@@ -169,6 +169,13 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									if(!comprobarMultiploDeOnce){
 										juego.primeraPosicion = posicionDeLaCasillaActual;
 										remarcarCasillasVertical(juego.primeraPosicion);
+									} else if(comprobarMultiploDeOnce && juego.multiploOnceValor === null && (posicionDeLaCasillaActual !== 110)){
+										juego.primeraPosicion = posicionDeLaCasillaActual;
+										juego.multiploOnceValor = juego.primeraPosicion;
+										remarcarCasillasVertical(juego.multiploOnceValor);
+									} else {
+										// REPARAR ESTO, SI SELECCIONO LA CASILLA 77 POR EJ, NECESITO QUE SE MARQUE TODO
+										remarcarCasillasVertical(juego.multiploOnceValor);
 									}
 
 
@@ -255,7 +262,10 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 													
 								if(!comprobarMultiploDeOnce){
 									desmarcarCasillasVertical(juego.primeraPosicion);
-								} 
+								} else{
+									console.log(posicionDeLaCasillaActual)
+									desmarcarCasillasVertical(juego.multiploOnceValor);
+								}
 
 								
 								
