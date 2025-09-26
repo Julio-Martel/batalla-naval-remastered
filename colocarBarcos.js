@@ -100,7 +100,9 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			return numeroEncontrado;
 		}
 
-
+		const decrementarElementoPosicion = (elemento1, elemento2) => {
+			
+		}
 
 
 		tablero.style.pointerEvents = "auto";
@@ -165,28 +167,37 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									// SOLUCIONAR PROBLEMAS DE LAS DEMAS CASILLAS FALTANTES	
 
 									if(comprobarMultiploDeOnce && juego.multiploOnceValor === null && (posicionDeLaCasillaActual !== 110)){
-										console.log('primer camino')
+
 										juego.primeraPosicion = posicionDeLaCasillaActual;
 										juego.multiploOnceValor = juego.primeraPosicion;
 										remarcarCasillasVertical(juego.primeraPosicion);
 										
-									} else if(comprobarMultiploDeOnce && (posicionDeLaCasillaActual >= 77 && posicionDeLaCasillaActual <= 99)){
+									} else if(comprobarMultiploDeOnce && (posicionDeLaCasillaActual >= 77 && posicionDeLaCasillaActual <= 110)){
 										
 										remarcarCasillasVertical(juego.multiploOnceValor);
 										
-									} else if (posicionDeLaCasillaActual === 110) {
-									
-										remarcarCasillasVertical(juego.multiploOnceValor);
-									
-									} else if((posicionDeLaCasillaActual >= 67 && posicionDeLaCasillaActual <= 76) && juego.tercerValor === null){
+									} else if(posicionDeLaCasillaActual >= 67 && posicionDeLaCasillaActual <= 76){
+
 										juego.primeraPosicion = posicionDeLaCasillaActual; 
-										juego.tercerValor = posicionDeLaCasillaActual;
-										remarcarCasillasVertical(juego.tercerValor)
+										remarcarCasillasVertical(juego.primeraPosicion)
 										
-									} else if(comprobarNuevoNumero){
+									} else if(posicionDeLaCasillaActual > 110 && posicionDeLaCasillaActual <= 120){
+									
+										let decrementarElemento = juego.primeraPosicion - (juego.cantidadDeCasillasBarco * 11);
+										console.log(decrementarElemento)
+										juego.primeraPosicion = decrementarElemento;
+										remarcarCasillasVertical(juego.primeraPosicion)
+									
+									} else if(comprobarNuevoNumero) {
+										let incrementarElemento = posicionDeLaCasillaActual + (juego.cantidadDeCasillasBarco * 11);
+
+									}
+									
+									
+									/*else if(comprobarNuevoNumero){
 										
 										remarcarCasillasVertical(juego.tercerValor);
-									
+										juego.primerValor = null;
 
 										// AGREGAR LA LOGICA DONDE LAS DEMAS CASILLAS QUE QUEDEN AL FINAL NO SE SUMEN AL FINAL Y SALGAN ERRORES, REPETIR EL MISMO PATRON QUE LOS ANTERIORES
 
@@ -194,7 +205,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									} else {
 										juego.primeraPosicion = posicionDeLaCasillaActual;
 										remarcarCasillasVertical(juego.primeraPosicion);
-									}								
+									}	*/							
 								}
 
 							});
@@ -205,7 +216,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
 							let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);
 							let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
-	
+							let comprobarMultiploDeOnce = comprobarRangoY(posicionDeLaCasillaActual);
+
 							if(!juego.modoDeColocacionDeBarco){
 								
 								if(verifEstadoPosicion && ((posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion))){
@@ -243,12 +255,20 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								} 
 							
 							} else {
+													
+								if(comprobarMultiploDeOnce){
+									desmarcarCasillasVertical(juego.primeraPosicion);
+								} else if(posicionDeLaCasillaActual >= 67 && posicionDeLaCasillaActual <= 76){
+									desmarcarCasillasVertical(juego.primeraPosicion)
+								}
+
 								
-								if(juego.tercerValor === null){
+								
+								/*if(juego.tercerValor === null){
 									desmarcarCasillasVertical(juego.primeraPosicion)
 								} else {
 									desmarcarCasillasVertical(juego.tercerValor)
-								}
+								}*/
 								
 
 													
