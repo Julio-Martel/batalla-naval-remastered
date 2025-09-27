@@ -167,15 +167,39 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									// SOLUCIONAR PROBLEMAS DE LAS DEMAS CASILLAS FALTANTES	
 
 									if(!comprobarMultiploDeOnce){
+									
 										juego.primeraPosicion = posicionDeLaCasillaActual;
 										remarcarCasillasVertical(juego.primeraPosicion);
-									} else if(comprobarMultiploDeOnce && juego.multiploOnceValor === null && (posicionDeLaCasillaActual !== 110)){
+									
+									} else if(posicionDeLaCasillaActual === 66 && juego.multiploOnceValor === null){
+									
 										juego.primeraPosicion = posicionDeLaCasillaActual;
 										juego.multiploOnceValor = juego.primeraPosicion;
 										remarcarCasillasVertical(juego.multiploOnceValor);
-									} else {
-										// REPARAR ESTO, SI SELECCIONO LA CASILLA 77 POR EJ, NECESITO QUE SE MARQUE TODO
-										remarcarCasillasVertical(juego.multiploOnceValor);
+									
+									} else if(posicionDeLaCasillaActual === 77){
+									
+										let posicionEcuacion = 110 - (juego.cantidadDeCasillasBarco * 11);
+										juego.primeraPosicion = posicionEcuacion;
+										remarcarCasillasVertical(juego.primeraPosicion);
+									
+									} else if(posicionDeLaCasillaActual === 88){
+									
+										let posicionEcuacion = 110 - (juego.cantidadDeCasillasBarco * 11);
+										juego.primeraPosicion = posicionEcuacion;
+										remarcarCasillasVertical(juego.primeraPosicion);
+									
+									} else if(posicionDeLaCasillaActual === 99){
+										
+										let posicionEcuacion = 110 - (juego.cantidadDeCasillasBarco * 11);
+										juego.primeraPosicion = posicionEcuacion;
+										remarcarCasillasVertical(juego.primeraPosicion);
+									
+									} else if(posicionDeLaCasillaActual === 110){
+									
+										let diferencia = posicionDeLaCasillaActual - (juego.cantidadDeCasillasBarco * 11);
+										remarcarCasillasVertical(diferencia);
+									
 									}
 
 
@@ -260,20 +284,16 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							
 							} else {
 													
+
 								if(!comprobarMultiploDeOnce){
 									desmarcarCasillasVertical(juego.primeraPosicion);
-								} else{
-									console.log(posicionDeLaCasillaActual)
-									desmarcarCasillasVertical(juego.multiploOnceValor);
 								}
 
+
 								
+
 								
-								/*if(juego.tercerValor === null){
-									desmarcarCasillasVertical(juego.primeraPosicion)
-								} else {
-									desmarcarCasillasVertical(juego.tercerValor)
-								}*/
+	
 								
 
 													
