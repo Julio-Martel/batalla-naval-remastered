@@ -200,39 +200,11 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 										let diferencia = posicionDeLaCasillaActual - (juego.cantidadDeCasillasBarco * 11);
 										remarcarCasillasVertical(diferencia);
 									
+									} else if(posicionDeLaCasillaActual >= 67 && posicionDeLaCasillaActual <= 76){
+										// AGREGAR AQUI LA LOGICA FALTANTE
 									}
 
-
-
-
-									/*if(comprobarMultiploDeOnce && juego.multiploOnceValor === null && (posicionDeLaCasillaActual !== 110)){
-
-										juego.primeraPosicion = posicionDeLaCasillaActual;
-										juego.multiploOnceValor = juego.primeraPosicion;
-										remarcarCasillasVertical(juego.primeraPosicion);
-										
-									} else if(comprobarMultiploDeOnce && (posicionDeLaCasillaActual >= 77 && posicionDeLaCasillaActual <= 110)){
-										
-										remarcarCasillasVertical(juego.multiploOnceValor);
-										
-									} else if(posicionDeLaCasillaActual >= 67 && posicionDeLaCasillaActual <= 76){
-
-										juego.primeraPosicion = posicionDeLaCasillaActual; 
-										remarcarCasillasVertical(juego.primeraPosicion)
-										
-									} else if(posicionDeLaCasillaActual > 110 && posicionDeLaCasillaActual <= 120){
-									
-										let decrementarElemento = juego.primeraPosicion - (juego.cantidadDeCasillasBarco * 11);
-										console.log(decrementarElemento)
-										juego.primeraPosicion = decrementarElemento;
-										remarcarCasillasVertical(juego.primeraPosicion)
-									
-									} else if(comprobarNuevoNumero) {
-										let incrementarElemento = posicionDeLaCasillaActual + (juego.cantidadDeCasillasBarco * 11);
-
-									}*/
-									
-									
+																	
 							
 								}
 
