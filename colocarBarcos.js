@@ -287,6 +287,10 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 								if(!comprobarMultiploDeOnce){
 									desmarcarCasillasVertical(juego.primeraPosicion);
+								} else if(posicionDeLaCasillaActual === 110){
+									let restarElemento = 110 - (juego.cantidadDeCasillasBarco * 11);
+									juego.primeraPosicion = restarElemento;
+									desmarcarCasillasVertical(juego.primeraPosicion);
 								}
 
 
