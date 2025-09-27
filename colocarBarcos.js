@@ -171,7 +171,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 										juego.primeraPosicion = posicionDeLaCasillaActual;
 										remarcarCasillasVertical(juego.primeraPosicion);
 									
-									} else if(posicionDeLaCasillaActual === 66 && juego.multiploOnceValor === null){
+									} else if(posicionDeLaCasillaActual === 66){
 									
 										juego.primeraPosicion = posicionDeLaCasillaActual;
 										juego.multiploOnceValor = juego.primeraPosicion;
