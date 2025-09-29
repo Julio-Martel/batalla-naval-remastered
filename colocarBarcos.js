@@ -165,6 +165,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								} else {
 
 									// SOLUCIONAR PROBLEMAS DE LAS DEMAS CASILLAS FALTANTES	
+									
+									// SOLUCIONAR EL TEMA DE ESTA CONDICIONAL
 
 									if(!comprobarMultiploDeOnce){
 									
@@ -200,8 +202,11 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 										let diferencia = posicionDeLaCasillaActual - (juego.cantidadDeCasillasBarco * 11);
 										remarcarCasillasVertical(diferencia);
 									
-									} else if(posicionDeLaCasillaActual >= 67 && posicionDeLaCasillaActual <= 76){
-										// AGREGAR AQUI LA LOGICA FALTANTE
+									} else if(posicionDeLaCasillaActual >= 111 && posicionDeLaCasillaActual <= 120){
+									
+										let diferencia = posicionDeLaCasillaActual - (juego.cantidadDeCasillasBarco * 11);
+										remarcarCasillasVertical(diferencia);
+									
 									}
 
 																	
