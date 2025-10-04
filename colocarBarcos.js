@@ -273,6 +273,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								} else if(posicionDeLaCasillaActual >= 67 && posicionDeLaCasillaActual <= 76) {
 									desmarcarCasillasVertical(posicionDeLaCasillaActual);
 								} else if(posicionDeLaCasillaActual >= 111 && posicionDeLaCasillaActual <= 120){
+									// MEJORAR ESTA PARTE, PARA VER COMO SOLUCIONAR EL PROBLEMA DE SELECCION DE CASILLS VERTICALES EN LAS ULTIMAS CASILLAS
 									desmarcarCasillasVertical(posicionDeLaCasillaActual);
 								}
 
@@ -282,7 +283,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								
 	
 								
-
+  
 													
 								
 							}
