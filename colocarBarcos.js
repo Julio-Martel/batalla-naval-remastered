@@ -274,6 +274,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									desmarcarCasillasVertical(posicionDeLaCasillaActual);
 								} else if(posicionDeLaCasillaActual >= 111 && posicionDeLaCasillaActual <= 120){
 									// MEJORAR ESTA PARTE, PARA VER COMO SOLUCIONAR EL PROBLEMA DE SELECCION DE CASILLS VERTICALES EN LAS ULTIMAS CASILLAS
+									// APLICAR ARREGLO DE ENTRE MEDIO DE 67 Y 79 Y LAS BASES 114 Y 120
 									desmarcarCasillasVertical(posicionDeLaCasillaActual);
 								}
 
@@ -330,6 +331,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								remarcarCasillasVertical(juego.primeraPosicion)
 							} else {
 								remarcarCasillasVertical(juego.primeraPosicion)
+							
+							
 							}
 
 							
