@@ -164,12 +164,10 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 								} else {
 
-									// SOLUCIONAR PROBLEMAS DE LAS DEMAS CASILLAS FALTANTES	
-									
 									// SOLUCIONAR EL TEMA DE ESTA CONDICIONAL
 
-									if(!comprobarMultiploDeOnce && !(posicionDeLaCasillaActual >= 67 && posicionDeLaCasillaActual <= 76)){
-									
+									if(!comprobarMultiploDeOnce && !(posicionDeLaCasillaActual >= 67 && posicionDeLaCasillaActual <= 76) && (posicionDeLaCasillaActual >= 0 && posicionDeLaCasillaActual <= 65)){
+										console.log('toca primera condicional')
 										juego.primeraPosicion = posicionDeLaCasillaActual;
 										remarcarCasillasVertical(juego.primeraPosicion);
 									
@@ -273,9 +271,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								} else if(posicionDeLaCasillaActual >= 67 && posicionDeLaCasillaActual <= 76) {
 									desmarcarCasillasVertical(posicionDeLaCasillaActual);
 								} else if(posicionDeLaCasillaActual >= 111 && posicionDeLaCasillaActual <= 120){
-									// MEJORAR ESTA PARTE, PARA VER COMO SOLUCIONAR EL PROBLEMA DE SELECCION DE CASILLS VERTICALES EN LAS ULTIMAS CASILLAS
-									// APLICAR ARREGLO DE ENTRE MEDIO DE 67 Y 79 Y LAS BASES 114 Y 120
-									desmarcarCasillasVertical(posicionDeLaCasillaActual);
+									
 								}
 
 
@@ -329,6 +325,9 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								juego.primeraPosicion = restarElemento;
 								juego.multiploOnceValor = juego.primeraPosicion;
 								remarcarCasillasVertical(juego.primeraPosicion)
+							} else if(posicionDeLaCasillaActual >= 111 && posicionDeLaCasillaActual <= 120){
+								let restarElemento = posicionDeLaCasillaActual - (juego.cantidadDeCasillasBarco * 11);
+								remarcarCasillasVertical(restarElemento)
 							} else {
 								remarcarCasillasVertical(juego.primeraPosicion)
 							
