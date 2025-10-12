@@ -271,7 +271,9 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								} else if(posicionDeLaCasillaActual >= 67 && posicionDeLaCasillaActual <= 76) {
 									desmarcarCasillasVertical(posicionDeLaCasillaActual);
 								} else if(posicionDeLaCasillaActual >= 111 && posicionDeLaCasillaActual <= 120){
-									
+								
+									// CREAR LA LOGICA DE SELECCIONADO TRAS SELECCIONAR ESTA CASILLA
+
 								}
 
 
