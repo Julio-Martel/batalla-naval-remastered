@@ -25,6 +25,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			listadoParesOrdenadosY: [10,21,32,43,54,65,76,87,98,109,120],
 			coordenadasXY: [[6,10],[17,21],[28,32],[39,43],[50,54],[61,65],[72,76],[83,87],[94,98],[105,109],[116,120]],
 			listadoNumeroPosicionesY: [],
+			casillaVertical: false,
 			arregloNuevosNumeros: generarArreglo()
 		};
 	
@@ -164,7 +165,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 								} else {
 
-									// SOLUCIONAR EL TEMA DE ESTA CONDICIONAL
 
 									if(!comprobarMultiploDeOnce && !(posicionDeLaCasillaActual >= 67 && posicionDeLaCasillaActual <= 76) && (posicionDeLaCasillaActual >= 0 && posicionDeLaCasillaActual <= 65)){
 										console.log('toca primera condicional')
@@ -200,14 +200,40 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 										let diferencia = posicionDeLaCasillaActual - (juego.cantidadDeCasillasBarco * 11);
 										remarcarCasillasVertical(diferencia);
 									
-									} else if(posicionDeLaCasillaActual >= 111 && posicionDeLaCasillaActual <= 120){
-									
+									} else if((posicionDeLaCasillaActual >= 111 && posicionDeLaCasillaActual <= 120) && !juego.casillaVertical){
 										let diferencia = posicionDeLaCasillaActual - (juego.cantidadDeCasillasBarco * 11);
+										juego.primeraPosicion = diferencia;
+										juego.casillaVertical = true;
 										remarcarCasillasVertical(diferencia);
 									
-									} else if(posicionDeLaCasillaActual >= 67 && posicionDeLaCasillaActual <= 76){
+									} else if((posicionDeLaCasillaActual >= 111 && posicionDeLaCasillaActual <= 120) && posicionDeLaCasillaActual){
+										let diferencia = posicionDeLaCasillaActual - (juego.cantidadDeCasillasBarco * 11);
+										remarcarCasillasVertical(diferencia);
+										juego.casillaVertical = false;
+										juego.primeraPosicion = diferencia;
+									
+									} else if((posicionDeLaCasillaActual >= 67 && posicionDeLaCasillaActual <= 76)){
+										juego.primeraPosicion = posicionDeLaCasillaActual;
 										remarcarCasillasVertical(posicionDeLaCasillaActual);
-									}
+									
+										// SE ME OCURRIO ALGO TODA LA PRIMERA FILA DESDE EL 67 HASTA EL 76, LUEGO DEL 77 HASTA EL 109(IGNORANDO LOS MULTIPLOS DE 11), PARA ULTIMA LA FILA QUE ES DE 111 HASTA 120
+										// QUE SUCEDE, QUE SI HAGO TODO EL ARREGLO DESDE EL 78 HASTA EL 109, Y QUE ATRAVES DE SELECCIONAR UNA DE ESAS CASILLAS, POR EJEMPLO 78, UTILIZARIAMOS LA DIFERENCIA
+									
+
+										/*
+										
+											PODRIA USAR UNA FUNCION QUE SIMPLEMENTE REMARQUE LAS CASILLAS VERTICALES, EL TEMA SERIA COMO IDENTIFICAR LA COL
+										
+										
+											EJ: CASILLA 89
+
+											LET CALCULO = 89 + (11*4) = 133
+
+											IF(CALCULO > 111  || CALCULO > 120)
+										
+										
+										*/ 
+									} 
 
 																	
 							
