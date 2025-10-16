@@ -20,7 +20,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 				}
 				
 				Arreglo.push(arregloElemento);
-				
+
 				copiaIniciadorArreglo++;
 				iniciadorArreglo = copiaIniciadorArreglo;	
 			}
@@ -50,7 +50,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			listadoNumeroPosicionesY: [],
 			casillaVertical: false,
 			arregloNuevosNumeros: generarArreglo(),
-			arregloNuevoDos: generarArreglo2()
+			arregloNuevoDos: generarArreglo2(),
+			columnaNuevosNumeros: null
 		};
 	
 		console.log(juego.arregloNuevoDos)
@@ -128,10 +129,17 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			return numeroEncontrado;
 		}
 
-		const decrementarElementoPosicion = (elemento1, elemento2) => {
-			
-		}
-
+			const encontrarNumerosCorrespondientes = (elementoAverificar) => {
+				for (let i = 0; i < juego.arregloNuevoDos.length; i++) {
+					for (let j = 0; j < juego.arregloNuevoDos[i].length; j++) {
+						if (elementoAverificar === juego.arregloNuevoDos[i][j]) {
+							juego.columnaNuevosNumeros = i;
+							return true;
+						}
+					}
+				}
+				return false;
+			}
 
 		tablero.style.pointerEvents = "auto";
 		tablero.style.opacity = "1";
@@ -154,9 +162,9 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								let verifEstadoPosicionY = juego.listadoParesOrdenadosY.includes(posicionDeLaCasillaActualY);
 								let numeroEntreRango = comprobarRango(posicionDeLaCasillaActual);
 								let comprobarMultiploDeOnce = comprobarRangoY(posicionDeLaCasillaActual);
-								let comprobarNuevoNumero = juego.arregloNuevosNumeros.includes(posicionDeLaCasillaActual)
-								console.log(posicionDeLaCasillaActual)
-
+								let comprobarNuevoNumeroDeNuevoArreglo = encontrarNumerosCorrespondientes(posicionDeLaCasillaActual);
+								let casillaUltima;
+							
 								if(!juego.modoDeColocacionDeBarco){
 
 									if(verifEstadoPosicion) {
@@ -243,24 +251,27 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 										juego.primeraPosicion = posicionDeLaCasillaActual;
 										remarcarCasillasVertical(posicionDeLaCasillaActual);
 									
-										// SE ME OCURRIO ALGO TODA LA PRIMERA FILA DESDE EL 67 HASTA EL 76, LUEGO DEL 77 HASTA EL 109(IGNORANDO LOS MULTIPLOS DE 11), PARA ULTIMA LA FILA QUE ES DE 111 HASTA 120
-										// QUE SUCEDE, QUE SI HAGO TODO EL ARREGLO DESDE EL 78 HASTA EL 109, Y QUE ATRAVES DE SELECCIONAR UNA DE ESAS CASILLAS, POR EJEMPLO 78, UTILIZARIAMOS LA DIFERENCIA
-									
+									} else if(comprobarNuevoNumeroDeNuevoArreglo){
+										switch(juego.columnaNuevosNumeros){
+																					
+											case 0:
+												 casillaUltima = 111;
+												juego.primeraPosicion = casillaUltima - (juego.cantidadDeCasillasBarco * 11);
+												remarcarCasillasVertical(juego.primeraPosicion);
+											;			
 
-										/*
-										
-											PODRIA USAR UNA FUNCION QUE SIMPLEMENTE REMARQUE LAS CASILLAS VERTICALES, EL TEMA SERIA COMO IDENTIFICAR LA COL
-										
-										
-											EJ: CASILLA 89
+											case 1:
+												casillaUltima = 112;
+												juego.primeraPosicion = casillaUltima - (juego.cantidadDeCasillasBarco * 11);
+												remarcarCasillasVertical(juego.primeraPosicion);
+											;
+											
 
-											LET CALCULO = 89 + (11*4) = 133
+										
+										
+										}
 
-											IF(CALCULO > 111  || CALCULO > 120)
-										
-										
-										*/ 
-									} 
+									}
 
 																	
 							
@@ -275,6 +286,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);
 							let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
 							let comprobarMultiploDeOnce = comprobarRangoY(posicionDeLaCasillaActual);
+							let comprobarNuevoNumeroDeNuevoArreglo = encontrarNumerosCorrespondientes(posicionDeLaCasillaActual);
 
 							if(!juego.modoDeColocacionDeBarco){
 								
@@ -323,10 +335,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									desmarcarCasillasVertical(juego.primeraPosicion);
 								} else if(posicionDeLaCasillaActual >= 67 && posicionDeLaCasillaActual <= 76) {
 									desmarcarCasillasVertical(posicionDeLaCasillaActual);
-								} else if(posicionDeLaCasillaActual >= 111 && posicionDeLaCasillaActual <= 120){
-								
-									// CREAR LA LOGICA DE SELECCIONADO TRAS SELECCIONAR ESTA CASILLA
-
 								}
 
 
