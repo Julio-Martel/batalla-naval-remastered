@@ -6,6 +6,29 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
               .filter(num => num % 11 !== 0);
 		};
 
+		const generarArreglo2 = () => {
+			let iniciadorArreglo = 78;
+			let Arreglo = [];
+			let copiaIniciadorArreglo = 78;
+
+			for(let i = 0; i < 10; i++){
+				let arregloElemento = [];
+				arregloElemento.push(iniciadorArreglo);
+				for(let j = 0; j < 2; j++){
+					iniciadorArreglo = iniciadorArreglo + 11;
+					arregloElemento.push(iniciadorArreglo);
+				}
+				
+				Arreglo.push(arregloElemento);
+				
+				copiaIniciadorArreglo++;
+				iniciadorArreglo = copiaIniciadorArreglo;	
+			}
+		
+			return Arreglo;
+		}
+
+
 		const juego = {
 			tableroUsadoPorPrimeraVez: true,
 			modoDeColocacionDeBarco: false,
@@ -26,9 +49,13 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			coordenadasXY: [[6,10],[17,21],[28,32],[39,43],[50,54],[61,65],[72,76],[83,87],[94,98],[105,109],[116,120]],
 			listadoNumeroPosicionesY: [],
 			casillaVertical: false,
-			arregloNuevosNumeros: generarArreglo()
+			arregloNuevosNumeros: generarArreglo(),
+			arregloNuevoDos: generarArreglo2()
 		};
 	
+		console.log(juego.arregloNuevoDos)
+
+
 		let numeroDeInicio = 66, multiplo = 6;
 		for(let x = 0; x < 5; x++){
 			juego.listadoNumeroPosicionesY.push(numeroDeInicio);
