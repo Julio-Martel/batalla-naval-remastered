@@ -335,6 +335,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									desmarcarCasillasVertical(juego.primeraPosicion);
 								} else if(posicionDeLaCasillaActual >= 67 && posicionDeLaCasillaActual <= 76) {
 									desmarcarCasillasVertical(posicionDeLaCasillaActual);
+								} else if(comprobarNuevoNumeroDeNuevoArreglo){
+									desmarcarCasillasVertical(juego.primeraPosicion);
 								}
 
 
