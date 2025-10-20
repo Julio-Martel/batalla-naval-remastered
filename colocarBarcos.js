@@ -86,6 +86,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 				juego.casillasABloquear.push(obtenerIdCasillaActual);
 				obtenerIdCasillaActual.style.background = "darkred"; 
 				elementoIncremental = elementoIncremental + 11;
+				console.log(juego.casillasABloquear)
 			}
 		}
 
@@ -255,13 +256,18 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									} else if(comprobarNuevoNumeroDeNuevoArreglo){
 										console.log(posicionDeLaCasillaActual)
 										switch(juego.columnaNuevosNumeros){
-																					
+																		
+											
+											// remarcar aqui
+
 											case 0:
 												console.log('este caminosss')
 												casillaUltima = 111;
 												juego.primeraPosicion = casillaUltima - (juego.cantidadDeCasillasBarco * 11);
 											
 												remarcarCasillasVertical(juego.primeraPosicion);
+
+												console.log(juego.casillasABloquear)
 											
 											;			
 
@@ -337,7 +343,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
 							let comprobarMultiploDeOnce = comprobarRangoY(posicionDeLaCasillaActual);
 							let comprobarNuevoNumeroDeNuevoArreglo = encontrarNumerosCorrespondientes(posicionDeLaCasillaActual);
-
+							
 							if(!juego.modoDeColocacionDeBarco){
 								
 								if(verifEstadoPosicion && ((posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion))){
@@ -376,7 +382,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							
 							} else {
 													
-
 								if(!comprobarMultiploDeOnce && !(posicionDeLaCasillaActual >= 67 && posicionDeLaCasillaActual <= 76)){
 									desmarcarCasillasVertical(juego.primeraPosicion);
 								} else if(posicionDeLaCasillaActual === 110 || posicionDeLaCasillaActual === 99 || posicionDeLaCasillaActual === 88 || posicionDeLaCasillaActual === 77 || posicionDeLaCasillaActual === 66){
@@ -385,16 +390,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									desmarcarCasillasVertical(juego.primeraPosicion);
 								} else if(posicionDeLaCasillaActual >= 67 && posicionDeLaCasillaActual <= 76) {
 									desmarcarCasillasVertical(posicionDeLaCasillaActual);
-								} 
-
-
-								
-
-								
-	
-								
-  
-													
+								} 		
 								
 							}
 
