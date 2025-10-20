@@ -134,6 +134,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 					for (let j = 0; j < juego.arregloNuevoDos[i].length; j++) {
 						if (elementoAverificar === juego.arregloNuevoDos[i][j]) {
 							juego.columnaNuevosNumeros = i;
+							console.log(i)
 							return true;
 						}
 					}
@@ -202,7 +203,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 
 									if(!comprobarMultiploDeOnce && !(posicionDeLaCasillaActual >= 67 && posicionDeLaCasillaActual <= 76) && (posicionDeLaCasillaActual >= 0 && posicionDeLaCasillaActual <= 65)){
-										console.log('toca primera condicional')
+
 										juego.primeraPosicion = posicionDeLaCasillaActual;
 										remarcarCasillasVertical(juego.primeraPosicion);
 									
@@ -252,12 +253,16 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 										remarcarCasillasVertical(posicionDeLaCasillaActual);
 									
 									} else if(comprobarNuevoNumeroDeNuevoArreglo){
+										console.log(posicionDeLaCasillaActual)
 										switch(juego.columnaNuevosNumeros){
 																					
 											case 0:
-												 casillaUltima = 111;
+												console.log('este caminosss')
+												casillaUltima = 111;
 												juego.primeraPosicion = casillaUltima - (juego.cantidadDeCasillasBarco * 11);
+											
 												remarcarCasillasVertical(juego.primeraPosicion);
+											
 											;			
 
 											case 1:
@@ -380,73 +385,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									desmarcarCasillasVertical(juego.primeraPosicion);
 								} else if(posicionDeLaCasillaActual >= 67 && posicionDeLaCasillaActual <= 76) {
 									desmarcarCasillasVertical(posicionDeLaCasillaActual);
-								} else if(comprobarNuevoNumeroDeNuevoArreglo){
-										switch(juego.columnaNuevosNumeros){
-																		
-											// ARREGLAR ESTO, PARA EL QUITAR LA SELECCION DE ESTAS CASILLAS, LO ULTIMO QUE FALTA
-
-											case 0:
-												 casillaUltima = 111;
-												juego.primeraPosicion = casillaUltima - (juego.cantidadDeCasillasBarco * 11);
-												desmarcarCasillasVertical(juego.primeraPosicion);
-											;			
-
-											case 1:
-												casillaUltima = 112;
-												juego.primeraPosicion = casillaUltima - (juego.cantidadDeCasillasBarco * 11);
-												desmarcarCasillasVertical(juego.primeraPosicion);
-											;
-											
-											case 2:
-												casillaUltima = 113;
-												juego.primeraPosicion = casillaUltima - (juego.cantidadDeCasillasBarco * 11);
-												desmarcarCasillasVertical(juego.primeraPosicion);
-											;
-
-											case 3: 
-												casillaUltima = 114;
-												juego.primeraPosicion = casillaUltima - (juego.cantidadDeCasillasBarco * 11);
-												desmarcarCasillasVertical(juego.primeraPosicion);
-											;
-										
-											case 4:
-												casillaUltima = 115;
-												juego.primeraPosicion = casillaUltima - (juego.cantidadDeCasillasBarco * 11);
-												desmarcarCasillasVertical(juego.primeraPosicion)
-											;
-
-											case 5:
-												casillaUltima = 116;
-												juego.primeraPosicion = casillaUltima - (juego.cantidadDeCasillasBarco * 11);
-												desmarcarCasillasVertical(juego.primeraPosicion);
-											;
-
-											case 6:
-												casillaUltima = 117;
-												juego.primeraPosicion = casillaUltima - (juego.cantidadDeCasillasBarco * 11);
-												desmarcarCasillasVertical(juego.primeraPosicion);
-											;
-										
-											case 7:
-												casillaUltima = 118;
-												juego.primeraPosicion = casillaUltima - (juego.cantidadDeCasillasBarco * 11);
-												desmarcarCasillasVertical(juego.primeraPosicion);
-											;
-
-											case 8:
-												casillaUltima = 119;
-												juego.primeraPosicion = casillaUltima - (juego.cantidadDeCasillasBarco * 11);
-												desmarcarCasillasVertical(juego.primeraPosicion);
-											;											
-										
-											case 9:
-												casillaUltima = 120;
-												juego.primeraPosicion = casillaUltima - (juego.cantidadDeCasillasBarco * 11);
-												desmarcarCasillasVertical(juego.primeraPosicion);
-											;										
-										
-										}
-								}
+								} 
 
 
 								
