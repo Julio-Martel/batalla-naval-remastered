@@ -86,7 +86,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 				juego.casillasABloquear.push(obtenerIdCasillaActual);
 				obtenerIdCasillaActual.style.background = "darkred"; 
 				elementoIncremental = elementoIncremental + 11;
-				console.log(juego.casillasABloquear)
+
 			}
 		}
 
@@ -203,7 +203,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								} else {
 
 
-									if(!comprobarMultiploDeOnce && !(posicionDeLaCasillaActual >= 67 && posicionDeLaCasillaActual <= 76) && (posicionDeLaCasillaActual >= 0 && posicionDeLaCasillaActual <= 65)){
+									if(posicionDeLaCasillaActual >= 0 && posicionDeLaCasillaActual <= 65){
 
 										juego.primeraPosicion = posicionDeLaCasillaActual;
 										remarcarCasillasVertical(juego.primeraPosicion);
@@ -254,20 +254,21 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 										remarcarCasillasVertical(posicionDeLaCasillaActual);
 									
 									} else if(comprobarNuevoNumeroDeNuevoArreglo){
-										console.log(posicionDeLaCasillaActual)
+										
 										switch(juego.columnaNuevosNumeros){
 																		
 											
 											// remarcar aqui
 
 											case 0:
-												console.log('este caminosss')
+												
 												casillaUltima = 111;
 												juego.primeraPosicion = casillaUltima - (juego.cantidadDeCasillasBarco * 11);
 											
 												remarcarCasillasVertical(juego.primeraPosicion);
 
 												console.log(juego.casillasABloquear)
+												
 											
 											;			
 
