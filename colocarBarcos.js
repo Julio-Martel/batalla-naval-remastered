@@ -351,7 +351,10 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								}  else if(posicionDeLaCasillaActual >= 111 && posicionDeLaCasillaActual <= 120){
 									let restarElemento = posicionDeLaCasillaActual - (juego.cantidadDeCasillasBarco * 11);
 									desmarcarCasillasVertical(restarElemento)
-								}	
+								} else {
+
+									desmarcarCasillasVertical(posicionDeLaCasillaActual)
+								}
 								
 							}
 
@@ -418,8 +421,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								}
 							
 								remarcarCasillasVertical(juego.primeraPosicion)
-							
-								console.log(juego.casillasABloquear)
 
 							} else if(posicionDeLaCasillaActual >= 111 && posicionDeLaCasillaActual <= 116){
 								let restarElemento = posicionDeLaCasillaActual - (juego.cantidadDeCasillasBarco * 11);
@@ -427,6 +428,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							} else if(posicionDeLaCasillaActual >= 117 && posicionDeLaCasillaActual <= 120){
 								let restarElemento = posicionDeLaCasillaActual - (juego.cantidadDeCasillasBarco * 11);
 								remarcarCasillasVertical(restarElemento);
+							} else {
+								remarcarCasillasVertical(posicionDeLaCasillaActual)
 							}
 
 							
