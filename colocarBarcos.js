@@ -73,7 +73,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 		}
 
 		const desmarcarCasillas = (elementoPosicion1, elementoPosicion2) => {
-			for(let x = elementoPosicion1; x <= elementoPosicion2; x++) {
+			for(let x = elementoPosicion2; x > elementoPosicion1 ;  x--) {
 				let quitarColorDeLaCasilla = document.getElementById(`casilla-0-${x}`);
 				quitarColorDeLaCasilla.style.background = "none";	
 			}			
@@ -305,13 +305,14 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							if(!juego.modoDeColocacionDeBarco){
 								
 								if(verifEstadoPosicion && ((posicionDeLaCasillaActual >= juego.primeraPosicion && posicionDeLaCasillaActual <= juego.ultimaPosicion))){
-
+	
 									desmarcarCasillas(juego.primeraPosicion, juego.ultimaPosicion);												
 									
 								} else if (juego.primeraPosicion === null) {
 									
 									let incrementarCasillaDeLaPosicionActual = juego.primeraPosicion + juego.cantidadDeCasillasBarco;	
 									desmarcarCasillas(posicionDeLaCasillaActual,incrementarCasillaDeLaPosicionActual)												
+								
 								} else {
 						
 									desmarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion)
@@ -321,9 +322,12 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								}
 
 								if(!juego.casillaColocada){
+								
 									casillasDelTablero.forEach(casilla => casilla.style.background = "none");
 									juego.casillaColocada = false;
+								
 								} else {
+									
 									casillasDelTablero.forEach(casilla => {
 										let incluidoEnElArreglo = juego.casillasABloquear.includes(casilla);
 										let valueDeLaCasilla = casilla.getAttribute('id');
@@ -389,8 +393,10 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							if(posicionDeLaCasillaActual === 110){
 								let restarElemento = posicionDeLaCasillaActual - (juego.cantidadDeCasillasBarco * 11);
 								let diferenciaElemento = posicionDeLaCasillaActual + juego.cantidadDeCasillasBarco;
-								remarcarCasillasVertical(restarElemento)
+								console.log('fffff')
 								desmarcarCasillas(posicionDeLaCasillaActual,diferenciaElemento)
+								remarcarCasillasVertical(restarElemento)
+								
 							
 							} else if(comprobarNuevoNumeroDeNuevoArreglo){
 								
