@@ -424,15 +424,27 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							
 								remarcarCasillasVertical(juego.primeraPosicion)
 
-							} else if(posicionDeLaCasillaActual >= 111 && posicionDeLaCasillaActual <= 116){
+							} else if(posicionDeLaCasillaActual >= 111 && posicionDeLaCasillaActual <= 115){
 								let restarElemento = posicionDeLaCasillaActual - (juego.cantidadDeCasillasBarco * 11);
 								let incrementar = posicionDeLaCasillaActual + juego.cantidadDeCasillasBarco;
+							
 								desmarcarCasillas(posicionDeLaCasillaActual,incrementar);
 								remarcarCasillasVertical(restarElemento)
 								
+							} else if(posicionDeLaCasillaActual === 116){
+								let restarElemento = posicionDeLaCasillaActual - (juego.cantidadDeCasillasBarco * 11);
+								let incrementar = posicionDeLaCasillaActual + juego.cantidadDeCasillasBarco;								
+								juego.primeraPosicion = posicionDeLaCasillaActual;
+								desmarcarCasillas(posicionDeLaCasillaActual,incrementar);
+								remarcarCasillasVertical(restarElemento)
+							
 							} else if(posicionDeLaCasillaActual >= 117 && posicionDeLaCasillaActual <= 120){
 								let restarElemento = posicionDeLaCasillaActual - (juego.cantidadDeCasillasBarco * 11);
+								juego.ultimaPosicion = juego.primeraPosicion + juego.cantidadDeCasillasBarco;
+
+								desmarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);
 								remarcarCasillasVertical(restarElemento);
+
 							} else {
 								desmarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion)
 								remarcarCasillasVertical(posicionDeLaCasillaActual)
@@ -453,7 +465,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									
 									remarcarCasillas(juego.primeraPosicion, juego.ultimaPosicion);
 								
-								} else if(posicionDeLaCasillaActual >= 111 && posicionDeLaCasillaActual <= 116){
+								} else if(posicionDeLaCasillaActual >= 111 && posicionDeLaCasillaActual <= 115){
 									let restarElemento = posicionDeLaCasillaActual - (juego.cantidadDeCasillasBarco * 11);
 
 									juego.ultimaPosicion = posicionDeLaCasillaActual + juego.cantidadDeCasillasBarco;
@@ -462,7 +474,15 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									desmarcarCasillasVertical(restarElemento);
 									remarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);
 								
-								} else if(posicionDeLaCasillaActual >= 117 && posicionDeLaCasillaActual <= 120){
+								} else if(posicionDeLaCasillaActual === 116){
+									let restarElemento = posicionDeLaCasillaActual - (juego.cantidadDeCasillasBarco * 11);
+									let incrementar = posicionDeLaCasillaActual + juego.cantidadDeCasillasBarco;
+									
+									desmarcarCasillasVertical(restarElemento);
+									remarcarCasillas(posicionDeLaCasillaActual, incrementar);
+
+
+								}else if(posicionDeLaCasillaActual >= 117 && posicionDeLaCasillaActual <= 120){
 									let restarElementoALaUltimaBase = posicionDeLaCasillaActual - (juego.cantidadDeCasillasBarco * 11);
 									juego.primeraPosicion = posicionDeLaCasillaActual - juego.cantidadDeCasillasBarco;
 									
