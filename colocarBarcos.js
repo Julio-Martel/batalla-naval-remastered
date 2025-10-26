@@ -450,10 +450,16 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									juego.primeraPosicion = 76;
 								}
 							
+								
+								console.log('click here')
+								
 								juego.ultimaPosicion = posicionDeLaCasillaActual + juego.cantidadDeCasillasBarco;
 
-								remarcarCasillasVertical(juego.primeraPosicion);
+
+
 								desmarcarCasillas(posicionDeLaCasillaActual,juego.ultimaPosicion);
+								remarcarCasillasVertical(juego.primeraPosicion);
+								
 
 							} else if(posicionDeLaCasillaActual >= 111 && posicionDeLaCasillaActual <= 115){
 								let restarElemento = posicionDeLaCasillaActual - (juego.cantidadDeCasillasBarco * 11);
@@ -481,6 +487,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							
 							}
 							
+							// CORREGIR SELECCION DE CASILLAS
 							
 							else if(posicionDeLaCasillaActual >= 117 && posicionDeLaCasillaActual <= 120){
 								let restarElemento = posicionDeLaCasillaActual - (juego.cantidadDeCasillasBarco * 11);
@@ -581,6 +588,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									
 									desmarcarCasillasVertical(posicionDeLaCasillaActual);
 									remarcarCasillas(posicionDeLaCasillaActual, juego.primeraPosicion)
+
+									
 								}
 							
 						}
