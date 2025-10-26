@@ -302,6 +302,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							let idCasillaActual = document.getElementById(obtenerIdCasillaActual);
 							let posicionDeLaCasillaActual = Array.from(casillasDelTablero).indexOf(idCasillaActual);
 							let verifEstadoPosicion = juego.listadoParesOrdenados.includes(posicionDeLaCasillaActual);
+							let comprobarNuevoNumeroDeNuevoArreglo = encontrarNumerosCorrespondientes(posicionDeLaCasillaActual);
 							
 							if(!juego.modoDeColocacionDeBarco){
 								
@@ -357,6 +358,31 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								} else if(posicionDeLaCasillaActual >= 0 && posicionDeLaCasillaActual <= 65) {
 									console.log('POR AQUI NO PASAS')
 									desmarcarCasillasVertical(posicionDeLaCasillaActual)
+								} else if(comprobarNuevoNumeroDeNuevoArreglo){
+									
+									if(juego.columnaNuevosNumeros === 0){
+											juego.primeraPosicion = 67;
+										} else if(juego.columnaNuevosNumeros === 1){
+											juego.primeraPosicion = 68;
+										} else if(juego.columnaNuevosNumeros === 2){
+											juego.primeraPosicion = 69;
+										} else if(juego.columnaNuevosNumeros === 3){
+											juego.primeraPosicion = 70;
+										} else if(juego.columnaNuevosNumeros === 4){
+											juego.primeraPosicion = 71;
+										} else if(juego.columnaNuevosNumeros === 5){
+											juego.primeraPosicion = 72;
+										} else if(juego.columnaNuevosNumeros === 6){
+											juego.primeraPosicion = 73;
+										} else if(juego.columnaNuevosNumeros === 7){
+											juego.primeraPosicion = 74;
+										} else if(juego.columnaNuevosNumeros === 8){
+											juego.primeraPosicion = 75;
+										} else {
+											juego.primeraPosicion = 76;
+										}
+										
+										desmarcarCasillasVertical(juego.primeraPosicion);
 								}
 								
 							}
