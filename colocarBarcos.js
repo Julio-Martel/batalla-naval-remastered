@@ -354,8 +354,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								}  else if(posicionDeLaCasillaActual >= 111 && posicionDeLaCasillaActual <= 120){
 									let restarElemento = posicionDeLaCasillaActual - (juego.cantidadDeCasillasBarco * 11);
 									desmarcarCasillasVertical(restarElemento)
-								} else {
-
+								} else if(posicionDeLaCasillaActual >= 0 && posicionDeLaCasillaActual <= 65) {
+									console.log('POR AQUI NO PASAS')
 									desmarcarCasillasVertical(posicionDeLaCasillaActual)
 								}
 								
@@ -471,6 +471,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 								if(posicionDeLaCasillaActual === 110){
 									let restarElemento = posicionDeLaCasillaActual - (juego.cantidadDeCasillasBarco * 11);
+								
 									juego.ultimaPosicion = posicionDeLaCasillaActual + juego.cantidadDeCasillasBarco;
 									
 									juego.primeraPosicion = posicionDeLaCasillaActual;
