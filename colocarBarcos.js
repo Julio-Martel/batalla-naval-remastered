@@ -449,17 +449,24 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								} else {
 									juego.primeraPosicion = 76;
 								}
-							
-								
-								console.log('click here')
-								
-								juego.ultimaPosicion = posicionDeLaCasillaActual + juego.cantidadDeCasillasBarco;
 
 
-
-								desmarcarCasillas(posicionDeLaCasillaActual,juego.ultimaPosicion);
-								remarcarCasillasVertical(juego.primeraPosicion);
+									// CORREGIR AQUI 
 								
+									if(posicionDeLaCasillaActual === 87 || posicionDeLaCasillaActual === 98 || posicionDeLaCasillaActual === 109){
+										juego.primeraPosicion = posicionDeLaCasillaActual - juego.cantidadDeCasillasBarco;
+
+										desmarcarCasillas(juego.primeraPosicion,posicionDeLaCasillaActual);
+										remarcarCasillasVertical(posicionDeLaCasillaActual);
+									
+									} else {
+								
+   										juego.ultimaPosicion = posicionDeLaCasillaActual + juego.cantidadDeCasillasBarco;
+
+										desmarcarCasillas(posicionDeLaCasillaActual,juego.ultimaPosicion);
+										remarcarCasillasVertical(juego.primeraPosicion);
+																		
+									}
 
 							} else if(posicionDeLaCasillaActual >= 111 && posicionDeLaCasillaActual <= 115){
 								let restarElemento = posicionDeLaCasillaActual - (juego.cantidadDeCasillasBarco * 11);
@@ -577,11 +584,19 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									}									
 
 
-									juego.ultimaPosicion = posicionDeLaCasillaActual + juego.cantidadDeCasillasBarco;
+									if(posicionDeLaCasillaActual === 87 || posicionDeLaCasillaActual === 98 || posicionDeLaCasillaActual === 109){
+										juego.primeraPosicion = posicionDeLaCasillaActual - juego.cantidadDeCasillasBarco;
+
+										desmarcarCasillasVertical(posicionDeLaCasillaActual);
+										remarcarCasillas(juego.primeraPosicion,posicionDeLaCasillaActual);
+									
+									} else {
+										juego.ultimaPosicion = posicionDeLaCasillaActual + juego.cantidadDeCasillasBarco;
 
 
-									desmarcarCasillasVertical(juego.primeraPosicion);
-									remarcarCasillas(posicionDeLaCasillaActual, juego.ultimaPosicion );
+										desmarcarCasillasVertical(juego.primeraPosicion);
+										remarcarCasillas(posicionDeLaCasillaActual, juego.ultimaPosicion );
+									}
 
 								} else if(posicionDeLaCasillaActual === 76){
 									
