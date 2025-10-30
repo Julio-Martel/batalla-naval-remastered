@@ -610,11 +610,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 										remarcarCasillas(decrementarElemento,posicionDeLaCasillaActual);
 
 									} else if(posicionDeLaCasillaActual === 109){
-										console.log('aqui el error del 109')
 										let decrementarElemento = posicionDeLaCasillaActual - juego.cantidadDeCasillasBarco;
 										juego.ultimaPosicion = juego.primeraPosicion + (juego.cantidadDeCasillasBarco * 11);
-
-										console.log(`here ult ${juego.ultimaPosicion} and pri ${juego.primeraPosicion}`)
 
 										desmarcarCasillasVertical(juego.primeraPosicion,juego.ultimaPosicion);
 										remarcarCasillas(decrementarElemento, posicionDeLaCasillaActual);
