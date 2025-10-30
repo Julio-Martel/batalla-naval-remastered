@@ -546,10 +546,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								let comprobarNumeroSiEstaEnElArreglo = encontrarNumerosCorrespondientesDos(posicionDeLaCasillaActual);
 
 								if(comprobarNumeroSiEstaEnElArreglo){
-									
-									console.log(`aquiiiii ${posicionDeLaCasillaActual}`)
-									console.log(`columna nuevos nros ${juego.columnaNuevosNumeros}`)
-
+								
 									if(juego.columnaNuevosNumeros === 0){
 										juego.primeraPosicion = 6;
 									} else if(juego.columnaNuevosNumeros === 1){
@@ -566,8 +563,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 									let copiaJuegoPrimeraPosicioncopiaJuegoPrimeraPosicion = posicionDeLaCasillaActual - juego.cantidadDeCasillasBarco;
 									juego.ultimaPosicion = juego.primeraPosicion + juego.cantidadDeCasillasBarco;
-
-									console.log(`ult pos here ${juego.ultimaPosicion}`)
 
 									desmarcarCasillas(copiaJuegoPrimeraPosicioncopiaJuegoPrimeraPosicion,juego.ultimaPosicion);
 									desmarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);
