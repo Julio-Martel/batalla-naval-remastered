@@ -446,9 +446,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								} else {
 									juego.primeraPosicion = 76;
 								}
-
-
-									// CORREGIR AQUI 
 								
 									if(posicionDeLaCasillaActual === 87){
 										let restarElemento = posicionDeLaCasillaActual - juego.cantidadDeCasillasBarco;
