@@ -166,8 +166,24 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 				return encontrado;
 			}
 
+			const encontrarNumerosCorrespondientesDos = (elementoAverificar) => {
+				let encontrado = false;
+				for (let i = 0; i < juego.arregloNuevoTres.length; i++) {
+					for (let j = 0; j < juego.arregloNuevoTres[i].length; j++) {
+						if (elementoAverificar === juego.arregloNuevoTres[i][j]) {
+							juego.columnaNuevosNumeros = i;
+							encontrado = true;
+							break;
+							
+						}
+					}
+				}
 
-			console.log(juego.arregloNuevoTres)
+				return encontrado;
+			}
+
+
+
 
 		tablero.style.pointerEvents = "auto";
 		tablero.style.opacity = "1";
@@ -527,12 +543,42 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								remarcarCasillasVertical(posicionDeLaCasillaActual);								
 
 							} else if(posicionDeLaCasillaActual >= 0 && posicionDeLaCasillaActual <= 65) {
-								juego.primeraPosicion = posicionDeLaCasillaActual;
-								juego.ultimaPosicion = posicionDeLaCasillaActual + juego.cantidadDeCasillasBarco;
+								let comprobarNumeroSiEstaEnElArreglo = encontrarNumerosCorrespondientesDos(posicionDeLaCasillaActual);
 
-								desmarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion)
-								remarcarCasillasVertical(juego.primeraPosicion)
+								if(comprobarNumeroSiEstaEnElArreglo){
+									
+									console.log(`aquiiiii ${posicionDeLaCasillaActual}`)
+									console.log(`columna nuevos nros ${juego.columnaNuevosNumeros}`)
 
+									if(juego.columnaNuevosNumeros === 0){
+										juego.primeraPosicion = 6;
+									} else if(juego.columnaNuevosNumeros === 1){
+										juego.primeraPosicion = 18;
+									} else if(juego.columnaNuevosNumeros === 2){
+										juego.primeraPosicion = 28;
+									} else if(juego.columnaNuevosNumeros === 3){
+										juego.primeraPosicion = 39;
+									} else if(juego.columnaNuevosNumeros === 4){
+										juego.primeraPosicion = 50;
+									} else {
+										juego.primeraPosicion = 76;
+									}										
+
+
+									juego.ultimaPosicion = juego.primeraPosicion + juego.cantidadDeCasillasBarco;
+
+									desmarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);
+									remarcarCasillasVertical(posicionDeLaCasillaActual);
+
+
+								} else {
+									
+									juego.primeraPosicion = posicionDeLaCasillaActual;
+									juego.ultimaPosicion = posicionDeLaCasillaActual + juego.cantidadDeCasillasBarco;
+
+									desmarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);
+									remarcarCasillasVertical(juego.primeraPosicion);
+								}
 							}
 							
 						} else {
@@ -642,14 +688,40 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									remarcarCasillas(decrementarElemento,posicionDeLaCasillaActual);
 								
 								} else if(posicionDeLaCasillaActual >= 0 && posicionDeLaCasillaActual <= 65) {
-									
-									let incrementarElemento = posicionDeLaCasillaActual + juego.cantidadDeCasillasBarco;
-									juego.ultimaPosicion = posicionDeLaCasillaActual + (juego.cantidadDeCasillasBarco * 11);
-									
-									desmarcarCasillasVertical(posicionDeLaCasillaActual,juego.ultimaPosicion);
-									remarcarCasillas(posicionDeLaCasillaActual, incrementarElemento);
+									let comprobarNumeroSiEstaEnElArreglo = encontrarNumerosCorrespondientesDos(posicionDeLaCasillaActual);
+								
+									if(comprobarNumeroSiEstaEnElArreglo){
 
-									
+										if(juego.columnaNuevosNumeros === 0){
+											juego.primeraPosicion = 7;
+										} else if(juego.columnaNuevosNumeros === 1){
+											juego.primeraPosicion = 18;
+										} else if(juego.columnaNuevosNumeros === 2){
+											juego.primeraPosicion = 28;
+										} else if(juego.columnaNuevosNumeros === 3){
+											juego.primeraPosicion = 39;
+										} else if(juego.columnaNuevosNumeros === 4){
+											juego.primeraPosicion = 50;
+										} else {
+											juego.primeraPosicion = 76;
+										}	
+										
+										let incrementarElemento = posicionDeLaCasillaActual + (juego.cantidadDeCasillasBarco * 11);
+										juego.primeraPosicion = posicionDeLaCasillaActual - juego.cantidadDeCasillasBarco;
+								
+
+										desmarcarCasillasVertical(posicionDeLaCasillaActual,incrementarElemento);
+										remarcarCasillas(juego.primeraPosicion, posicionDeLaCasillaActual);
+
+										
+									} else {
+
+										let incrementarElemento = posicionDeLaCasillaActual + juego.cantidadDeCasillasBarco;
+										juego.ultimaPosicion = posicionDeLaCasillaActual + (juego.cantidadDeCasillasBarco * 11);
+										
+										desmarcarCasillasVertical(posicionDeLaCasillaActual,juego.ultimaPosicion);
+										remarcarCasillas(posicionDeLaCasillaActual, incrementarElemento);
+									}							
 								}
 							
 						
