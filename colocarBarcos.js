@@ -28,6 +28,28 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			return Arreglo;
 		}
 
+		const generarArreglo3 = () => {
+			let iniciadorArreglo = 7;
+			let Arreglo = [];
+			let copiaIniciadorArreglo = 7;
+
+			for(let i = 0; i < 6; i++){
+				let arregloElemento = [];
+				arregloElemento.push(iniciadorArreglo)
+				for(let j = 0; j < 3; j++){
+					iniciadorArreglo = iniciadorArreglo + 1;
+					arregloElemento.push(iniciadorArreglo);
+				} 
+			
+				Arreglo.push(arregloElemento);
+				copiaIniciadorArreglo = copiaIniciadorArreglo + 11;
+				iniciadorArreglo = copiaIniciadorArreglo;
+			}
+
+			return Arreglo;
+
+		}
+
 
 		const juego = {
 			tableroUsadoPorPrimeraVez: true,
@@ -51,6 +73,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			casillaVertical: false,
 			arregloNuevosNumeros: generarArreglo(),
 			arregloNuevoDos: generarArreglo2(),
+			arregloNuevoTres: generarArreglo3(),
 			columnaNuevosNumeros: null
 		};
 	
@@ -114,7 +137,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			return entreRango;
 		}
 
-		const comprobarRangoY = (numero) => {
+		/*const comprobarRangoY = (numero) => {
 			let numeroEncontrado = false;
 			for(let i = 0; i < juego.listadoNumeroPosicionesY.length; i++){
 				let elementoDelArreglo = juego.listadoNumeroPosicionesY[i];
@@ -125,7 +148,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			}
 
 			return numeroEncontrado;
-		}
+		}*/
 
 			const encontrarNumerosCorrespondientes = (elementoAverificar) => {
 				let encontrado = false;
@@ -142,6 +165,9 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 				return encontrado;
 			}
+
+
+			console.log(juego.arregloNuevoTres)
 
 		tablero.style.pointerEvents = "auto";
 		tablero.style.opacity = "1";
@@ -286,9 +312,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 										remarcarCasillasVertical(juego.primeraPosicion);
 
 								}
-
-																	
-							
+						
 							}
 
 						});
@@ -510,7 +534,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								remarcarCasillasVertical(juego.primeraPosicion)
 
 							}
-
 							
 						} else {
 								juego.modoDeColocacionDeBarco = false;  
