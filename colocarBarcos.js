@@ -564,7 +564,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 										juego.primeraPosicion = 76;
 									}										
 
-
 									juego.ultimaPosicion = juego.primeraPosicion + juego.cantidadDeCasillasBarco;
 
 									desmarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);
@@ -693,7 +692,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									if(comprobarNumeroSiEstaEnElArreglo){
 
 										if(juego.columnaNuevosNumeros === 0){
-											juego.primeraPosicion = 7;
+											juego.primeraPosicion = 6;
 										} else if(juego.columnaNuevosNumeros === 1){
 											juego.primeraPosicion = 18;
 										} else if(juego.columnaNuevosNumeros === 2){
