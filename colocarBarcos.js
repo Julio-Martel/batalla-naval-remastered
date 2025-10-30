@@ -54,9 +54,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			columnaNuevosNumeros: null
 		};
 	
-		console.log(juego.arregloNuevoDos)
-
-
 		let numeroDeInicio = 66, multiplo = 6;
 		for(let x = 0; x < 5; x++){
 			juego.listadoNumeroPosicionesY.push(numeroDeInicio);
@@ -465,6 +462,11 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 										desmarcarCasillas(restarElemento,posicionDeLaCasillaActual);
 										remarcarCasillasVertical(juego.primeraPosicion);
 
+									} else if(posicionDeLaCasillaActual === 109){
+										let restarElemento = posicionDeLaCasillaActual - juego.cantidadDeCasillasBarco;
+
+										desmarcarCasillas(restarElemento,posicionDeLaCasillaActual);
+										remarcarCasillasVertical(juego.primeraPosicion)
 									} else {
 								
    										juego.ultimaPosicion = posicionDeLaCasillaActual + juego.cantidadDeCasillasBarco;
@@ -607,11 +609,22 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 										desmarcarCasillasVertical(juego.primeraPosicion,juego.ultimaPosicion);
 										remarcarCasillas(decrementarElemento,posicionDeLaCasillaActual);
 
+									} else if(posicionDeLaCasillaActual === 109){
+										console.log('aqui el error del 109')
+										let decrementarElemento = posicionDeLaCasillaActual - juego.cantidadDeCasillasBarco;
+										juego.ultimaPosicion = juego.primeraPosicion + (juego.cantidadDeCasillasBarco * 11);
+
+										console.log(`here ult ${juego.ultimaPosicion} and pri ${juego.primeraPosicion}`)
+
+										desmarcarCasillasVertical(juego.primeraPosicion,juego.ultimaPosicion);
+										remarcarCasillas(decrementarElemento, posicionDeLaCasillaActual);
+
 									} else {
+										
 										juego.ultimaPosicion = posicionDeLaCasillaActual + juego.cantidadDeCasillasBarco;
 
 
-										desmarcarCasillasVertical(juego.primeraPosicion);
+										desmarcarCasillasVertical(juego.primeraPosicion,juego.ultimaPosicion);
 										remarcarCasillas(posicionDeLaCasillaActual, juego.ultimaPosicion );
 									}
 
