@@ -137,19 +137,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			return entreRango;
 		}
 
-		/*const comprobarRangoY = (numero) => {
-			let numeroEncontrado = false;
-			for(let i = 0; i < juego.listadoNumeroPosicionesY.length; i++){
-				let elementoDelArreglo = juego.listadoNumeroPosicionesY[i];
-				if(elementoDelArreglo === numero){
-					numeroEncontrado = true;
-					break;
-				}
-			}
-
-			return numeroEncontrado;
-		}*/
-
 			const encontrarNumerosCorrespondientes = (elementoAverificar) => {
 				let encontrado = false;
 				for (let i = 0; i < juego.arregloNuevoDos.length; i++) {
@@ -668,7 +655,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 										juego.primeraPosicion = 76;
 									}									
 
-
 									if(posicionDeLaCasillaActual === 87){
 										let restarElemento = posicionDeLaCasillaActual - juego.cantidadDeCasillasBarco;
 
@@ -694,8 +680,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 										remarcarCasillas(decrementarElemento, posicionDeLaCasillaActual);
 
 									}
-
-									
 
 								} else if(posicionDeLaCasillaActual >= 67 && posicionDeLaCasillaActual <= 76){
 									let incrementarElemento = posicionDeLaCasillaActual + juego.cantidadDeCasillasBarco;
