@@ -682,11 +682,11 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									
 
 								} else if(posicionDeLaCasillaActual >= 67 && posicionDeLaCasillaActual <= 76){
-									let decrementarElemento = posicionDeLaCasillaActual - juego.cantidadDeCasillasBarco;
+									let incrementarElemento = posicionDeLaCasillaActual + juego.cantidadDeCasillasBarco;
 									juego.ultimaPosicion = posicionDeLaCasillaActual + (juego.cantidadDeCasillasBarco * 11);
 
 									desmarcarCasillasVertical(posicionDeLaCasillaActual,juego.ultimaPosicion);
-									remarcarCasillas(decrementarElemento,posicionDeLaCasillaActual);
+									remarcarCasillas(posicionDeLaCasillaActual,incrementarElemento);
 								
 								} else if(posicionDeLaCasillaActual >= 0 && posicionDeLaCasillaActual <= 65) {
 									let comprobarNumeroSiEstaEnElArreglo = encontrarNumerosCorrespondientesDos(posicionDeLaCasillaActual);
