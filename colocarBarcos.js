@@ -180,6 +180,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			juego.cantidadDeCasillasBarco = 4;
 
 			if(juego.tableroUsadoPorPrimeraVez){	
+				
 				casillasDelTablero.forEach(casillaActualDelTablero => {
 							
 					casillaActualDelTablero.addEventListener('mouseover', () => {
@@ -314,7 +315,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 						
 							}
 
-						});
+					});
 
 					casillaActualDelTablero.addEventListener('mouseout', () => {
 								
@@ -410,7 +411,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							juego.casillasABloquear = [];
 
 					})
-
 					
 					casillaActualDelTablero.addEventListener('click', () => {
 
@@ -782,7 +782,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			}
 						
 			break;
-		
+	
 
 		}
 
