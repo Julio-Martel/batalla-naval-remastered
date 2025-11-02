@@ -438,6 +438,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							juego.modoDeColocacionDeBarco = true;
 							
 							if(posicionDeLaCasillaActual === 110){
+								
 								let restarElemento = posicionDeLaCasillaActual - (juego.cantidadDeCasillasBarco * 11);
 								let diferenciaElemento = posicionDeLaCasillaActual + juego.cantidadDeCasillasBarco;
 
@@ -532,7 +533,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								desmarcarCasillas(posicionDeLaCasillaActual,juego.ultimaPosicion);
 								remarcarCasillasVertical(posicionDeLaCasillaActual);								
 
-							} else if(posicionDeLaCasillaActual => 73 && posicionDeLaCasillaActual <= 76){
+							} else if(posicionDeLaCasillaActual >= 73 && posicionDeLaCasillaActual <= 76){
 								
 								let restarElemento = posicionDeLaCasillaActual - juego.cantidadDeCasillasBarco;
 
@@ -542,7 +543,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 							}else if(posicionDeLaCasillaActual >= 0 && posicionDeLaCasillaActual <= 65) {
 								let comprobarNumeroSiEstaEnElArreglo = encontrarNumerosCorrespondientesDos(posicionDeLaCasillaActual);
-
+									console.log('asdcxxzzxzxzxzx')
 								if(comprobarNumeroSiEstaEnElArreglo){
 								
 									if(juego.columnaNuevosNumeros === 0){
@@ -576,9 +577,13 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									desmarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);
 									remarcarCasillasVertical(juego.primeraPosicion);
 								}
+							
 							}
 							
 						} else {
+
+							/*AQUI ES QUE SI AL HACER CLICK EN UNA CASILLA DONDE ESTA TODO EN VERTICAL AL HACER CLICK DERECHO SE HARAN EN VERTICAL*/
+
 								juego.modoDeColocacionDeBarco = false;  
 
 								if(posicionDeLaCasillaActual === 110){
