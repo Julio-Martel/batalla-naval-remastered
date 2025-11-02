@@ -168,20 +168,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 				return encontrado;
 			}
 
-			const verificarUltimasCasillas = (casillaAVerificar) => {
-				let posicionEnElArreglo;
-
-				for(let i = 0; i < juego.ultimosNros.length; i++){
-					if(casillaAVerificar === juego.ultimosNros[i]){
-						posicionEnElArreglo = i;
-						break;	
-					}
-				}
-			
-				return posicionEnElArreglo;
-			}
-
-
 		tablero.style.pointerEvents = "auto";
 		tablero.style.opacity = "1";
 		barcos.style.opacity = "0.5";
