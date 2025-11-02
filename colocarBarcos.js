@@ -1,5 +1,3 @@
-/*78,89,100 primera fila, ultima fila */
-
 export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelTablero ,tablero,barcos) => {
 	return new Promise(resolve => {
 
@@ -193,8 +191,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 						let verifEstadoPosicionY = juego.listadoParesOrdenadosY.includes(posicionDeLaCasillaActualY);
 						let numeroEntreRango = comprobarRango(posicionDeLaCasillaActual);
 						let comprobarNuevoNumeroDeNuevoArreglo = encontrarNumerosCorrespondientes(posicionDeLaCasillaActual);
-							
-							console.log(posicionDeLaCasillaActual)
 
 							if(!juego.modoDeColocacionDeBarco){
 
@@ -380,7 +376,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									let restarElemento = posicionDeLaCasillaActual - (juego.cantidadDeCasillasBarco * 11);
 									desmarcarCasillasVertical(restarElemento)
 								} else if(posicionDeLaCasillaActual >= 0 && posicionDeLaCasillaActual <= 65) {
-									console.log('POR AQUI NO PASAS')
 									desmarcarCasillasVertical(posicionDeLaCasillaActual)
 								} else if(comprobarNuevoNumeroDeNuevoArreglo){
 									
@@ -501,8 +496,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									desmarcarCasillas(restarElemento,posicionDeLaCasillaActual);
 									remarcarCasillasVertical(juego.primeraPosicion)
 								
-								} else if((posicionDeLaCasillaActual >= 84 && posicionDeLaCasillaActual <= 86 ) || (posicionDeLaCasillaActual >= 95 && posicionDeLaCasillaActual <= 97) || (posicionDeLaCasillaActual  >= 106 && posicionDeLaCasillaActual <= 108)){
-								
+								} else if((posicionDeLaCasillaActual >= 84 && posicionDeLaCasillaActual <= 86 ) || (posicionDeLaCasillaActual >= 95 && posicionDeLaCasillaActual <= 97) || (posicionDeLaCasillaActual  >= 106 && posicionDeLaCasillaActual <= 108)){								
 								
 									desmarcarCasillas(copiaJuegoPrimeraPosicioncopiaJuegoPrimeraPosicion,juego.ultimaPosicion);
 									remarcarCasillasVertical(juego.primeraPosicion);
@@ -598,8 +592,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							}
 							
 						} else {
-
-							/*AQUI ES QUE SI AL HACER CLICK EN UNA CASILLA DONDE ESTA TODO EN VERTICAL AL HACER CLICK DERECHO SE HARAN EN VERTICAL*/
 
 								juego.modoDeColocacionDeBarco = false;  
 
@@ -782,13 +774,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 					})	
 			
 				});
-			
-			
-			
-			
-			
-			
-			
+		
 			} else {
 			
 				// AGREGAR LA LOGICA AQUI. SI TODO MI TABLERO ES COMO UNA MATRIZ, DEBO AGREGAR EL EVENTO EN LAS ZONAS DONDE LAS CASILLAS HORIZONALTES PUEDAN PASAR A VERTICALES					
