@@ -1,3 +1,5 @@
+/*78,89,100 primera fila, ultima fila */
+
 export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelTablero ,tablero,barcos) => {
 	return new Promise(resolve => {
 
@@ -167,6 +169,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 				return encontrado;
 			}
+
+		console.log(juego.arregloNuevoDos)
 
 		tablero.style.pointerEvents = "auto";
 		tablero.style.opacity = "1";
@@ -495,6 +499,12 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									desmarcarCasillas(restarElemento,posicionDeLaCasillaActual);
 									remarcarCasillasVertical(juego.primeraPosicion)
 								
+								} else {
+
+									juego.ultimaPosicion = posicionDeLaCasillaActual + juego.cantidadDeCasillasBarco;
+
+									desmarcarCasillas(posicionDeLaCasillaActual, juego.ultimaPosicion);
+									remarcarCasillasVertical(juego.primeraPosicion);
 								}
 
 							} else if(posicionDeLaCasillaActual >= 111 && posicionDeLaCasillaActual <= 115){
@@ -686,6 +696,15 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 										desmarcarCasillasVertical(juego.primeraPosicion,juego.ultimaPosicion);
 										remarcarCasillas(decrementarElemento, posicionDeLaCasillaActual);
 
+									} else {
+										
+										let incrementarElemento = posicionDeLaCasillaActual + juego.cantidadDeCasillasBarco;
+
+										juego.ultimaPosicion = juego.primeraPosicion + juego.cantidadDeCasillasBarco;
+
+
+										desmarcarCasillasVertical(juego.primeraPosicion,juego.ultimaPosicion );
+										remarcarCasillas(posicionDeLaCasillaActual,incrementarElemento)
 									}
 
 								} else if(posicionDeLaCasillaActual >= 67 && posicionDeLaCasillaActual <= 72){
@@ -703,7 +722,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 									desmarcarCasillasVertical(posicionDeLaCasillaActual,juego.ultimaPosicion);
 									remarcarCasillas(restarElemento,posicionDeLaCasillaActual);
 
-								} else if(posicionDeLaCasillaActual >= 0 && posicionDeLaCasillaActual <= 65) {
+								} else if(posicionDeLaCasillaActual >= 0 && posicionDeLaCasillaActual <= 65){
 									let comprobarNumeroSiEstaEnElArreglo = encontrarNumerosCorrespondientesDos(posicionDeLaCasillaActual);
 								
 									if(comprobarNumeroSiEstaEnElArreglo){
@@ -754,10 +773,11 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			
 			
 			} else {
+			
 				// AGREGAR LA LOGICA AQUI. SI TODO MI TABLERO ES COMO UNA MATRIZ, DEBO AGREGAR EL EVENTO EN LAS ZONAS DONDE LAS CASILLAS HORIZONALTES PUEDAN PASAR A VERTICALES					
+			
 			}
-			
-			
+						
 			break;
 		
 
