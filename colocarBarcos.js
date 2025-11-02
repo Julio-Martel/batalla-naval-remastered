@@ -548,9 +548,10 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 							} else if(posicionDeLaCasillaActual => 73 && posicionDeLaCasillaActual <= 76){
 								
-								juego.ultimaPosicion = juego.primeraPosicion + juego.cantidadDeCasillasBarco;
+								let restarElemento = posicionDeLaCasillaActual - juego.cantidadDeCasillasBarco;
 
-								desmarcarCasillas(juego.primeraPosicion,juego.ultimaPosicion);
+								desmarcarCasillas(restarElemento,posicionDeLaCasillaActual);
+								desmarcarCasillas(72,76)
 								remarcarCasillasVertical(posicionDeLaCasillaActual);
 
 							}else if(posicionDeLaCasillaActual >= 0 && posicionDeLaCasillaActual <= 65) {
