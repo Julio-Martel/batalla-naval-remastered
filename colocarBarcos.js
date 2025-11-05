@@ -117,7 +117,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 				obtenerIdCasillaActual.style.background = "none"; 
 				elementoIncremental = elementoIncremental + 11;
 			}			
-	
+
 		}
  
 		const comprobarRango = (numero) => {
@@ -349,27 +349,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 
 									juego.primeraPosicion = null;
 									juego.ultimaPosicion = null;
-								}
-
-								if(!juego.casillaColocada){
-								
-									casillasDelTablero.forEach(casilla => casilla.style.background = "none");
-									juego.casillaColocada = false;
-								
-								} else {
-									
-									casillasDelTablero.forEach(casilla => {
-										let incluidoEnElArreglo = juego.casillasABloquear.includes(casilla);
-										let valueDeLaCasilla = casilla.getAttribute('id');
-										let idCasilla = document.getElementById(valueDeLaCasilla);
-										
-										if(incluidoEnElArreglo){
-											idCasilla.style.pointerEvents = "none";
-											idCasilla.style.background = "yellow";
-										} else {
-											casilla.style.background = "none";
-										}
-									})								
 								} 
 							
 							} else {
@@ -415,6 +394,28 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								
 							}
 
+								if(!juego.casillaColocada){
+								
+									casillasDelTablero.forEach(casilla => casilla.style.background = "none");
+									juego.casillaColocada = false;
+								
+								} else {
+									
+									casillasDelTablero.forEach(casilla => {
+										let incluidoEnElArreglo = juego.casillasABloquear.includes(casilla);
+										let valueDeLaCasilla = casilla.getAttribute('id');
+										let idCasilla = document.getElementById(valueDeLaCasilla);
+										
+										if(incluidoEnElArreglo){
+											idCasilla.style.pointerEvents = "none";
+											idCasilla.style.background = "yellow";
+										} else {
+											casilla.style.background = "none";
+										}
+									})								
+								}
+
+
 							juego.casillasABloquear = [];
 					})
 					
@@ -429,8 +430,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 								barcos.style.opacity = "1";
 								barcos.style.pointerEvents = "auto";
 
-
-
 							})					
 										
 					casillaActualDelTablero.addEventListener("contextmenu", (event) => {
@@ -440,6 +439,8 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 						let comprobarNuevoNumeroDeNuevoArreglo = encontrarNumerosCorrespondientes(posicionDeLaCasillaActual);
 
 						event.preventDefault();
+
+						juego.casillasABloquear = [];
 						
 						if(!juego.modoDeColocacionDeBarco){
 							
