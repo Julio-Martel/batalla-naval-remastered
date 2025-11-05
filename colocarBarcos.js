@@ -311,11 +311,9 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 										}
 
 										remarcarCasillasVertical(juego.primeraPosicion);
-
 								}
 										
 							}
-
 							
 					});
 
