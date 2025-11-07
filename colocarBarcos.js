@@ -1,5 +1,14 @@
+/*
+	Se necesita pensar como rellenar un listado de las coordenadas para que cuando el juego empieze se puedan utilizar para adivar en que partes
+	el barco sera dañado. Primero una matriz completa con todas las casillas y luego segun donde se haya colocado la ficha, se buscara ese nro donde
+	se determinara la columna y fila
+
+*/
+
 export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelTablero ,tablero,barcos) => {
 	return new Promise(resolve => {
+
+
 
 		const generarArreglo = () => {
   			return Array.from({ length: 120 - 67 + 1 }, (_, i) => i + 67)
