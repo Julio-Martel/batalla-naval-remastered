@@ -11,8 +11,8 @@ export const generarMenuPrincipal = (contenido) => {
 		</div>
 	`;
 
-	const botonUnSoloJugador = document.getElementById('unSoloJugador');
-	//const botonDosJugadores = document.getElementById('dosJugadores');
+	//const botonUnSoloJugador = document.getElementById('unSoloJugador');
+	const botonDosJugadores = document.getElementById('dosJugadores');
 
-	botonUnSoloJugador.addEventListener('click', () => generarJuegoUnSoloJugador(contenido));
+	botonDosJugadores.addEventListener('click', () => generarJuegoUnSoloJugador(contenido));
 }
