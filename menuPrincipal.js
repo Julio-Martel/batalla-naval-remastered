@@ -1,4 +1,4 @@
-import { generarJuegoUnSoloJugador } from './juegoUnSoloJugador.js';
+import { mostrar } from './prepararTablerosParaModoDosJugadores.js';
 
 export const generarMenuPrincipal = (contenido) => {
 
@@ -14,5 +14,5 @@ export const generarMenuPrincipal = (contenido) => {
 	//const botonUnSoloJugador = document.getElementById('unSoloJugador(no disponible)');
 	const botonDosJugadores = document.getElementById('dosJugadores');
 
-	botonDosJugadores.addEventListener('click', () => generarJuegoUnSoloJugador(contenido));
+	botonDosJugadores.addEventListener('click', () => mostrar());
 }
