@@ -1,3 +1,23 @@
 .contenido-principal{
     background: rgba(0, 0, 0, 0.6);
+	width: 90%;
+	height: 450px;
+	max-width: 1000px;
+	border: solid 1px darkgrey;
+	display: flex;
+	flex-direction: column;
+	opacity: 0;
+	transition: opacity 1s ease;
+	align-items: center;
+	overflow-y: hidden;
+	padding: 1rem;
+	gap: 10px;
+}
+
+.mostrar-contenido{
+    opacity: 1;
+}
+
+.contenidos-barcos-tablero{
+    display: flex;
 }
