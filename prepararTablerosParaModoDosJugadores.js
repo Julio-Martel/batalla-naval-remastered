@@ -10,9 +10,10 @@ export const mostrar = async(contenido) => {
     contenido.innerHTML = ``;
     contenido.appendChild(elementosContenido.contenedorPrincipal);
    
-    await delay(1000);  
-
     elementosContenido.contenedorPrincipal.classList.add('contenido-principal');
+    
+    await delay(2000);  
+
     elementosContenido.contenedorPrincipal.classList.add('mostrar-contenido')
 
     elementosContenido.tituloDeNroDeJugador.textContent = "Jugador Nro 1";
