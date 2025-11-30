@@ -1,15 +1,14 @@
 .contenido-principal{
     background: rgba(0, 0, 0, 0.6);
 	width: 90%;
-	height: 450px;
-	max-width: 1000px;
+	height: 85%;
 	border: solid 1px darkgrey;
 	display: flex;
 	flex-direction: column;
 	opacity: 0;
 	transition: opacity 1s ease;
 	align-items: center;
-	overflow-y: hidden;
+	overflow-x: hidden;
 	padding: 1rem;
 	gap: 10px;
 }
@@ -18,38 +17,60 @@
     opacity: 1;
 }
 
+
+.contenedor-titulo-barcos-tablero {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
 .contenidos-barcos-tablero{
 	background: rgba(0, 0, 0, 0.6);
     width: 100%;
+	height: 450px;
     display: flex;
     border: solid 1px darkgray;
     border-radius: 5px;
     justify-content: center;
+	align-items: center;
+
 }
 
 .titulo-jugador{
+	background: #000000;
+	display: flex;
+	justify-content: center;
 	color: #ffffff;
-	width: 100%;
-	padding: 3px;
 	border-radius: 5px;
-	border: solid 1px dark;
+	border: solid 1px darkgray;
+	margin: 0;
 }
 
 .seccion-tablero {
 	background: url('./images/fondoTablero.jpg');
 	background-size: cover;
 	width: 50%;
-	height: 100%;
 	display: grid;
 	grid-template-rows: repeat(11, auto);
 	grid-template-columns: repeat(11, 1fr);
-	border: solid 1px darkgrey;
+	border: solid 1px #000000;
 	border-radius: 5px;
-	max-width: 450px;
-	max-height:450px;
-	margin: 1rem;
 	position: relative;
+	height: 500px;
 }
+
+.seccion-barcos {
+	background: rgba(0, 0, 0, 0.6);
+	width: 50%;
+	height: 450px;
+	display: grid;
+	grid-template-columns: repeat(4, auto);
+	grid-template-rows: repeat(3,3fr);
+	border-radius: 5px;
+	border: solid 1px #000000;
+}
+
 
 
 .tarjeta {
@@ -79,4 +100,35 @@
 .casilla-tablero {
 	border: solid 1px #000000;
 	cursor: pointer;
+}
+
+.contenedor-barcos-y-tablero{
+	width: 100%;
+	background:green;
+	border: solid 1px darkgrey;
+	border-radius: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row-reverse;
+	
+}
+
+.sub-contenedor{
+	width: 100%;
+	height: 100%;
+}
+
+.casilla-tablero {
+	border: solid 1px #000000;
+	cursor: pointer;
+}
+
+.boton-finalizar-cargar{
+	background: rgba(0, 0, 0, 0.6);
+	width: 100%;
+	color: #ffffff;
+	border-radius: 5px;
+	border: solid 1px darkgray;
+	font-size: 2rem;
 }
