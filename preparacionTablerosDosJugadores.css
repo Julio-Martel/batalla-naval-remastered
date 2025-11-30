@@ -19,6 +19,7 @@
 }
 
 .contenidos-barcos-tablero{
+	background: rgba(0, 0, 0, 0.6);
     width: 100%;
     display: flex;
     border: solid 1px darkgray;
@@ -32,4 +33,20 @@
 	padding: 3px;
 	border-radius: 5px;
 	border: solid 1px dark;
+}
+
+.seccion-tablero {
+	background: url('./images/fondoTablero.jpg');
+	background-size: cover;
+	width: 50%;
+	height: 100%;
+	display: grid;
+	grid-template-rows: repeat(11, auto);
+	grid-template-columns: repeat(11, 1fr);
+	border: solid 1px darkgrey;
+	border-radius: 5px;
+	max-width: 450px;
+	max-height:450px;
+	margin: 1rem;
+	position: relative;
 }
