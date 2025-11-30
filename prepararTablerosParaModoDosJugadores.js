@@ -1,3 +1,5 @@
+import {generarTableroYBarcos} from './generarTableroYSeleccionDeBarcos.js';
+
 export const mostrar = async(contenido) => {  
     
     const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
@@ -16,6 +18,7 @@ export const mostrar = async(contenido) => {
         contenedorPrincipal: document.createElement('div'),
         tituloDeNroDeJugador: document.createElement('h1'),
         contenedorBarcosYTablero: document.createElement('div'), 
+        nroDeJugador: 1
     
     };  
    
@@ -28,12 +31,13 @@ export const mostrar = async(contenido) => {
 
     elementosContenido.contenedorPrincipal.classList.add('mostrar-contenido')
 
-    elementosContenido.tituloDeNroDeJugador.textContent = "Jugador Nro 1";
-    elementosContenido.contenedorPrincipal.appendChild(elementosContenido.tituloDeNroDeJugador);
-     
-    elementosContenido.contenedorPrincipal.appendChild(elementosContenido.contenedorBarcosYTablero);
-    elementosContenido.contenedorBarcosYTablero.classList.add('contenido-barcos-tablero');
+    const generarContenidoTableroYBarcos = async() => {
+        for(let i = elementosContenido.nroDeJugador; i < 3; i++){
+            generarTableroYBarcos(elementosContenido.contenedorPrincipal,i);
+        }
+    }
 
+    generarContenidoTableroYBarcos();
     
 
 }
