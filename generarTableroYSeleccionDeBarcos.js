@@ -4,11 +4,8 @@ export const generarTableroYBarcos = async(contenidoPrincipal,nroDeJugador) => {
     let contenedorTableroBarcos = document.createElement('div');
     let contenedorParaTableroBarcos = document.createElement('div');
     let tituloSeccionBarcos = document.createElement('h1');
-    let contenedorTituloTableroBarcos = document.createElement('h1');
-    let slideBarcos = document.createElement('div');
     let botonParaFinalizarCargaDeBarcos = document.createElement('button');
     let tablero = document.createElement('div');
-    let botonParaFinalizarLaCargaConfiguracionDeTablero = document.createElement('button');
 
 
     // configuracion de titulo que aparecera principalmente en el contenido principal, ej: Jugador nro 1
