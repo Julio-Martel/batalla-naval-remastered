@@ -18,30 +18,17 @@ export const generarTableroYBarcos = async(contenidoPrincipal,nroDeJugador) => {
 
     seccionBarcosParaSeleccionar.classList.add('seccion-barcos');
     tablero.classList.add('seccion-tablero');
-   
-   /* for(let i = 0; i < 121; i++) {
-		let casillaTablero = document.createElement('div');
-		casillaTablero.setAttribute('id',`casilla-0-${i}`);
-		casillaTablero.classList.add('casilla-tablero');
-		tablero.appendChild(casillaTablero);
-	}
 
+    botonParaFinalizarCargaDeBarcos.classList.add('boton-finalizar-cargar')
 
-    contenedorTituloTableroBarcos.classList.add('contenedor-titulo-barcos-tablero');
+    botonParaFinalizarCargaDeBarcos.textContent = "Listo para la batalla";
 
-    contenedorParaTableroBarcos.classList.add('contenedor-barcos-y-tablero');
-    contenedorParaTableroBarcos.appendChild(seccionBarcosParaSeleccionar);
-    contenedorParaTableroBarcos.appendChild(tablero);
-    
-    contenedorTableroBarcos.classList.add('sub-contenedor')*/
-
- 
- 
     // AQUI EL CONTENEDOR PRINCIPAL CONTENDRA TRES ELEMENTOS IMPORTANTES, UNO EL TITULO DE NRO DE JUGADOR, EL SEGUNDO EL CONTENEDOR QUE TENDRA EL TABLERO Y EL BOTON QUE FINALIZARA LA COLOCACION DE LOS BARCOS EN EL MISMO
 
     contenidoPrincipal.appendChild(contenedorTableroBarcos);
     contenedorTableroBarcos.appendChild(tituloDelJugador);
-    contenedorTableroBarcos.appendChild(contenedorParaTableroBarcos)
+    contenedorTableroBarcos.appendChild(contenedorParaTableroBarcos);
+    contenedorTableroBarcos.appendChild(botonParaFinalizarCargaDeBarcos);
     
     contenedorTableroBarcos.classList.add('contenedor-titulo-barcos-tablero')
     
@@ -57,6 +44,8 @@ export const generarTableroYBarcos = async(contenidoPrincipal,nroDeJugador) => {
 
     contenedorParaTableroBarcos.appendChild(seccionBarcosParaSeleccionar);
 
+
+    botonParaFinalizarCargaDeBarcos.style.opacity = "0.1";
 
 
 
