@@ -33,10 +33,16 @@ export const generarTableroYBarcos = (contenidoPrincipal,nroDeJugador) => {
     contenedorTableroBarcos.appendChild(seccionBarcosParaSeleccionar);
     contenedorTableroBarcos.appendChild(tablero);
 
+    
+    // AQUI EL CONTENEDOR PRINCIPAL CONTENDRA TRES ELEMENTOS IMPORTANTES, UNO EL TITULO DE NRO DE JUGADOR, EL SEGUNDO EL CONTENEDOR QUE TENDRA EL TABLERO Y EL BOTON QUE FINALIZARA LA COLOCACION DE LOS BARCOS EN EL MISMO
     contenidoPrincipal.appendChild(tituloDelJugador);
     contenidoPrincipal.appendChild(contenedorTableroBarcos);
+    contenidoPrincipal.appendChild(botonParaFinalizarCargaDeBarcos);
+    
+    
     contenedorTableroBarcos.appendChild(seccionBarcosParaSeleccionar);
     contenedorTableroBarcos.appendChild(tablero);
+
 
 
 }
