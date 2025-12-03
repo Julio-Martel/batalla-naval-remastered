@@ -1,3 +1,6 @@
+
+// Agregar la funcion para el generado de partidas
+
 export const generarTableroYBarcos = async(contenidoPrincipal,nroDeJugador) => {
     let tituloDelJugador = document.createElement('h1');
     let seccionBarcosParaSeleccionar = document.createElement('div');
@@ -65,7 +68,7 @@ export const generarTableroYBarcos = async(contenidoPrincipal,nroDeJugador) => {
     const todasLasTarjetas = document.querySelectorAll('.tarjeta');
 
 	let j = 0;
-	for(let x = 0; x < todasLasTarjetas.length; x++) {
+	for(let tarjeta of todasLasTarjetas) {
 		let tarjetaId = document.getElementById(`tarjeta-${j}`);
 		let nombreDelBarco = document.createElement('h2');
 		nombreDelBarco.classList.add('titulo-barcos');
