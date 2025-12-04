@@ -150,16 +150,6 @@ export const generarTableroYBarcos = async(contenidoPrincipal,nroDeJugador) => {
 	}
 
 
-
-
-
-
-
-
-
-
-
-
     botonParaFinalizarCargaDeBarcos.style.opacity = "0.1";
 
 
