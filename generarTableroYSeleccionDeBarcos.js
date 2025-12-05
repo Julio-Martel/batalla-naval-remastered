@@ -16,7 +16,7 @@ export const generarTableroYBarcos = async(contenidoPrincipal,nroDeJugador) => {
     tituloDelJugador.textContent = `Jugador nro ${nroDeJugador}`;
 
 
-    seccionBarcosParaSeleccionar.classList.add('seccion-barcos');
+    seccionBarcosParaSeleccionar.classList.add('seccion-barcos-tarjeta');
     tablero.classList.add('seccion-tablero');
 
     botonParaFinalizarCargaDeBarcos.classList.add('boton-finalizar-cargar')
@@ -42,14 +42,14 @@ export const generarTableroYBarcos = async(contenidoPrincipal,nroDeJugador) => {
 		tablero.appendChild(casillaTablero);
 	}
 
-    const todasLasCasillasDelTablero = document.querySelectorAll('.casilla-tablero');
+    //const todasLasCasillasDelTablero = document.querySelectorAll('.casilla-tablero');
 
  	tablero.style.opacity = "0.5";
 	tablero.style.pointerEvents = "none";   
 
     contenedorParaTableroBarcos.appendChild(seccionBarcosParaSeleccionar);
 
-    seccionBarcosParaSeleccionar.classList.add('seccion-barcos');
+    seccionBarcosParaSeleccionar.classList.add('seccion-barcos-tarjeta');
     
 	const bismarkImagen = document.createElement('img');
 	const tirpitzImagen = document.createElement('img');
@@ -61,14 +61,14 @@ export const generarTableroYBarcos = async(contenidoPrincipal,nroDeJugador) => {
  	for(let i = 0; i < 6; i++) {
 		let tarjetaBarco = document.createElement('div');
 		seccionBarcosParaSeleccionar.appendChild(tarjetaBarco);
-		seccionBarcosParaSeleccionar.classList.add('tarjeta');
+		tarjetaBarco.classList.add('tarjeta');
 		tarjetaBarco.setAttribute('id',`tarjeta-${i}`);
 	}   
 
-    const todasLasTarjetas = document.querySelectorAll('.tarjeta');
+	const toddasLasTarjetasBarco = document.querySelectorAll('.tarjeta')
 
 	let j = 0;
-	for(let tarjeta of todasLasTarjetas) {
+	for(let tarjeta of toddasLasTarjetasBarco) {
 		let tarjetaId = document.getElementById(`tarjeta-${j}`);
 		let nombreDelBarco = document.createElement('h2');
 		nombreDelBarco.classList.add('titulo-barcos');
