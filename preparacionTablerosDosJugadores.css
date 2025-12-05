@@ -17,7 +17,6 @@
     opacity: 1;
 }
 
-
 .contenedor-titulo-barcos-tablero {
 	width: 100%;
 	display: flex;
@@ -60,19 +59,6 @@
 	height: 500px;
 }
 
-.seccion-barcos {
-	background: rgba(0, 0, 0, 0.6);
-	width: 50%;
-	height: 450px;
-	display: grid;
-	grid-template-columns: repeat(4, auto);
-	grid-template-rows: repeat(3,3fr);
-	border-radius: 5px;
-	border: solid 1px #000000;
-}
-
-
-
 .tarjeta {
 	background: rgba(0, 0, 0, 0.6);
 	height: 100%;
@@ -84,17 +70,6 @@
 	gap: 5px;
 	margin: 3px;
 	border-radius: 5px;
-}
-
-.barco {
-	width: 100%;
-	max-width: 100px;
-	cursor: pointer;
-	transition: filter 0.5s ease-out;
-}
-
-.barco:hover { 
-	filter: brightness(1.9);	
 }
 
 .casilla-tablero {
@@ -131,4 +106,26 @@
 	border-radius: 5px;
 	border: solid 1px darkgray;
 	font-size: 2rem;
+}
+
+.seccion-barcos-tarjeta{
+	background: skyblue;
+	width: 50%;
+	height: 450px;
+	display: grid;
+	grid-template-columns: repeat(4, auto);
+	grid-template-rows: repeat(3,3fr);
+	margin: 1rem;
+	grid-gap: 5px;
+}
+
+.barco {
+	width: 100%;
+	max-width: 100px;
+	cursor: pointer;
+	transition: filter 0.5s ease-out;
+}
+
+.barco:hover { 
+	filter: brightness(1.9);	
 }
