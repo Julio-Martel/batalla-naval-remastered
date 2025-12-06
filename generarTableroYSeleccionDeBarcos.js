@@ -1,6 +1,8 @@
 
 // Agregar la funcion para el generado de partidas
 
+import {colocarBarcosEnElTablero} from './colocarBarcos.js';
+
 export const generarTableroYBarcos = async(contenidoPrincipal,nroDeJugador) => {
     let tituloDelJugador = document.createElement('h1');
     let seccionBarcosParaSeleccionar = document.createElement('div');
@@ -42,7 +44,7 @@ export const generarTableroYBarcos = async(contenidoPrincipal,nroDeJugador) => {
 		tablero.appendChild(casillaTablero);
 	}
 
-    //const todasLasCasillasDelTablero = document.querySelectorAll('.casilla-tablero');
+    const todasLasCasillasDelTablero = document.querySelectorAll('.casilla-tablero');
 
  	tablero.style.opacity = "0.5";
 	tablero.style.pointerEvents = "none";   
@@ -142,9 +144,9 @@ export const generarTableroYBarcos = async(contenidoPrincipal,nroDeJugador) => {
 			botonColocarId.textContent = "COLOCADO";
 			botonColocarId.style.pointerEvents = "none";
 			botonColocarId.style.opacity = "0.5";
-			seccionBarcos.style.pointerEvents = "none";
+			seccionBarcosParaSeleccionar.style.pointerEvents = "none";
 
-			//await colocarBarcosEnElTablero(botonColocarDataValue,todasLasCasillasDelTablero,seccionTablero,seccionBarcos,casillasOcupadas);					
+			await colocarBarcosEnElTablero(botonColocarDataValue,todasLasCasillasDelTablero,tablero,seccionBarcosParaSeleccionar);					
 					
 		});
 	}
