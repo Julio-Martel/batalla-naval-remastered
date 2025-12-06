@@ -70,6 +70,7 @@
 	gap: 5px;
 	margin: 3px;
 	border-radius: 5px;
+	border: solid 1px #000000;
 }
 
 .casilla-tablero {
