@@ -1,6 +1,3 @@
-
-// Agregar la funcion para el generado de partidas
-
 import {colocarBarcosEnElTablero} from './colocarBarcos.js';
 
 export const generarTableroYBarcos = async(contenidoPrincipal,nroDeJugador) => {
@@ -8,12 +5,9 @@ export const generarTableroYBarcos = async(contenidoPrincipal,nroDeJugador) => {
     let seccionBarcosParaSeleccionar = document.createElement('div');
     let contenedorTableroBarcos = document.createElement('div');
     let contenedorParaTableroBarcos = document.createElement('div');
-    let tituloSeccionBarcos = document.createElement('h1');
     let botonParaFinalizarCargaDeBarcos = document.createElement('button');
     let tablero = document.createElement('div');
-    let seccionTarjetas = document.createElement('div');
 
-    // configuracion de titulo que aparecera principalmente en el contenido principal, ej: Jugador nro 1
     tituloDelJugador.classList.add('titulo-jugador');
     tituloDelJugador.textContent = `Jugador nro ${nroDeJugador}`;
 
@@ -24,8 +18,6 @@ export const generarTableroYBarcos = async(contenidoPrincipal,nroDeJugador) => {
     botonParaFinalizarCargaDeBarcos.classList.add('boton-finalizar-cargar')
 
     botonParaFinalizarCargaDeBarcos.textContent = "Listo para la batalla";
-
-    // AQUI EL CONTENEDOR PRINCIPAL CONTENDRA TRES ELEMENTOS IMPORTANTES, UNO EL TITULO DE NRO DE JUGADOR, EL SEGUNDO EL CONTENEDOR QUE TENDRA EL TABLERO Y EL BOTON QUE FINALIZARA LA COLOCACION DE LOS BARCOS EN EL MISMO
 
     contenidoPrincipal.appendChild(contenedorTableroBarcos);
     contenedorTableroBarcos.appendChild(tituloDelJugador);
