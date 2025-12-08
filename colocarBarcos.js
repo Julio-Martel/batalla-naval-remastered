@@ -7,9 +7,7 @@
 
 export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelTablero ,tablero,barcos) => {
 	return new Promise(resolve => {
-
-
-
+		
 		const generarArreglo = () => {
   			return Array.from({ length: 120 - 67 + 1 }, (_, i) => i + 67)
               .filter(num => num % 11 !== 0);
