@@ -5,9 +5,9 @@
 
 */
 
-export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelTablero ,tablero,barcos) => {
+export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelTablero ,tablero,barcos,tableroMatriz) => {
 	return new Promise(resolve => {
-		
+
 		const generarArreglo = () => {
   			return Array.from({ length: 120 - 67 + 1 }, (_, i) => i + 67)
               .filter(num => num % 11 !== 0);
@@ -421,16 +421,19 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 					
 					casillaActualDelTablero.addEventListener('click', () => {
 						
-								juego.casillaColocada = true;
-								juego.tableroUsadoPorPrimeraVez = true;
+						juego.casillaColocada = true;
+						juego.tableroUsadoPorPrimeraVez = true;
 
-								tablero.style.opacity = "0.1";
-								tablero.style.pointerEvents = "none";
+						tablero.style.opacity = "0.1";
+						tablero.style.pointerEvents = "none";
 							
-								barcos.style.opacity = "1";
-								barcos.style.pointerEvents = "auto";
+						barcos.style.opacity = "1";
+						barcos.style.pointerEvents = "auto";
 
-							})					
+						tableroMatriz.push(juego.casillasABloquear);
+						console.log(tableroMatriz);
+
+					})					
 										
 					casillaActualDelTablero.addEventListener("contextmenu", (event) => {
 						let obtenerIdCasillaActual = casillaActualDelTablero.getAttribute('id');
@@ -785,11 +788,13 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 						}
 						
 					})	
+
 			
 				});
 		
 			} else {
 			
+				
 				// AGREGAR LA LOGICA AQUI. SI TODO MI TABLERO ES COMO UNA MATRIZ, DEBO AGREGAR EL EVENTO EN LAS ZONAS DONDE LAS CASILLAS HORIZONALTES PUEDAN PASAR A VERTICALES					
 			
 				// LA LOGICA SE IMPLEMENTARA MEDIANTE UNA MATRIZ
