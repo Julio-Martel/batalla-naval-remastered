@@ -1,6 +1,6 @@
 import {colocarBarcosEnElTablero} from './colocarBarcos.js';
 
-export const generarTableroYBarcos = async(contenidoPrincipal,nroDeJugador) => {
+export const generarTableroYBarcos = async(contenidoPrincipal,nroDeJugador,tableroMatriz) => {
     let tituloDelJugador = document.createElement('h1');
     let seccionBarcosParaSeleccionar = document.createElement('div');
     let contenedorTableroBarcos = document.createElement('div');
@@ -138,7 +138,7 @@ export const generarTableroYBarcos = async(contenidoPrincipal,nroDeJugador) => {
 			botonColocarId.style.opacity = "0.5";
 			seccionBarcosParaSeleccionar.style.pointerEvents = "none";
 
-			await colocarBarcosEnElTablero(botonColocarDataValue,todasLasCasillasDelTablero,tablero,seccionBarcosParaSeleccionar);					
+			await colocarBarcosEnElTablero(botonColocarDataValue,todasLasCasillasDelTablero,tablero,seccionBarcosParaSeleccionar,tableroMatriz);					
 					
 		});
 	}
