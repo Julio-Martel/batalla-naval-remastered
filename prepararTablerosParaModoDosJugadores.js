@@ -6,13 +6,13 @@ export const mostrar = async(contenido) => {
 
     let tableroMatriz = [];
 
-    for(let i = 0; i < 11; i++) {
+    /*for(let i = 0; i < 11; i++) {
         let fila = [];
         tableroMatriz.push(fila);
         for(let j = 0; j < 11; j++){
             tableroMatriz[i][j] = 0;
         }
-    }
+    }*/
 
     let elementosContenido = {
         contenedorPrincipal: document.createElement('div'),
@@ -31,13 +31,6 @@ export const mostrar = async(contenido) => {
 
     elementosContenido.contenedorPrincipal.classList.add('mostrar-contenido')
 
-    const generarContenidoTableroYBarcos = async() => {
-        for(let i = elementosContenido.nroDeJugador; i < 3; i++){
-            generarTableroYBarcos(elementosContenido.contenedorPrincipal,i);
-        }
-    }
-
-    generarContenidoTableroYBarcos();
+    generarTableroYBarcos(elementosContenido.contenedorPrincipal,elementosContenido.nroDeJugador,tableroMatriz);
     
-
 }
