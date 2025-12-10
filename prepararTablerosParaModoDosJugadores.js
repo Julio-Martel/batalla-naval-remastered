@@ -4,7 +4,7 @@ export const mostrar = async(contenido) => {
     
     const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-    let tableroMatriz = [];
+    let tableroMatrizJugadorUno = [];
 
     /*for(let i = 0; i < 11; i++) {
         let fila = [];
@@ -31,6 +31,6 @@ export const mostrar = async(contenido) => {
 
     elementosContenido.contenedorPrincipal.classList.add('mostrar-contenido')
 
-    generarTableroYBarcos(elementosContenido.contenedorPrincipal,elementosContenido.nroDeJugador,tableroMatriz);
+    generarTableroYBarcos(elementosContenido.contenedorPrincipal,elementosContenido.nroDeJugador,tableroMatrizJugadorUno);
     
 }
