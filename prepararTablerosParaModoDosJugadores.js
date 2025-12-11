@@ -18,8 +18,7 @@ export const mostrar = async(contenido) => {
         contenedorPrincipal: document.createElement('div'),
         tituloDeNroDeJugador: document.createElement('h1'),
         contenedorBarcosYTablero: document.createElement('div'), 
-        nroDeJugador: 1
-    
+        nroDeJugador: 1   
     };  
    
     contenido.innerHTML = ``;
