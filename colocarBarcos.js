@@ -794,13 +794,28 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 		
 			} else {
 			
-				
-				// AGREGAR LA LOGICA AQUI. SI TODO MI TABLERO ES COMO UNA MATRIZ, DEBO AGREGAR EL EVENTO EN LAS ZONAS DONDE LAS CASILLAS HORIZONALTES PUEDAN PASAR A VERTICALES					
-			
+				// AGREGAR LA LOGICA AQUI. SI TODO MI TABLERO ES COMO UNA MATRIZ, DEBO AGREGAR EL EVENTO EN LAS ZONAS DONDE LAS CASILLAS HORIZONALTES PUEDAN PASAR A VERTICALES								
 				// LA LOGICA SE IMPLEMENTARA MEDIANTE UNA MATRIZ
+			
+				casillasDelTablero.forEach(casilla => {
+					if(juego.casillasABloquear.includes(casilla)){
+						casilla.style.pointerEvents = "none";
+					}
+				})
+			
+			
 			
 			}
 						
+			break;
+
+
+			case 1:
+				juego.cantidadDeCasillasBarco = 4;
+			
+			
+			
+			
 			break;
 	
 
