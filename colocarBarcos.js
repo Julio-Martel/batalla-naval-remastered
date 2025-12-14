@@ -57,7 +57,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 		}
 
 		const juego = {
-			tableroUsadoPorPrimeraVez: true,
+			tableroUsadoPorPrimeraVez: false,
 			modoDeColocacionDeBarco: false,
 			cantidadDeCasillasBarco: null,
 			desactivarCeldas: false,
@@ -186,7 +186,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			
 			juego.cantidadDeCasillasBarco = 4;
 
-			if(juego.tableroUsadoPorPrimeraVez){	
+			if(!juego.tableroUsadoPorPrimeraVez){	
 				
 				casillasDelTablero.forEach(casillaActualDelTablero => {
 							
@@ -795,16 +795,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			} else {
 			
 				// AGREGAR LA LOGICA AQUI. SI TODO MI TABLERO ES COMO UNA MATRIZ, DEBO AGREGAR EL EVENTO EN LAS ZONAS DONDE LAS CASILLAS HORIZONALTES PUEDAN PASAR A VERTICALES								
-				// LA LOGICA SE IMPLEMENTARA MEDIANTE UNA MATRIZ
-			
-				casillasDelTablero.forEach(casilla => {
-					if(juego.casillasABloquear.includes(casilla)){
-						casilla.style.pointerEvents = "none";
-					}
-				})
-			
-			
-			
+				// LA LOGICA SE IMPLEMENTARA MEDIANTE UNA MATRIZ			
 			}
 						
 			break;
@@ -813,7 +804,16 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 			case 1:
 				juego.cantidadDeCasillasBarco = 4;
 			
-			
+				if(!juego.tableroUsadoPorPrimeraVez){
+					// logica de colocacion de ficha como en el anterior, solo modificar las constantes numericas
+				} else {
+					
+					casillasDelTablero.forEach(casilla => {
+						if(juego.casillasABloquear.includes(casilla)){
+							casilla.style.pointerEvents = "none";
+						}
+					})			
+				}
 			
 			
 			break;
