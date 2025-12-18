@@ -124,7 +124,6 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 				obtenerIdCasillaActual.style.background = "none"; 
 				elementoIncremental = elementoIncremental + 11;
 			}			
-
 		}
  
 		const comprobarRango = (numero) => {
@@ -168,8 +167,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 						if (elementoAverificar === juego.arregloNuevoTres[i][j]) {
 							juego.columnaNuevosNumeros = i;
 							encontrado = true;
-							break;
-							
+							break;					
 						}
 					}
 				}
@@ -429,10 +427,9 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 							
 						barcos.style.opacity = "1";
 						barcos.style.pointerEvents = "auto";
-
 						tableroMatriz.push(juego.casillasABloquear);
-						console.log(tableroMatriz);
-
+						juego.casillasABloquear = [];
+						
 					})					
 										
 					casillaActualDelTablero.addEventListener("contextmenu", (event) => {
@@ -793,6 +790,7 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 				});
 		
 			} else {
+				
 			
 				// AGREGAR LA LOGICA AQUI. SI TODO MI TABLERO ES COMO UNA MATRIZ, DEBO AGREGAR EL EVENTO EN LAS ZONAS DONDE LAS CASILLAS HORIZONALTES PUEDAN PASAR A VERTICALES								
 				// LA LOGICA SE IMPLEMENTARA MEDIANTE UNA MATRIZ			
@@ -811,8 +809,13 @@ export const colocarBarcosEnElTablero = async(nroBarcoSeleccionado, casillasDelT
 					casillasDelTablero.forEach(casilla => {
 						if(juego.casillasABloquear.includes(casilla)){
 							casilla.style.pointerEvents = "none";
+						} else {
+							casilla.style.background = "green";
 						}
-					})			
+					})	
+					
+					
+					
 				}
 			
 			
