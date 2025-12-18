@@ -6,14 +6,6 @@ export const mostrar = async(contenido) => {
 
     let tableroMatrizJugadorUno = [];
 
-    /*for(let i = 0; i < 11; i++) {
-        let fila = [];
-        tableroMatriz.push(fila);
-        for(let j = 0; j < 11; j++){
-            tableroMatriz[i][j] = 0;
-        }
-    }*/
-
     let elementosContenido = {
         contenedorPrincipal: document.createElement('div'),
         tituloDeNroDeJugador: document.createElement('h1'),
